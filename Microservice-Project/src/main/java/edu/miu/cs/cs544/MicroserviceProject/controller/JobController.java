@@ -22,7 +22,7 @@ public class JobController {
         this.service = service;
     }
 
-
+//yes
 
     @PostMapping("/addjobs")
     public void addjobs(@RequestBody Job job){
