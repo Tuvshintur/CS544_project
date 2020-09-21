@@ -1,29 +1,40 @@
 package miu.edu.cs.cs544.coachMS.controller;
 
+import io.swagger.annotations.Api;
 import miu.edu.cs.cs544.coachMS.DTO.ErrorDTO;
 import miu.edu.cs.cs544.coachMS.DTO.ResponseDTO;
 import miu.edu.cs.cs544.coachMS.constants.Constants;
 import miu.edu.cs.cs544.coachMS.domain.Coach;
 import miu.edu.cs.cs544.coachMS.service.ICoachService;
 import miu.edu.cs.cs544.coachMS.service.utilities.ResponseService;
-import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Collections;
 
 @RestController
 @RequestMapping("/coach")
-@Api(tags="COACH")
+@Api(tags = "COACH")
 public class CoachController {
 
+    @Autowired
     ICoachService service;
+    @Autowired
+    RestTemplate restTemplate;
+
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    public CoachController(ICoachService service) {
-        this.service = service;
+    @RequestMapping(value = "/template/students")
+    public String getStudents() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        return restTemplate.exchange("http://student-service/students/All", HttpMethod.GET, entity, String.class).getBody();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)

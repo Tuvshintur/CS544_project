@@ -1,10 +1,10 @@
 
 server:
-  port: 8091
+  port: 8002
 
 spring:
   application:
-    name: StudentService
+    name: student-service
 
   datasource:
     url: jdbc:mysql://localhost/cs544?serverTimezone=GMT-6
@@ -14,10 +14,16 @@ spring:
 
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: update
+
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
-    preferIpAddress: true
+      defaultZone: http://localhost:8000/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    hostname: localhost
 
 

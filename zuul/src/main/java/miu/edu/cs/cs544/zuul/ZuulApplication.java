@@ -1,17 +1,17 @@
-package edu.miu.cs.cs544.eurekaserver;
+package miu.edu.cs.cs544.zuul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
-@EnableEurekaServer
 @SpringBootApplication
+@EnableDiscoveryClient
 @EnableZuulProxy
-public class EurekaserverApplication {
+public class ZuulApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EurekaserverApplication.class, args);
+		SpringApplication.run(ZuulApplication.class, args);
 	}
 
 }
