@@ -28,13 +28,18 @@ public class CoachController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping(value = "/template/students")
-    public String getStudents() {
+    @RequestMapping(value = "/template /students")
+    public Student getStudents() {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        return restTemplate.exchange("http://student-service/students/All", HttpMethod.GET, entity, String.class).getBody();
+        return restTemplate.exchange("http://student-service/students/All", HttpMethod.GET, entity, Student.class).getBody();
+    }
+
+    private class Student {
+        private int id;
+        private String name;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
