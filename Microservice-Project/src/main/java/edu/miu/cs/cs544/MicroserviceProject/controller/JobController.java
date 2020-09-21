@@ -7,17 +7,20 @@ import edu.miu.cs.cs544.MicroserviceProject.domain.Coach;
 import edu.miu.cs.cs544.MicroserviceProject.domain.Job;
 import edu.miu.cs.cs544.MicroserviceProject.service.IJobService;
 import edu.miu.cs.cs544.MicroserviceProject.service.utilities.ResponseService;
+import io.swagger.annotations.Api;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/jobs")
+@Api(tags = "JOB")
 public class JobController {
 
     IJobService service;
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public JobController(IJobService service) {
@@ -27,13 +30,13 @@ public class JobController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseDTO getJobs() {
         try {
-            System.out.println(this.getClass().getName() + "[ctrl][job][getJobs][ini]");
+            LOGGER.info("[ctrl][job][getJobs][ini]");
             ResponseDTO responseDTO = service.getAllJobs();
-            System.out.println(this.getClass().getName() + "[ctrl][job][getJobs][end]");
+            LOGGER.info("[ctrl][job][getJobs][end]");
 
             return responseDTO;
         } catch (Exception ex) {
-            System.out.println(this.getClass().getName() + "[ctrl][job][getJobs][unknown][ " + ex.getMessage() + "]");
+            LOGGER.error("[ctrl][job][getJobs][unknown][ " + ex.getMessage() + "]");
             throw ex;
         }
     }
@@ -41,13 +44,13 @@ public class JobController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseDTO getJobById(@PathVariable("id") int id) {
         try {
-            System.out.println(this.getClass().getName() + "[ctrl][job][getJobById][ini]");
+            LOGGER.info("[ctrl][job][getJobById][ini]");
             ResponseDTO responseDTO = service.getJobById(id);
-            System.out.println(this.getClass().getName() + "[ctrl][job][getJobById][end]");
+            LOGGER.info("[ctrl][job][getJobById][end]");
 
             return responseDTO;
         } catch (Exception ex) {
-            System.out.println(this.getClass().getName() + "[ctrl][job][getJobById][unknown][ " + ex.getMessage() + "]");
+            LOGGER.error("[ctrl][job][getJobById][unknown][ " + ex.getMessage() + "]");
             throw ex;
         }
     }
@@ -55,13 +58,13 @@ public class JobController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseDTO addJob(@RequestBody Job job) {
         try {
-            System.out.println(this.getClass().getName() + "[ctrl][job][addJob][ini]");
+            LOGGER.info(this.getClass().getName() + "[ctrl][job][addJob][ini]");
             ResponseDTO responseDTO = service.addJob(job);
-            System.out.println(this.getClass().getName() + "[ctrl][job][addJob][end]");
+            LOGGER.info(this.getClass().getName() + "[ctrl][job][addJob][end]");
 
             return responseDTO;
         } catch (Exception ex) {
-            System.out.println(this.getClass().getName() + "[ctrl][job][addJob][unknown][ " + ex.getMessage() + "]");
+            LOGGER.error(this.getClass().getName() + "[ctrl][job][addJob][unknown][ " + ex.getMessage() + "]");
             throw ex;
         }
     }
@@ -69,18 +72,18 @@ public class JobController {
     @RequestMapping(value = "/{jobId}", method = RequestMethod.PUT)
     public ResponseDTO updateJob(@PathVariable("jobId") int jobId, @RequestBody Coach coach) {
         try {
-            System.out.println(this.getClass().getName() + "[ctrl][job][updateJob][ini]");
+            LOGGER.info("[ctrl][job][updateJob][ini]");
 
             Job currentJob = service.getJobByIdReturnJob(jobId);
 
             coach.setId(currentJob.getId());
             ResponseDTO responseDTO = service.updateJob(currentJob);
 
-            System.out.println(this.getClass().getName() + "[ctrl][job][updateJob][end]");
+            LOGGER.info("[ctrl][job][updateJob][end]");
 
             return responseDTO;
         } catch (Exception ex) {
-            System.out.println(this.getClass().getName() + "[ctrl][job][updateJob][unknown][ " + ex.getMessage() + "]");
+            LOGGER.error("[ctrl][job][updateJob][unknown][ " + ex.getMessage() + "]");
             throw ex;
         }
     }
@@ -88,16 +91,16 @@ public class JobController {
     @RequestMapping(value = "/{jobId}", method = RequestMethod.DELETE)
     public ResponseDTO deleteJob(@PathVariable("jobId") int jobId) {
         try {
-            System.out.println(this.getClass().getName() + "[ctrl][job][deleteJob][ini]");
+            LOGGER.info("[ctrl][job][deleteJob][ini]");
 
             service.deleteJobById(jobId);
 
-            System.out.println(this.getClass().getName() + "[ctrl][job][deleteJob][end]");
+            LOGGER.info("[ctrl][job][deleteJob][end]");
 
             return new ResponseService(HttpStatus.OK.value(), null, null).getResponse();
 
         } catch (Exception ex) {
-            System.out.println(this.getClass().getName() + "[ctrl][job][deleteJob][unknown][ " + ex.getMessage() + "]");
+            LOGGER.error("[ctrl][job][deleteJob][unknown][ " + ex.getMessage() + "]");
             return new ResponseService(HttpStatus.INTERNAL_SERVER_ERROR.value(), null, new ErrorDTO(null, ex.getMessage(), Constants.ErrorType.UNKNOWN)).getError();
         }
     }

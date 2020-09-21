@@ -2,7 +2,6 @@ package edu.miu.cs.cs544.MicroserviceProject.serviceImpl;
 
 import edu.miu.cs.cs544.MicroserviceProject.DTO.ListDTO;
 import edu.miu.cs.cs544.MicroserviceProject.DTO.ResponseDTO;
-import edu.miu.cs.cs544.MicroserviceProject.domain.Coach;
 import edu.miu.cs.cs544.MicroserviceProject.domain.Job;
 import edu.miu.cs.cs544.MicroserviceProject.repository.IJobRepository;
 import edu.miu.cs.cs544.MicroserviceProject.service.IJobService;
