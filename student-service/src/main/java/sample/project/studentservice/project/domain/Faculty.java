@@ -1,16 +1,13 @@
 package sample.project.studentservice.project.domain;
 
 import javax.persistence.*;
-import java.lang.management.GarbageCollectorMXBean;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Faculty {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
     private LocalDate hiringDate;
     private int room;
@@ -20,8 +17,6 @@ public class Faculty {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
-
-    //private List<Student> students;
 
     public Faculty() {
     }

@@ -65,14 +65,6 @@ public class Course {
         this.faculties = faculties;
     }
 
-//    public List<Enrollment> getEnrollments() {
-//        return enrollments;
-//    }
-//
-//    public void setEnrollments(List<Enrollment> enrollments) {
-//        this.enrollments = enrollments;
-//    }
-
     public String getBuilding() {
         return building;
     }

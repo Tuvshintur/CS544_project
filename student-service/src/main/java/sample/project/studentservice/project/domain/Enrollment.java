@@ -34,13 +34,13 @@ public class Enrollment {
         this.grade = grade;
     }
 
-//    public Student getStudent() {
-//        return student;
-//    }
-//
-//    public void setStudent(Student student) {
-//        this.student = student;
-//    }
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     public Course getCourse() {
         return course;
