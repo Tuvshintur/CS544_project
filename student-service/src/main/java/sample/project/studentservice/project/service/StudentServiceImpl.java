@@ -7,6 +7,7 @@ import sample.project.studentservice.project.domain.Enrollment;
 import sample.project.studentservice.project.domain.Student;
 import sample.project.studentservice.project.repository.StudentRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,10 +27,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Course> getAllStudentCourses(Integer studentId) {
+    public List<Course> getAllStudentCourses(int studentId) {
         Student student = studentRepository.findById(studentId);
 
-        return student.getEnrollments().stream().map(Enrollment::getCourse).collect(Collectors.toList());
+        if(student != null) {
+            return student.getEnrollments().stream().map(Enrollment::getCourse).collect(Collectors.toList());
+        }else {
+            return new ArrayList<>();
+        }
+
     }
 
     @Override
@@ -38,12 +44,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student getStudentById(Integer studentId) {
+    public Student getStudentById(int studentId) {
         return studentRepository.findById(studentId);
     }
 
     @Override
-    public Student putStudent(Student theStudent, Integer id) {
+    public Student putStudent(Student theStudent, int id) {
         Student student = studentRepository.findById(id);
         student.setAddress(theStudent.getAddress());
         student.setEnrollmentDate(theStudent.getEnrollmentDate());
@@ -59,7 +65,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void deleteStudentById(Integer studentId) {
+    public void deleteStudentById(int studentId) {
         studentRepository.deleteById(studentId);
 
     }

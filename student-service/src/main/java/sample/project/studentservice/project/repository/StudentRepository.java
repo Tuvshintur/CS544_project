@@ -6,5 +6,5 @@ import sample.project.studentservice.project.domain.Student;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Integer> {
-    Student findById(Integer studentId);
+    Student findById(int studentId);
 }
