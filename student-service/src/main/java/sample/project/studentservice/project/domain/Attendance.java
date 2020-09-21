@@ -19,11 +19,11 @@ public class Attendance {
     @JoinColumn
     private Course course;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinColumn(name = "attendance_id")
     private List<Student> students;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Faculty faculty;
 
     public Attendance() {
@@ -33,6 +33,7 @@ public class Attendance {
         this.isPresent = isPresent;
         this.isRemote = isRemote;
         this.classDate = classDate;
+
     }
 
     public boolean isPresent() {

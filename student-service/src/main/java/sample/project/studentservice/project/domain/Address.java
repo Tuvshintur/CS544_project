@@ -5,7 +5,7 @@ package sample.project.studentservice.project.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name="myaddress")
+//@Table(name="myaddress")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,5 +58,11 @@ public class Address {
         this.zipcode = zipcode;
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

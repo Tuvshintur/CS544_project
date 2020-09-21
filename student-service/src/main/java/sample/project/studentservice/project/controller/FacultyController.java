@@ -1,56 +1,56 @@
 package sample.project.studentservice.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import sample.project.studentservice.project.domain.Course;
 import sample.project.studentservice.project.domain.Faculty;
+import sample.project.studentservice.project.service.CourseService;
 import sample.project.studentservice.project.service.FacultyService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/faculties")
+@RequestMapping("/faculty")
 public class FacultyController {
+
     @Autowired
     FacultyService facultyService;
+    @Autowired
+    CourseService courseService;
 
-    @GetMapping("/All")
-    public List<Faculty> getFaculty() {
+    @GetMapping("/all")
+    public List<Faculty> getAllFaculty() {
         return facultyService.getAllFaculty();
     }
 
-    @PostMapping("/save")
-    public void saveCourse(@RequestBody Faculty faculty) {
-        facultyService.saveFaculty(faculty);
+    @GetMapping("/all/{id}")
+    public List<Course> getAllCourseByFaculty(@PathVariable("id") Long facId) {
+        return facultyService.getAllCourseByFaculty(facId);
     }
 
-    @GetMapping("/get/{facultyId}")
-    public Faculty getFacultyByID(@PathVariable Integer facultyId) {
-        Faculty faculty = facultyService.getFacultyById(facultyId);
-        if (faculty == null) {
-            throw new RuntimeException("Faculty id not found-" + facultyId);
-        }
-        return faculty;
+    @GetMapping("/past/{facId}")
+    public List<Course> getAllCoursePast(@PathVariable Long facId) {
+        return facultyService.getAllCourseByFaculty(facId);
     }
 
-    @PutMapping("/Update/{id}")
-    public Faculty updateFaculty(@RequestBody Faculty faculty, @PathVariable Integer id) {
-        try {
-            return facultyService.putFaculty(faculty, id);
-        } catch (IllegalArgumentException ex) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
-        }
+    @GetMapping("/future/{facId}")
+    public List<Course> getAllCourseFuture(Long facId) {
+        return facultyService.getAllCourseByFaculty(facId);
     }
 
-    @DeleteMapping("/delete/{facultyId}")
-    public String deleteFacultyByiD(@PathVariable Integer facultyId) {
-        Faculty faculty = facultyService.getFacultyById(facultyId);
-        if (faculty == null) {
-            throw new RuntimeException("Faculty id not found - " + facultyId);
-        }
-        facultyService.deleteFacultyById(facultyId);
-        return "Delete faculty id - " + facultyId;
+    @PostMapping("/create")
+    public void registerFacultyInDepartment(Faculty faculty) {
+        facultyService.registerFacultyInDepartment(faculty);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteDelete(Long id) {
+        facultyService.deleteDelete(id);
+    }
+
+    @PutMapping("/update")
+    public void updateById(@PathVariable Long id, Faculty faculty) {
+        facultyService.updateById(id, faculty);
+    }
+
 }
