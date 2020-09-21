@@ -15,7 +15,7 @@ public class CptReport {
     private Date date;
     private String report;
 
-    @OneToOne
+    @OneToOne(mappedBy = "cptReport")
     private Job job;
 
     public int getId() {
