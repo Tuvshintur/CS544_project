@@ -4,7 +4,7 @@ server:
 
 spring:
   application:
-    name: spring-boot-starter-parent
+    name: CoachService
 
   datasource:
     url: jdbc:mysql://localhost/cs544?serverTimezone=GMT-6
@@ -14,5 +14,10 @@ spring:
 
   jpa:
     show-sql: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    preferIpAddress: true
 
 

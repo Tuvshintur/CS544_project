@@ -23,6 +23,7 @@ public class CoachController {
 //    @PreAuthorize("hasRole('ROLE_CLIENT') or  hasRole('ROLE_ADMIN')")
     public ResponseDTO getCoaches() {
         try {
+//            log4j
             System.out.println(this.getClass().getName() + "[ctrl][coach][getCoaches][ini]");
             ResponseDTO responseDTO = service.getAllCoaches();
             System.out.println(this.getClass().getName() + "[ctrl][coach][getCoaches][end]");
