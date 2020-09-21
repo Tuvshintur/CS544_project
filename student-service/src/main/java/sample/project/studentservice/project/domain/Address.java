@@ -1,11 +1,10 @@
 package sample.project.studentservice.project.domain;
 
 
-
 import javax.persistence.*;
 
 @Entity
-@Table(name="myaddress")
+@Table
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

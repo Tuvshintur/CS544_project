@@ -18,28 +18,30 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
-@Autowired
+    @Autowired
     CourseService courseService;
-//@Autowired
+
+    //@Autowired
 //CoursesRegisteredService coursesRegisteredService;
     @GetMapping("/All")
-    public List<Student> getAllStudents(){
-    return  studentService.getAllStudents();
-}
+    public List<Student> getAllStudents() {
+        return studentService.getAllStudents();
+    }
 
     @PostMapping("/save")
-    public void saveStudents(@RequestBody Student students){
-    studentService.saveStudents(students);
-}
+    public void saveStudents(@RequestBody Student students) {
+        studentService.saveStudents(students);
+    }
 
     @GetMapping("/get/{studentId}")
-    public Student getCStudentByID(@PathVariable Integer studentId){
+    public Student getCStudentByID(@PathVariable int studentId) {
         Student student = studentService.getStudentById(studentId);
-        if(student == null){
+        if (student == null) {
             throw new RuntimeException("Student id not found-" + studentId);
         }
         return student;
     }
+
     //    @PostMapping("/Add")
 //    public Student addStudent(@RequestBody Student theStudent){
 //        theSudent.setId(0);
@@ -47,22 +49,23 @@ public class StudentController {
 //        return theStudent;
 //    }
     @PutMapping("/Update/{id}")
-    public Student updateCourse(@RequestBody Student student,@PathVariable Integer id){
+    public Student updateCourse(@RequestBody Student student, @PathVariable int id) {
 
-        return studentService.putStudent(student,id);
+        return studentService.putStudent(student, id);
     }
+
     @DeleteMapping("/delete/{studentId}")
-    public String deleteStudentByID(@PathVariable Integer studentId){
+    public String deleteStudentByID(@PathVariable int studentId) {
         Student tempStudent = studentService.getStudentById(studentId);
-        if(tempStudent == null){
+        if (tempStudent == null) {
             throw new RuntimeException("Student id not found - " + studentId);
         }
         studentService.deleteStudentById(studentId);
         return "Delete student id - " + studentId;
     }
 
-    @GetMapping("/student/")
-    public List<Course> getRegisteredCourse(@RequestParam Integer studentId){
-       return studentService.getAllStudentCourses(studentId);
+    @GetMapping("/student/{studentId}")
+    public List<Course> getRegisteredCourse(@PathVariable int studentId) {
+        return studentService.getAllStudentCourses(studentId);
     }
 }
