@@ -9,6 +9,9 @@ import java.util.Optional;
 public interface IJobService {
 
     ResponseDTO getAllJobs();
-    Optional<Job> getJobById(int id);
-    Job addJobs(Job job);
+    ResponseDTO getJobById(int id);
+    Job getJobByIdReturnJob(int id);
+    ResponseDTO addJob(Job job);
+    ResponseDTO updateJob(Job job);
+    ResponseDTO deleteJobById(int id);
 }

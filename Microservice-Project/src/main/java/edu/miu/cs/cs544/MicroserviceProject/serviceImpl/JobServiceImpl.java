@@ -11,35 +11,89 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class JobServiceImpl implements IJobService {
 
+    IJobRepository jobRepository;
+
     @Autowired
-    private IJobRepository iJobRepository;
+    public JobServiceImpl(IJobRepository jobRepository) {
+        this.jobRepository = jobRepository;
+    }
 
     @Override
     public ResponseDTO getAllJobs() {
-        System.out.println(this.getClass().getName() + "[srvc][coach.get.all][ini]");
+        System.out.println(this.getClass().getName() + "[srvc][job.get.all][ini]");
         try {
-            List<Job> jobs = iJobRepository.findAll();
-            System.out.println(this.getClass().getName() + "[srvc][coach.get.all][end]");
+            List<Job> jobs = jobRepository.findAll();
+            System.out.println(this.getClass().getName() + "[srvc][job.get.all][end]");
             return new ResponseService(HttpStatus.OK.value(), null, new ListDTO<>(jobs)).getResponse();
         } catch (Exception ex) {
-            System.out.println(this.getClass().getName() + "[srvc][coach.get.all][unknown][ " + ex.getMessage() + "]");
+            System.out.println(this.getClass().getName() + "[srvc][job.get.all][unknown][ " + ex.getMessage() + "]");
             throw ex;
         }
     }
 
     @Override
-    public Optional<Job> getJobById(int id) {
-        return iJobRepository.findById(id);
+    public ResponseDTO getJobById(int id) {
+        System.out.println(this.getClass().getName() + "[srvc][job.get.jobById][ini]");
+        try {
+            Job job = jobRepository.findById(id);
+            System.out.println(this.getClass().getName() + "[srvc][job.get.jobById][end]");
+            return new ResponseService(HttpStatus.OK.value(), null, job).getResponse();
+        } catch (Exception ex) {
+            System.out.println(this.getClass().getName() + "[srvc][job.get.jobById][unknown][ " + ex.getMessage() + "]");
+            throw ex;
+        }
     }
 
     @Override
-    public Job addJobs(Job job) {
-        return iJobRepository.save(job);
+    public Job getJobByIdReturnJob(int id) {
+        return jobRepository.findById(id);
     }
+
+    @Override
+    public ResponseDTO addJob(Job job) {
+        System.out.println(this.getClass().getName() + "[srvc][job.save.addJob][ini]");
+        try {
+            jobRepository.save(job);
+            System.out.println(this.getClass().getName() + "[srvc][job.save.addJob][end]");
+            return new ResponseService(HttpStatus.OK.value(), null, job).getResponse();
+        } catch (Exception ex) {
+            System.out.println(this.getClass().getName() + "[srvc][job.save.addJob][unknown][ " + ex.getMessage() + "]");
+            throw ex;
+        }
+    }
+
+    @Override
+    public ResponseDTO updateJob(Job job) {
+        System.out.println(this.getClass().getName() + "[srvc][job.update.updateJob][ini]");
+        try {
+            jobRepository.save(job);
+            System.out.println(this.getClass().getName() + "[srvc][job.update.updateJob][end]");
+            return new ResponseService(HttpStatus.OK.value(), null, job).getResponse();
+        } catch (Exception ex) {
+            System.out.println(this.getClass().getName() + "[srvc][job.update.updateJob][unknown][ " + ex.getMessage() + "]");
+            throw ex;
+        }
+    }
+
+    @Override
+    @Transactional
+    public ResponseDTO deleteJobById(int id) {
+        System.out.println(this.getClass().getName() + "[srvc][job.delete][ini]");
+
+        try {
+            jobRepository.deleteJobById(id);
+            System.out.println(this.getClass().getName() + "[srvc][job.delete][end]");
+            return new ResponseService(HttpStatus.OK.value(), null, null).getResponse();
+        } catch (Exception ex) {
+            System.out.println(this.getClass().getName() + "[srvc][job.delete][unknown][ " + ex.getMessage() + "]");
+            throw ex;
+        }
+    }
+
 }

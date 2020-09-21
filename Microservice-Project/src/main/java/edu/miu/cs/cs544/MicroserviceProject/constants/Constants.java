@@ -10,4 +10,18 @@ public interface Constants {
 
     }
 
+    interface ErrorType {
+
+        String RMI = "rmi";
+
+        String RESTRICTION = "restriction";
+
+        String NOT_FOUND = "not found";
+
+        String VALIDATION = "validation";
+
+        String UNKNOWN = "unknown";
+
+    }
+
 }
