@@ -22,16 +22,6 @@ public class CoursesRegistered {
 
     public CoursesRegistered() {
     }
-<<<<<<< Updated upstream
-//
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-=======
 
     public Long getId() {
         return id;
@@ -40,7 +30,6 @@ public class CoursesRegistered {
     public void setId(Long id) {
         this.id = id;
     }
->>>>>>> Stashed changes
 
     public LocalDate getStartDate() {
         return startDate;
