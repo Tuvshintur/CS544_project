@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.MicroserviceProject.constants;
+package miu.edu.cs.cs544.coachMS.constants;
 
 public interface Constants {
 
