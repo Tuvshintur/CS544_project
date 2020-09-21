@@ -33,6 +33,7 @@ public class CoursesRegistered {
 //    }
 =======
 
+    public Long getId() {
         return id;
     }
 
