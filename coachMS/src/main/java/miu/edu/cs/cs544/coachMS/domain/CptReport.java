@@ -1,15 +1,19 @@
 package miu.edu.cs.cs544.coachMS.domain;
 
+import miu.edu.cs.cs544.coachMS.DTO.IGeneralDTO;
+
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-public class CptReport {
+@Entity(name = "cptReport")
+public class CptReport implements IGeneralDTO {
 
     @Id
     @GeneratedValue
     private int id;
     private Date date;
+
+
     private String report;
 
     @OneToOne(mappedBy = "cptReport")

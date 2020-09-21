@@ -1,9 +1,15 @@
 package miu.edu.cs.cs544.coachMS.domain;
 
-import javax.persistence.*;
 
-@Entity
-public class JobResearchReport {
+import miu.edu.cs.cs544.coachMS.DTO.IGeneralDTO;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity(name = "jobResearchReport")
+public class JobResearchReport implements IGeneralDTO {
 
     @Id
     @GeneratedValue
