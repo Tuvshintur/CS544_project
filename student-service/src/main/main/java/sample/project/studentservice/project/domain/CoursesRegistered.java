@@ -1,4 +1,3 @@
-
 package sample.project.studentservice.project.domain;
 
 
@@ -6,7 +5,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="registercourse")
 public class CoursesRegistered {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +22,11 @@ public class CoursesRegistered {
     public CoursesRegistered() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public CoursesRegistered(LocalDate startDate, LocalDate endDate, Student student, Course course) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.student = student;
+        this.course = course;
     }
 
     public LocalDate getStartDate() {
@@ -64,6 +61,3 @@ public class CoursesRegistered {
         this.course = course;
     }
 }
-
-
-

@@ -14,7 +14,6 @@ public class Course {
     private String building;
     private int roomNumber;
 
-
     @ManyToMany
     private List<Faculty> faculties;
 
@@ -23,11 +22,9 @@ public class Course {
 
     @OneToMany(mappedBy = "course")
     private List<CoursesRegistered> coursesRegistereds;
-  
 
     public Course() {
     }
-
 
     public Course(String title, String courseCode, String building, int roomNumber) {
         this.title = title;
@@ -68,7 +65,6 @@ public class Course {
         this.faculties = faculties;
     }
 
-
     public List<Enrollment> getEnrollments() {
         return enrollments;
     }
@@ -76,7 +72,6 @@ public class Course {
     public void setEnrollments(List<Enrollment> enrollments) {
         this.enrollments = enrollments;
     }
-
 
     public String getBuilding() {
         return building;
@@ -101,5 +96,4 @@ public class Course {
     public void setCoursesRegistereds(List<CoursesRegistered> coursesRegistereds) {
         this.coursesRegistereds = coursesRegistereds;
     }
-
 }

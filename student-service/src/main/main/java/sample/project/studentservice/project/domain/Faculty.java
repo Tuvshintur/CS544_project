@@ -1,11 +1,9 @@
 package sample.project.studentservice.project.domain;
 
 import javax.persistence.*;
-
 import java.lang.management.GarbageCollectorMXBean;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import java.util.List;
 
 @Entity
@@ -17,12 +15,13 @@ public class Faculty {
     private LocalDate hiringDate;
     private int room;
 
-
-    @ManyToMany(mappedBy = "faculties",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "faculties")
     private List<Course> courses ;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Address address;
+
+    //private List<Student> students;
 
     public Faculty() {
     }

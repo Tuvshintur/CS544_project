@@ -11,16 +11,16 @@ public interface StudentService {
 
     public List<Student> getAllStudents();
 
-    public List<Course> getAllStudentCourses(int studentId);
 
-    public  void saveStudents(Student student);
 
-    Student getStudentById(int studentId);
+  public   void saveStudents(Student student);
 
-    Student putStudent(Student student, int id);
+    Student getStudentById(Integer studentId);
 
-    void deleteStudentById(int studentId);
+    Student putStudent(Student student, Integer id);
 
-    Student assignCoach(int coachId, int studentId);
+    void deleteStudentById(Integer studentId);
+
+    List<Course> getAllStudentCourses(int studentId);
 
 }

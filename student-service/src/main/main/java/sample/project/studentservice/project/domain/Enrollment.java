@@ -7,9 +7,7 @@ public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private char grade;
-
 
     @ManyToOne
     private Student student;
@@ -21,12 +19,11 @@ public class Enrollment {
     public Enrollment() {
     }
 
-
-    public Enrollment(char grade, Boolean hasStarted) {
+    public Enrollment(char grade, Student student, Course course) {
         this.grade = grade;
-        this.hasStarted = hasStarted;
+        this.student = student;
+        this.course = course;
     }
-
 
     public char getGrade() {
         return grade;
@@ -51,22 +48,4 @@ public class Enrollment {
     public void setCourse(Course course) {
         this.course = course;
     }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Boolean getHasStarted() {
-        return hasStarted;
-    }
-
-    public void setHasStarted(Boolean hasStarted) {
-        this.hasStarted = hasStarted;
-    }
-
 }

@@ -1,5 +1,6 @@
 
 server:
+
   port: 8002
 
 spring:
@@ -15,6 +16,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
+
       ddl-auto: update
 
 eureka:
@@ -25,5 +27,6 @@ eureka:
     fetch-registry: true
   instance:
     hostname: localhost
+
 
 

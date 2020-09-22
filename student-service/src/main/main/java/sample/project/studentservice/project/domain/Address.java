@@ -1,11 +1,8 @@
 package sample.project.studentservice.project.domain;
 
-
 import javax.persistence.*;
 
 @Entity
-@Table
-
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +21,14 @@ public class Address {
         this.city = city;
         this.state = state;
         this.zipcode = zipcode;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getStreet() {
