@@ -83,8 +83,13 @@ public class TmInstructorController {
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        //end ?
-        Student student = restTemplate.exchange("http://student-service/students/student/assignCoach/"+ tmInstructorId+ "/" + studentId, HttpMethod.POST, null, Student.class).getBody();
+        TmInstructor currentTmInstructor = tmInstructorService.getTmInstructorByIdReturnTmInstructor(tmInstructorId);
+
+        Student student = restTemplate.exchange("http://student-service/students/student/" + studentId, HttpMethod.GET, null, Student.class).getBody();
+        currentTmInstructor.addStudent(student);
+
+        ResponseDTO responseDTO = tmInstructorService.updateTmInstrcutor(currentTmInstructor);
+
         return new ResponseService(HttpStatus.OK.value(), null, student).getResponse();
     }
 
@@ -108,18 +113,17 @@ public class TmInstructorController {
     }
 
 //    @Override
-//    @Transactional
-//    public ResponseDTO deleteCoachById(int id) {
-//        System.out.println(this.getClass().getName() + "[srvc][coach.delete][ini]");
-//
-//        try {
-//            coachRepository.deleteCoachById(id);
-//            System.out.println(this.getClass().getName() + "[srvc][coach.delete][end]");
-//            return new ResponseService(HttpStatus.OK.value(), null, null).getResponse();
-//        } catch (Exception ex) {
-//            System.out.println(this.getClass().getName() + "[srvc][coach.delete][unknown][ " + ex.getMessage() + "]");
-//            throw ex;
-//        }
-//    }
+    @Transactional
+    public ResponseDTO deleteTmInstructorById(int id) {
+        System.out.println(this.getClass().getName() + "[srvc][coach.delete][ini]");
+        try {
+            tmInstructorService.deleteTmInstructorById(id);
+            System.out.println(this.getClass().getName() + "[srvc][coach.delete][end]");
+            return new ResponseService(HttpStatus.OK.value(), null, null).getResponse();
+        } catch (Exception ex) {
+            System.out.println(this.getClass().getName() + "[srvc][coach.delete][unknown][ " + ex.getMessage() + "]");
+            throw ex;
+        }
+    }
 
 }

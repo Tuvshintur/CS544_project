@@ -8,8 +8,7 @@ import java.util.List;
 
 @Repository
 public interface TmInstructorRepository extends JpaRepository<TmInstructor,Integer> {
-
     List<TmInstructor> findAll();
     TmInstructor findById(int id);
-    void deleteCoachById(int id);
+    void deleteTmInstructorById(int id);
 }

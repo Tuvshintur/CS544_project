@@ -42,6 +42,11 @@ public class TmRecordServiceImpl implements TmRecordService {
             throw ex;
         }
     }
+//
+//    @Override
+//    public TmInstructor getTmInstructorByIdReturnTmInstructor(int id) {
+//        return tmInstructorRepository.findById(id);
+//    }
 
     @Override
     public ResponseDTO addTmRecord(TmRecord tmRecord) {

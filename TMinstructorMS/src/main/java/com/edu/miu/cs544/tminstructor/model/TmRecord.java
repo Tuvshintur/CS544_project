@@ -24,6 +24,7 @@ public class TmRecord implements IGeneralDTO {
 
     public TmRecord() {
     }
+
     public TmRecord(Student student, TmInstructor tmInstructor, Date dateOfTmChecking) {
         this.student = student;
         this.instructor = tmInstructor;
@@ -61,5 +62,6 @@ public class TmRecord implements IGeneralDTO {
     public void setDateOfTmChecking(Date dateOfTmChecking) {
         this.dateOfTmChecking = dateOfTmChecking;
     }
+
 }
 

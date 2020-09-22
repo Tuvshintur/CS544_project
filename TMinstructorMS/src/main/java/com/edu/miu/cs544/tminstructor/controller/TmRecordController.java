@@ -1,24 +1,33 @@
 package com.edu.miu.cs544.tminstructor.controller;
 
+import com.edu.miu.cs544.tminstructor.constants.Constants;
+import com.edu.miu.cs544.tminstructor.dto.ErrorDTO;
 import com.edu.miu.cs544.tminstructor.dto.ResponseDTO;
+import com.edu.miu.cs544.tminstructor.model.Student;
 import com.edu.miu.cs544.tminstructor.model.TmInstructor;
 import com.edu.miu.cs544.tminstructor.model.TmRecord;
 import com.edu.miu.cs544.tminstructor.service.TmInstructorService;
 import com.edu.miu.cs544.tminstructor.service.TmRecordService;
+import com.edu.miu.cs544.tminstructor.service.utility.ResponseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
+import java.util.Date;
 
 @RestController
-@RequestMapping("/tm-instructor")
+@RequestMapping("/tm-record")
 public class TmRecordController {
     @Autowired
     private TmRecordService tmRecordService;
+
+    @Autowired
+    private TmInstructorService tmInstructorService;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -65,6 +74,21 @@ public class TmRecordController {
         }
     }
 
+    @RequestMapping(value = "/tmappointment/{tmInstructorId}/{studentId}/{checkDate}", method = RequestMethod.POST)
+    public ResponseDTO enterAttendance(@PathVariable("tmInstructorId") int tmInstructorId, @PathVariable("studentId") int studentId,
+                                     @PathVariable Date checkDate) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        Student student = restTemplate.exchange("http://student-service/students/student/" + studentId, HttpMethod.GET, null, Student.class).getBody();
+        TmInstructor tmInstructor = tmInstructorService.getTmInstructorByIdReturnTmInstructor(tmInstructorId);
+        TmRecord currentTmRecord = new TmRecord(student,tmInstructor,checkDate);
+
+        ResponseDTO responseDTO = tmRecordService.updateTmRecord(currentTmRecord);
+        return new ResponseService(HttpStatus.OK.value(), null, currentTmRecord).getResponse();
+    }
+
 //    @RequestMapping(value = "/{tmInstructorId}", method = RequestMethod.PUT)
 //    public ResponseDTO updateCoach(@PathVariable("tmInstructorId") int tmInstructorId, @RequestBody TmInstructor tmInstructor) {
 //        try {
@@ -84,19 +108,21 @@ public class TmRecordController {
 //        }
 //    }
 
-//    @Override
-//    @Transactional
-//    public ResponseDTO deleteCoachById(int id) {
-//        System.out.println(this.getClass().getName() + "[srvc][coach.delete][ini]");
-//
-//        try {
-//            coachRepository.deleteCoachById(id);
-//            System.out.println(this.getClass().getName() + "[srvc][coach.delete][end]");
-//            return new ResponseService(HttpStatus.OK.value(), null, null).getResponse();
-//        } catch (Exception ex) {
-//            System.out.println(this.getClass().getName() + "[srvc][coach.delete][unknown][ " + ex.getMessage() + "]");
-//            throw ex;
-//        }
-//    }
+    @RequestMapping(value = "/{tmRecordId}", method = RequestMethod.DELETE)
+    public ResponseDTO deleteCoach(@PathVariable("tmRecordId") int tmRecordId) {
+        try {
+            LOGGER.info("[ctrl][coach][deleteCoach][ini]");
+
+            tmRecordService.deleteTmRecordById(tmRecordId);
+
+            LOGGER.info("[ctrl][coach][deleteCoach][end]");
+
+            return new ResponseService(HttpStatus.OK.value(), null, null).getResponse();
+
+        } catch (Exception ex) {
+            LOGGER.error("[ctrl][coach][deleteCoach][unknown][ " + ex.getMessage() + "]", ex);
+            return new ResponseService(HttpStatus.INTERNAL_SERVER_ERROR.value(), null, new ErrorDTO(null, ex.getMessage(), Constants.ErrorType.UNKNOWN)).getError();
+        }
+    }
 
 }

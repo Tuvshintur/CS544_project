@@ -74,7 +74,7 @@ public class TmInstructorServiceImpl implements TmInstructorService {
     @Override
     public ResponseDTO deleteTmInstructorById(int id) {
         try {
-            tmInstructorRepository.deleteCoachById(id);
+            tmInstructorRepository.deleteTmInstructorById(id);
             return new ResponseService(HttpStatus.OK.value(), null, null).getResponse();
         } catch (Exception ex) {
             System.out.println(this.getClass().getName() + "[srvc][coach.delete][unknown][ " + ex.getMessage() + "]");

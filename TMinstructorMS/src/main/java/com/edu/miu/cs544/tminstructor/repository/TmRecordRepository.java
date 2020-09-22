@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface TmRecordRepository extends JpaRepository<TmRecord, Integer> {
-
     List<TmRecord> findAll();
     TmRecord findById(int id);
     void deleteTmRecordById(int id);
