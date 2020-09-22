@@ -14,7 +14,5 @@ public interface CourseService {
 
     void deleteCourseById(Integer theId);
 
-    Course putCourse(Course theCourse,Integer id);
-
-
+    Course putCourse(Course theCourse, Integer id);
 }

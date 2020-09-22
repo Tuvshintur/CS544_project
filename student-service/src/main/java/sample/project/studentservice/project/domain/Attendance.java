@@ -24,12 +24,10 @@ public class Attendance {
     private List<Student> students;
 
     @OneToOne(cascade = CascadeType.ALL)
-
     private Faculty faculty;
 
     public Attendance() {
     }
-
 
     public Attendance(boolean isPresent, boolean isRemote, LocalDate classDate) {
         this.isPresent = isPresent;

@@ -6,6 +6,7 @@ import sample.project.studentservice.project.domain.Course;
 
 import sample.project.studentservice.project.domain.Enrollment;
 import sample.project.studentservice.project.domain.Student;
+import sample.project.studentservice.project.exception.ResourceNotFoundException;
 import sample.project.studentservice.project.repository.StudentRepository;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getAllStudents() {
+
         return studentRepository.findAll();
     }
 
@@ -59,7 +61,7 @@ public class StudentServiceImpl implements StudentService {
         student.setGraduationDate(theStudent.getGraduationDate());
         student.setName(theStudent.getName());
         student.setStudentId(theStudent.getStudentId());
-        student.setTA(theStudent.getTA());
+     //   student.setTA(theStudent.getTA());
 
         studentRepository.save(student);
         return new Student();

@@ -1,5 +1,8 @@
 package sample.project.studentservice.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,16 +17,23 @@ public class Course {
     private String building;
     private int roomNumber;
 
-
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Faculty> faculties;
+//
+//    @ManyToMany
+//    private List<Student> students;
 
+//    @OneToMany()
+//    private List<Attendance> attendances;
+    @JsonIgnore
     @OneToMany(mappedBy = "course")
     private List<Enrollment> enrollments;
 
-    @OneToMany(mappedBy = "course")
-    private List<CoursesRegistered> coursesRegistereds;
-  
+//    @OneToMany(mappedBy = "course")
+//    private List<Enrollment> enrollments;
+
+//    @OneToMany(mappedBy = "course")
+//    private List<CoursesRegistered> coursesRegistereds;
 
     public Course() {
     }
@@ -68,16 +78,6 @@ public class Course {
         this.faculties = faculties;
     }
 
-
-    public List<Enrollment> getEnrollments() {
-        return enrollments;
-    }
-
-    public void setEnrollments(List<Enrollment> enrollments) {
-        this.enrollments = enrollments;
-    }
-
-
     public String getBuilding() {
         return building;
     }
@@ -94,12 +94,11 @@ public class Course {
         this.roomNumber = roomNumber;
     }
 
-    public List<CoursesRegistered> getCoursesRegistereds() {
-        return coursesRegistereds;
-    }
-
-    public void setCoursesRegistereds(List<CoursesRegistered> coursesRegistereds) {
-        this.coursesRegistereds = coursesRegistereds;
-    }
-
+//    public List<CoursesRegistered> getCoursesRegistereds() {
+//        return coursesRegistereds;
+//    }
+//
+//    public void setCoursesRegistereds(List<CoursesRegistered> coursesRegistereds) {
+//        this.coursesRegistereds = coursesRegistereds;
+//    }
 }

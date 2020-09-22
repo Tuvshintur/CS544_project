@@ -2,19 +2,32 @@ package sample.project.studentservice.project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sample.project.studentservice.project.domain.Course;
-import sample.project.studentservice.project.domain.Faculty;
-import sample.project.studentservice.project.exception.ResourceNotFoundException;
+import sample.project.studentservice.project.controller.CourseRegistered;
+import sample.project.studentservice.project.domain.*;
+import sample.project.studentservice.project.repository.CourseRepository;
+import sample.project.studentservice.project.repository.EnrollmentRepository;
 import sample.project.studentservice.project.repository.FacultyRepository;
+import sample.project.studentservice.project.repository.StudentRepository;
 
+
+import javax.swing.text.html.Option;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class FacultyServiceImpl implements FacultyService {
 
     @Autowired
-   public FacultyRepository facultyRepository;
+    FacultyRepository facultyRepository;
+    @Autowired
+    CourseRepository courseRepository;
+    @Autowired
+    StudentRepository studentRepository;
+    @Autowired
+    EnrollmentRepository enrollmentRepository;
 
     @Override
     public List<Faculty> getAllFaculty() {
@@ -22,41 +35,119 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public void saveFaculty(Faculty faculty) {
+    public void deleteDelete(Long id) {
+        facultyRepository.deleteById(id);
+
+    }
+
+    @Override
+    public List<Course> getAllCourseByFaculty(Long id) {
+        Optional<Faculty> faculty = facultyRepository.findById(id);
+        if (faculty.isPresent())
+            return faculty.get().getCourses();
+        return new ArrayList<>();
+    }
+
+
+    public List<Enrollment> getAllCourseByFaculty(Long facId,Integer courseId) {
+        Optional<Course> courseOptional = getAllCourseByFaculty(facId).stream()
+                .filter(course -> course.getId()==courseId)
+                .findFirst();
+
+        return courseOptional.get().getEnrollments();
+    }
+
+    @Override
+    public List<Course> getAllCoursePast(Long facId) {
+        List<Course> courses = getAllCourseByFaculty(facId);
+
+        List<Course> coursesPast = new ArrayList<>();
+        for (Course course : courses) {
+            for (CoursesRegistered registered : course.getCoursesRegistereds()) {
+                if (registered.getStartDate().isBefore(LocalDate.now())) {
+                    coursesPast.add(course);
+                }
+            }
+
+
+
+        }
+
+        return coursesPast;
+    }
+
+    @Override
+    public List<Course> getAllCourseFuture(Long facId) {
+        List<Course> courses = getAllCourseByFaculty(facId);
+
+        List<Course> coursesFuture = new ArrayList<>();
+
+        for (Course course : courses) {
+            for (CoursesRegistered registered : course.getCoursesRegistereds()) {
+                if (registered.getStartDate().isAfter(LocalDate.now())) {
+                    coursesFuture.add(course);
+                }
+            }
+        }
+
+        return coursesFuture;
+    }
+
+    @Override
+    public void registerFacultyInDepartment(Faculty faculty) {
         facultyRepository.save(faculty);
     }
 
-    @Override
-    public Faculty getFacultyById(Integer facultyId) {
-        Optional<Faculty> result = facultyRepository.findById(facultyId);
 
-        Faculty theFaculty = null;
-        if(result.isPresent()){
-            theFaculty = result.get();
+
+    @Override
+    public Faculty updateById(Long id, Faculty newFaculty) {
+        Optional<Faculty> oldFacutlty = facultyRepository.findById(id);
+
+        if (oldFacutlty.isPresent()) {
+            // Update all properties except id
+            newFaculty.setId(oldFacutlty.get().getId());
+            return facultyRepository.save(newFaculty);
+        } else {
+            //	Insert for new recored
+            return facultyRepository.save(newFaculty);
+
         }
-        else{
-            throw new RuntimeException("did not find faculty id - " + facultyId);
-        }
-        return theFaculty;
     }
-
     @Override
-    public Faculty putFaculty(Faculty faculty, Integer id) {
-        Faculty theFaculty = facultyRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(id));
-        theFaculty.setAddress(faculty.getAddress());
-        theFaculty.setCourses(faculty.getCourses());
-        theFaculty.setHiringDate(faculty.getHiringDate());
-        theFaculty.setName(faculty.getName());
-        theFaculty.setRoom(faculty.getRoom());
+    public void assignTaForCourses(Integer stId) {
+    Student st = studentRepository.findById(stId).orElse(null);
 
-        facultyRepository.save(faculty);
-        return theFaculty ;
+    List<Student>ta = new ArrayList<>();
+    ta.add(st);
+    List<CoursesRegistered> course = st.getCoursesRegisteredList();
+    for(CoursesRegistered cr :course){
+        if(LocalDate.now().isAfter(cr.getStartDate()) && LocalDate.now().isBefore(cr.getEndDate()));
+        ta.add(st);
     }
 
-    @Override
-    public void deleteFacultyById(Integer facultyId) {
-        facultyRepository.deleteById(facultyId);
-
+   studentRepository.saveAll(ta);
     }
+ //need check up
+//    @Override
+//    public void createGrade(Long facId, Character grade) {
+//        Faculty faculty = facultyRepository.findById(facId).orElse(null);
+//       // Enrollment ent = faculty.get
+//        List<Course>courses = faculty.getCourses();
+//
+//        for(Course course:courses){
+//        List<Enrollment> enrollments = new ArrayList<>();
+//            enrollments = course.getEnrollments();
+//           for(Enrollment en: enrollments){
+//               en.setGrade(grade);
+//               enrollmentRepository.save(en);
+//           }
+//
+//        }
+//
+//
+//    }
+
+
 
 }

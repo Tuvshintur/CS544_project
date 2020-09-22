@@ -1,24 +1,20 @@
 package sample.project.studentservice.project.domain;
 
 import javax.persistence.*;
-
-import java.lang.management.GarbageCollectorMXBean;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import java.util.List;
 
 @Entity
 public class Faculty {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String name;
     private LocalDate hiringDate;
     private int room;
 
-
-    @ManyToMany(mappedBy = "faculties",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "faculties", fetch = FetchType.EAGER)
     private List<Course> courses ;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -32,14 +28,6 @@ public class Faculty {
         this.hiringDate = hiringDate;
         this.room = room;
         this.address = address;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -80,5 +68,13 @@ public class Faculty {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
