@@ -21,4 +21,6 @@ public interface StudentService {
 
     void deleteStudentById(int studentId);
 
+    Student assignCoach(int coachId, int studentId);
+
 }

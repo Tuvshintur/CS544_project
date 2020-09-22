@@ -20,7 +20,6 @@ public class Attendance {
     private Course course;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "attendance_id")
     private List<Student> students;
 
     @OneToOne(cascade = CascadeType.ALL)

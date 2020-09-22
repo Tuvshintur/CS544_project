@@ -15,7 +15,9 @@ public class Coach implements IGeneralDTO {
     private Date hiringDate;
     private String office;
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private Date created_at;
+    @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updated_at;
 

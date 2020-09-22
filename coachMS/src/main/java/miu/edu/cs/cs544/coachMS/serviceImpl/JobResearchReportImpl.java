@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class JobResearchReportImpl implements IJobResearchReportService {
@@ -51,18 +50,15 @@ public class JobResearchReportImpl implements IJobResearchReportService {
     }
 
     @Override
-    public Optional<JobResearchReport> getJrrById(int id) {
-//        System.out.println(this.getClass().getName() + "[srvc][jrr.get.JrrById][ini]");
-//        try {
-//
-//           // JobResearchReport jobResearchReport = iJobResearchReport.findById(id);
-//            return iJobResearchReport.findById(id);
-//            System.out.println(this.getClass().getName() + "[srvc][jrr.get.JrrById][end]");
-//            return new ResponseService(HttpStatus.OK.value(), null, jobResearchReport).getResponse();
-//        } catch (Exception ex) {
-//            System.out.println(this.getClass().getName() + "[srvc][jrr.get.JrrById][unknown][ " + ex.getMessage() + "]");
-//            throw ex;
-//        }
-        return  null;
+    public ResponseDTO getJrrById(int id) {
+        System.out.println(this.getClass().getName() + "[srvc][jrr.get.JrrById][ini]");
+        try {
+            JobResearchReport jobResearchReport = iJobResearchReport.findById(id);
+            System.out.println(this.getClass().getName() + "[srvc][jrr.get.JrrById][end]");
+            return new ResponseService(HttpStatus.OK.value(), null, jobResearchReport).getResponse();
+        } catch (Exception ex) {
+            System.out.println(this.getClass().getName() + "[srvc][jrr.get.JrrById][unknown][ " + ex.getMessage() + "]");
+            throw ex;
+        }
     }
 }

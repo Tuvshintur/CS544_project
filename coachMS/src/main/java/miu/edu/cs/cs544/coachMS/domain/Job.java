@@ -15,23 +15,19 @@ public class Job implements IGeneralDTO {
     @JoinColumn
     private CptReport cptReport;
 
-    @OneToOne
-    @JoinColumn
-    private Student student;
+    private int student_id;
 
-    @OneToOne
-    @JoinColumn
-    private Address address;
+    private int address_id;
 
     private Double salary;
 
     private Date startDate;
 
-    public Job(int id, CptReport cptReport, Student student, Address address, Double salary, Date startDate) {
+    public Job(int id, CptReport cptReport, int student_id, int address_id, Double salary, Date startDate) {
         this.id = id;
         this.cptReport = cptReport;
-        this.student = student;
-        this.address = address;
+        this.student_id = student_id;
+        this.address_id = address_id;
         this.salary = salary;
         this.startDate = startDate;
     }
@@ -56,20 +52,20 @@ public class Job implements IGeneralDTO {
         this.cptReport = cptReport;
     }
 
-    public Student getStudent() {
-        return student;
+    public int getStudent() {
+        return student_id;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudent(int student) {
+        this.student_id = student_id;
     }
 
-    public Address getAddress() {
-        return address;
+    public int getAddress() {
+        return address_id;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddress(int address_id) {
+        this.address_id = address_id;
     }
 
     public Double getSalary() {

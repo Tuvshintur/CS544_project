@@ -11,8 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/jobresearchreport")
 @Api(tags="JRR")
@@ -29,7 +27,7 @@ public class JobResearchReportController implements IGeneralDTO {
 
 
     @RequestMapping(value = "/addjrr", method = RequestMethod.POST)
-    public ResponseDTO addCoach(@RequestBody JobResearchReport jobResearchReport) {
+    public ResponseDTO createJRR(@RequestBody JobResearchReport jobResearchReport) {
         try {
             LOGGER.info("[ctrl][coach][addCoach][ini]");
             ResponseDTO responseDTO = service.createJRR(jobResearchReport);
@@ -43,7 +41,7 @@ public class JobResearchReportController implements IGeneralDTO {
     }
 
     @RequestMapping(value = "/alljobresearchreport", method = RequestMethod.GET)
-    public ResponseDTO getCoaches() {
+    public ResponseDTO getAllJrr() {
         try {
             LOGGER.info("[ctrl][coach][getCoaches][ini]");
             ResponseDTO responseDTO = service.getAllJrr();
@@ -57,10 +55,10 @@ public class JobResearchReportController implements IGeneralDTO {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Optional<JobResearchReport> getCoachById(@PathVariable("id") int id) {
+    public ResponseDTO getJrrById(@PathVariable("id") int id) {
         try {
             LOGGER.info("[ctrl][coach][getCoachById][ini]");
-            Optional<JobResearchReport> responseDTO = service.getJrrById(id);
+            ResponseDTO responseDTO = service.getJrrById(id);
             LOGGER.info("[ctrl][coach][getCoachById][end]");
 
             return responseDTO;

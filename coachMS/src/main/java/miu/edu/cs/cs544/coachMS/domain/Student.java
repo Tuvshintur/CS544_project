@@ -1,18 +1,32 @@
 package miu.edu.cs.cs544.coachMS.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import miu.edu.cs.cs544.coachMS.DTO.IGeneralDTO;
 
-@Entity
-public class Student {
-    @Id
-    @GeneratedValue
+public class Student implements IGeneralDTO {
     private int id;
+    private String name;
 
-    @OneToOne(mappedBy = "student")
-    private Job job;
     public Student() {
+    }
+
+    public Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

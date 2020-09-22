@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IJobResearchReport extends JpaRepository<JobResearchReport, Integer> {
+    JobResearchReport findById(int id);
 }

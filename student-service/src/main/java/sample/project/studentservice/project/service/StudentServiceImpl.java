@@ -69,4 +69,15 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.deleteById(studentId);
 
     }
+
+    @Override
+    public Student assignCoach(int coachId, int studentId) {
+        Student student = studentRepository.findById(studentId);
+        if(student != null) {
+            student.setCoach_id(coachId);
+            return studentRepository.save(student);
+        }
+
+        return null;
+    }
 }

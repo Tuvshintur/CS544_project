@@ -13,4 +13,6 @@ public interface ICoachRepository extends JpaRepository<Coach, Integer> {
     Coach findById(int id);
 
     void deleteCoachById(int id);
+
+    
 }

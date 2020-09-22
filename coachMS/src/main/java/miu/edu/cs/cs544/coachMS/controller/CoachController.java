@@ -2,19 +2,23 @@ package miu.edu.cs.cs544.coachMS.controller;
 
 import io.swagger.annotations.Api;
 import miu.edu.cs.cs544.coachMS.DTO.ErrorDTO;
+import miu.edu.cs.cs544.coachMS.DTO.ListDTO;
 import miu.edu.cs.cs544.coachMS.DTO.ResponseDTO;
 import miu.edu.cs.cs544.coachMS.constants.Constants;
 import miu.edu.cs.cs544.coachMS.domain.Coach;
+import miu.edu.cs.cs544.coachMS.domain.Student;
 import miu.edu.cs.cs544.coachMS.service.ICoachService;
 import miu.edu.cs.cs544.coachMS.service.utilities.ResponseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequestMapping("/coach")
@@ -28,18 +32,14 @@ public class CoachController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping(value = "/template /students")
-    public Student getStudents() {
+    @RequestMapping(value = "/students")
+    public ResponseDTO getStudents() {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        return restTemplate.exchange("http://student-service/students/All", HttpMethod.GET, entity, Student.class).getBody();
-    }
-
-    private class Student {
-        private int id;
-        private String name;
+        List<Student> studentResponse = restTemplate.exchange("http://student-service/students/All", HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {}).getBody();
+        return new ResponseService(HttpStatus.OK.value(), null, new ListDTO<>(studentResponse)).getResponse();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -82,6 +82,16 @@ public class CoachController {
             LOGGER.error("[ctrl][coach][addCoach][unknown][ " + ex.getMessage() + "]", ex);
             throw ex;
         }
+    }
+
+    @RequestMapping(value = "/assign/{coachId}/{studentId}", method = RequestMethod.POST)
+    public ResponseDTO assignStudent(@PathVariable("coachId") int coachId, @PathVariable("studentId") int studentId) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        Student student = restTemplate.exchange("http://student-service/students/student/assignCoach/"+ coachId+ "/" + studentId, HttpMethod.POST, null, Student.class).getBody();
+        return new ResponseService(HttpStatus.OK.value(), null, student).getResponse();
     }
 
     @RequestMapping(value = "/{coachId}", method = RequestMethod.PUT)

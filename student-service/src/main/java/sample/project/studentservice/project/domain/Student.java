@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Integer id;
 
     private  String name;
@@ -15,6 +15,7 @@ public class Student {
     private LocalDate enrollmentDate;
     private LocalDate graduationDate;
     private Boolean isTA;
+    private int coach_id;
    // private double GPA;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -38,9 +39,10 @@ public class Student {
     public Student() {
     }
 
-    public Student(String name, int studentId, LocalDate enrollmentDate, LocalDate graduationDate, Boolean isTA, Address address) {
+    public Student(String name, int studentId, LocalDate enrollmentDate, int coach_id, LocalDate graduationDate, Boolean isTA, Address address) {
         this.name = name;
         this.studentId = studentId;
+        this.coach_id = coach_id;
         this.enrollmentDate = enrollmentDate;
         this.graduationDate = graduationDate;
         this.isTA = isTA;
@@ -77,6 +79,14 @@ public class Student {
 
     public void setEnrollmentDate(LocalDate enrollmentDate) {
         this.enrollmentDate = enrollmentDate;
+    }
+
+    public int getCoach_id() {
+        return coach_id;
+    }
+
+    public void setCoach_id(int coach_id) {
+        this.coach_id = coach_id;
     }
 
     public LocalDate getGraduationDate() {
