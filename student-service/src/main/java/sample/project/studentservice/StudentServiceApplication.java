@@ -22,7 +22,7 @@ import java.util.List;
 @SpringBootApplication
 @EnableEurekaClient
 //public class StudentServiceApplication {
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 
 public class StudentServiceApplication implements CommandLineRunner {
 

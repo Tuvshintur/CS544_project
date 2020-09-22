@@ -13,9 +13,9 @@
 #  show-sql: true
 server.port=8097
 spring.jpa.hibernate.ddl-auto= update
-spring.datasource.url=jdbc:mysql://localhost:3306/ea_project?useSSL=false
-spring.datasource.username=root
-spring.datasource.password=Bekalu12
+spring.datasource.url=jdbc:mysql://localhost:3306/cs544?useSSL=false
+spring.datasource.username=rEA
+spring.datasource.password=cs544
 spring.jpa.show-sql=true
 spring.jpa.database=mysql
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver

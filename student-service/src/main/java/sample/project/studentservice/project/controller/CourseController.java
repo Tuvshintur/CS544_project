@@ -39,11 +39,9 @@ public class CourseController {
 
     @PutMapping("/Update/{id}")
     public Course updateCourse(@RequestBody Course course,@RequestParam Integer id){
-        try {
+
             return courseService.putCourse(course,id);
-        } catch (IllegalArgumentException ex)  {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
-        }
+
 
 }
     @DeleteMapping("/delete/{employeeId}")
