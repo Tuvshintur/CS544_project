@@ -32,8 +32,7 @@ public class AttendanceServiceImpl implements  AttendanceService{
     }
 
     @Override
-    public Attendance updateById(Long id, Attendance editedattendance) {
-
+    public Attendance updateAttendanceById(Long id, Attendance editedattendance) {
 
         Optional<Attendance> attendanceOld = attendanceRepository.findById(id);
         if (attendanceOld.isPresent()) {

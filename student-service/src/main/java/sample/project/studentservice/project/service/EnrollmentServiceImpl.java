@@ -22,13 +22,13 @@ public class EnrollmentServiceImpl implements  EnrollmentService{
     }
 
     @Override
-    public void createAttendance(Enrollment enrollment) {
+    public void createEnrollment(Enrollment enrollment) {
         enrollmentRepository.save(enrollment);
     }
 
     @Override
-    public void deleteAddress(Long id) {
-       enrollmentRepository.existsById(id);
+    public void deleteEnrollment(Long id) {
+       enrollmentRepository.deleteById(id);
     }
 
     @Override
@@ -36,8 +36,8 @@ public class EnrollmentServiceImpl implements  EnrollmentService{
 
     }
 
-    @Override
-    public List<Course> getAllCoursesByStudentId(Long id) {
-        return null;
-    }
+//    @Override
+//    public List<Course> getAllCoursesByStudentId(Long id) {
+//        return null;
+//    }
 }

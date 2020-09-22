@@ -3,8 +3,10 @@ package sample.project.studentservice.project.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sample.project.studentservice.project.domain.Course;
+import sample.project.studentservice.project.domain.Enrollment;
 import sample.project.studentservice.project.domain.Faculty;
 import sample.project.studentservice.project.service.CourseService;
+import sample.project.studentservice.project.service.EnrollmentService;
 import sample.project.studentservice.project.service.FacultyService;
 
 import java.util.List;
@@ -17,12 +19,31 @@ public class FacultyController {
     FacultyService facultyService;
     @Autowired
     CourseService courseService;
+    @Autowired
+    EnrollmentService enrollmentService;
 
     @GetMapping("/all")
     public List<Faculty> getAllFaculty() {
         return facultyService.getAllFaculty();
     }
 
+    @PostMapping("/create")
+    public void registerFacultyInDepartment(@RequestBody Faculty faculty) {
+        facultyService.registerFacultyInDepartment(faculty);
+    }
+
+    @DeleteMapping("/delete/{facId}")
+    public void deleteDelete(@PathVariable Long facId) {
+        facultyService.deleteDelete(facId);
+    }
+
+    @PutMapping("/update/{facId}")
+    public void updateById(@PathVariable Long facId, @RequestBody Faculty faculty) {
+        facultyService.updateById(facId, faculty);
+    }
+
+
+    //uses cases
     @GetMapping("/all/{id}")
     public List<Course> getAllCourseByFaculty(@PathVariable("id") Long facId) {
         return facultyService.getAllCourseByFaculty(facId);
@@ -34,23 +55,26 @@ public class FacultyController {
     }
 
     @GetMapping("/future/{facId}")
-    public List<Course> getAllCourseFuture(Long facId) {
+    public List<Course> getAllCourseFuture(@PathVariable Long facId) {
         return facultyService.getAllCourseByFaculty(facId);
     }
 
-    @PostMapping("/create")
-    public void registerFacultyInDepartment(Faculty faculty) {
-        facultyService.registerFacultyInDepartment(faculty);
+     @PostMapping("/create/ta/{stId}")
+    public void assignTaForCourses(Integer stId){
+        facultyService.assignTaForCourses(stId);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteDelete(Long id) {
-        facultyService.deleteDelete(id);
+//    @PostMapping("/post/{facId}")
+//    public void createGrade(@PathVariable Long facId, @RequestBody Character grade){
+//        facultyService.createGrade(facId,grade);
+//
+//    }
+
+    @PostMapping("/postgrade")
+    public void createEnrollmentAndPostGrade(@RequestBody Enrollment enrollment){
+        enrollmentService.createEnrollment(enrollment);
+
     }
 
-    @PutMapping("/update")
-    public void updateById(@PathVariable Long id, Faculty faculty) {
-        facultyService.updateById(id, faculty);
-    }
 
 }

@@ -9,5 +9,5 @@ public interface AttendanceService {
     public List<Attendance> getAllAttendance();
     public void createAttendance(Attendance attendance);
     public void deleteAddress(Long id);
-    public Attendance updateById(@PathVariable Long id, Attendance attendance);
+    public Attendance updateAttendanceById(@PathVariable Long id, Attendance attendance);
 }

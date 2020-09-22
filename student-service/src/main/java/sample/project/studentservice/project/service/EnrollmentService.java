@@ -10,10 +10,11 @@ public interface EnrollmentService {
 
     public List<Enrollment> getAllEnrollments();
 
-    public void createAttendance(Enrollment enrollment);
-    public void deleteAddress(Long id);
+    public void createEnrollment(Enrollment enrollment);
+    public void deleteEnrollment(Long id);
     public void updateById(@PathVariable Long id, Enrollment enrollment);
 
-    //View All courses for studentd
-    public List<Course>getAllCoursesByStudentId(Long id);
+//    //View All courses for studentd
+//    public List<Course>getAllCoursesByStudentId(Long id);
+
 }

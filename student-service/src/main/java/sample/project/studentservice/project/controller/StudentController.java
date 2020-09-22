@@ -42,12 +42,6 @@ public class StudentController {
         return student;
     }
 
-    //    @PostMapping("/Add")
-//    public Student addStudent(@RequestBody Student theStudent){
-//        theSudent.setId(0);
-//        studentService.saveCourse(theStudent);
-//        return theStudent;
-//    }
     @PutMapping("/Update/{id}")
     public Student updateCourse(@RequestBody Student student, @PathVariable int id) {
 

@@ -19,12 +19,6 @@ public class Student {
     @OneToOne
     private Address address;
 
-//    @OneToMany
-//    private List<Course> courses ;
-
-
-    //private List<Faculty> faculties = new ArrayList<>();
-
     @ManyToMany
     private List<Student> ta ;
 
@@ -97,6 +91,14 @@ public class Student {
 
     public List<Student> getTa() {
         return ta;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setTa(List<Student> ta) {

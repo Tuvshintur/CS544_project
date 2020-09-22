@@ -30,8 +30,8 @@ public class AddressController {
         addressService.deleteAddress(id);
     }
 
-    @PutMapping("/update")
-    public void updateById(@PathVariable Long id, @RequestBody  Address address){
-        addressService.updateById(id, address);
+    @PutMapping("/update/{id}")
+    public void updateAddressById(@PathVariable Long id, @RequestBody  Address address){
+        addressService.updateAddressById(id, address);
     }
 }

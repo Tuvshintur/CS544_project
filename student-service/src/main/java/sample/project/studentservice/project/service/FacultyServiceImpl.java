@@ -2,8 +2,13 @@ package sample.project.studentservice.project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sample.project.studentservice.project.controller.CourseRegistered;
 import sample.project.studentservice.project.domain.*;
+import sample.project.studentservice.project.repository.CourseRepository;
+import sample.project.studentservice.project.repository.EnrollmentRepository;
 import sample.project.studentservice.project.repository.FacultyRepository;
+import sample.project.studentservice.project.repository.StudentRepository;
+
 
 import javax.swing.text.html.Option;
 import java.time.LocalDate;
@@ -17,13 +22,23 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Autowired
     FacultyRepository facultyRepository;
-
+    @Autowired
+    CourseRepository courseRepository;
+    @Autowired
+    StudentRepository studentRepository;
+    @Autowired
+    EnrollmentRepository enrollmentRepository;
 
     @Override
     public List<Faculty> getAllFaculty() {
         return facultyRepository.findAll();
     }
 
+    @Override
+    public void deleteDelete(Long id) {
+        facultyRepository.deleteById(id);
+
+    }
 
     @Override
     public List<Course> getAllCourseByFaculty(Long id) {
@@ -38,11 +53,6 @@ public class FacultyServiceImpl implements FacultyService {
         Optional<Course> courseOptional = getAllCourseByFaculty(facId).stream()
                 .filter(course -> course.getId()==courseId)
                 .findFirst();
-
-//        List<Student> students=new ArrayList<>();
-//        for (Enrollment enrollment : courseOptional.get().getEnrollments()) {
-//            students.add(enrollment.getStudent());
-//        }
 
         return courseOptional.get().getEnrollments();
     }
@@ -83,17 +93,12 @@ public class FacultyServiceImpl implements FacultyService {
         return coursesFuture;
     }
 
-
     @Override
     public void registerFacultyInDepartment(Faculty faculty) {
         facultyRepository.save(faculty);
     }
 
-    @Override
-    public void deleteDelete(Long id) {
-        facultyRepository.deleteById(id);
 
-    }
 
     @Override
     public Faculty updateById(Long id, Faculty newFaculty) {
@@ -109,4 +114,40 @@ public class FacultyServiceImpl implements FacultyService {
 
         }
     }
+    @Override
+    public void assignTaForCourses(Integer stId) {
+    Student st = studentRepository.findById(stId).orElse(null);
+
+    List<Student>ta = new ArrayList<>();
+    ta.add(st);
+    List<CoursesRegistered> course = st.getCoursesRegisteredList();
+    for(CoursesRegistered cr :course){
+        if(LocalDate.now().isAfter(cr.getStartDate()) && LocalDate.now().isBefore(cr.getEndDate()));
+        ta.add(st);
+    }
+
+   studentRepository.saveAll(ta);
+    }
+ //need check up
+//    @Override
+//    public void createGrade(Long facId, Character grade) {
+//        Faculty faculty = facultyRepository.findById(facId).orElse(null);
+//       // Enrollment ent = faculty.get
+//        List<Course>courses = faculty.getCourses();
+//
+//        for(Course course:courses){
+//        List<Enrollment> enrollments = new ArrayList<>();
+//            enrollments = course.getEnrollments();
+//           for(Enrollment en: enrollments){
+//               en.setGrade(grade);
+//               enrollmentRepository.save(en);
+//           }
+//
+//        }
+//
+//
+//    }
+
+
+
 }

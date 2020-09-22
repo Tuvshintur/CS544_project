@@ -32,17 +32,17 @@ public class AddressServiceImpl implements AddressService{
 
 
 
-
-    public Address updateById(@PathVariable Long id, Address editedAddress) {
+    @Override
+    public Address updateAddressById(@PathVariable Long id, Address address){
         Optional<Address> oldAddress = addressRepository.findById(id);
 
         if (oldAddress.isPresent()) {
             // Update all properties except id
-            editedAddress.setId(oldAddress.get().getId());
-            return addressRepository.save(editedAddress);
+            address.setId(oldAddress.get().getId());
+            return addressRepository.save(address);
         } else {
             //	Insert for new recored
-            return addressRepository.save(editedAddress);
+            return addressRepository.save(address);
 
 
         }

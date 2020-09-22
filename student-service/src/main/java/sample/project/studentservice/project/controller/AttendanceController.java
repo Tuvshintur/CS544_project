@@ -25,12 +25,12 @@ public class AttendanceController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteAddress(Long id){
+    public void deleteAddress(@PathVariable Long id){
         attendanceService.deleteAddress(id);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/{id}")
     public void updateById(@PathVariable Long id, @RequestBody Attendance attendance){
-        attendanceService.updateById(id, attendance);
+        attendanceService.updateAttendanceById(id, attendance);
     }
 }

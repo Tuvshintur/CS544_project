@@ -18,14 +18,17 @@ import java.util.Optional;
 public class CourseServiceImpl implements CourseService{
     @Autowired
     public CourseRepository courseRepository;
+
     @Override
     public List<Course> getAllCourse() {
         return courseRepository.findAll();
     }
     @Override
+
     public void saveCourse(Course course) {
         courseRepository.save(course);
     }
+
     @Override
     public Course getCourseById(Integer courseId) {
         Optional<Course> result = courseRepository.findById(courseId);

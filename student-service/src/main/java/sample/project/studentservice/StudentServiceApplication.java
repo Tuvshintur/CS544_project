@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import sample.project.studentservice.project.controller.CourseRegistered;
+
 import sample.project.studentservice.project.domain.*;
 import sample.project.studentservice.project.repository.*;
 
@@ -20,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
-@EnableEurekaClient
+//@EnableEurekaClient
 //public class StudentServiceApplication {
 //@EnableDiscoveryClient
 
@@ -71,18 +69,20 @@ public class StudentServiceApplication implements CommandLineRunner {
 
         Student st2= new  Student("Damitie", 550871, LocalDate.of(2019, 8, 14),
                 LocalDate.of(2020, 8,30), 3.8, add2);
-           studentRepository.saveAll(Arrays.asList(st1, st2));
+             studentRepository.saveAll(Arrays.asList(st1, st2));
 
         //4.CourseRegistration
-        CoursesRegistered cr1 =  new CoursesRegistered(LocalDate.of(2020,8,24),LocalDate.of(2020,9,24), st1, EA);
-        CoursesRegistered cr2 =  new CoursesRegistered(LocalDate.of(2020,8,24),LocalDate.of(2020,9,24), st2, MPP);
+        CoursesRegistered cr1 =  new CoursesRegistered(LocalDate.of(2020,10,24),LocalDate.of(2020,11,24), st1, EA);
+        CoursesRegistered cr2 =  new CoursesRegistered(LocalDate.of(2020,8,24),LocalDate.of(2020,9,30), st2, MPP);
         CoursesRegistered cr3 =  new CoursesRegistered(LocalDate.of(2020,9,28),LocalDate.of(2020,10,20), st1, BDT);
+
        courseRegisteredRepository.saveAll(Arrays.asList(cr1, cr2, cr2));
 
        //5. Create Enrollment
         Enrollment enrollment = new  Enrollment('A', st1, BDT);
         Enrollment enrollment2 = new  Enrollment('B', st2, MPP);
-        enrollmentRepository.saveAll(Arrays.asList(enrollment, enrollment));
+      Enrollment enrollment3 = new  Enrollment('B', st2, EA);
+        enrollmentRepository.saveAll(Arrays.asList(enrollment, enrollment2,enrollment3));
 
         //6. Create Faculty
 

@@ -5,7 +5,9 @@ package sample.project.studentservice.project.service;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import sample.project.studentservice.project.domain.Course;
+import sample.project.studentservice.project.domain.Enrollment;
 import sample.project.studentservice.project.domain.Faculty;
+import sample.project.studentservice.project.domain.Student;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,6 +25,8 @@ public interface FacultyService {
     public List<Course> getAllCourseByFaculty(Long id);
     public List<Course> getAllCoursePast(Long facId);
     public List<Course> getAllCourseFuture(Long facId);
+    public void assignTaForCourses(Integer stId);
+   // public void createEnrollmentAndPostGrade(Enrolment enrollment);
 
 
 }

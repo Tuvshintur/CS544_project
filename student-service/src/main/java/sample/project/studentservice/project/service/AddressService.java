@@ -10,5 +10,5 @@ public interface AddressService {
     public List<Address> getAllAddress();
     public void createAddress(Address address);
     public void deleteAddress(Long id);
-    public Address updateById(@PathVariable Long id, Address address);
+    public Address updateAddressById(@PathVariable Long id, Address address);
 }

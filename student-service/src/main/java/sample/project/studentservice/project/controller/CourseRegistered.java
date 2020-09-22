@@ -26,8 +26,8 @@ public class CourseRegistered {
 
     }
 
-    @DeleteMapping("delete")
-   public void deleteCoursesRegistered(Long id){
+    @DeleteMapping("/delete/{id}")
+   public void deleteCoursesRegistered(@PathVariable Long id){
         courseRegisteredService.deleteCoursesRegistered(id);
 
    }
