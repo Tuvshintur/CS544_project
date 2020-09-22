@@ -1,6 +1,25 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: eureka-service
+
 eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
-server:
-  port: 8761
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
+    service-url:
+      default-Zone: http://localhost:8000/eureka
+
+zuul:
+  prefix: /api
+  routes:
+    coach-service:
+      path: /coach-service/**
+      url: http://localhost:8001/
+    student-service:
+      path: /student-service/**
+      url: http://localhost:8002/

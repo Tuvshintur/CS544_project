@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IJobRepository extends JpaRepository<Job, Integer> {
+
+    Job findById(int id);
+
+    void deleteJobById(int id);
 }

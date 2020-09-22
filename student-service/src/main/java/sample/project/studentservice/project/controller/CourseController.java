@@ -16,37 +16,44 @@ public class CourseController {
     public CourseService courseService;
 
     @GetMapping("/All")
-    public List<Course> getAllCourse(){
+
+    public List<Course> getAllCourse() {
+
         return courseService.getAllCourse();
     }
 
     @PostMapping("/save")
-    public void saveCourse(@RequestBody Course courses){
-         courseService.saveCourse(courses);
+
+    public void saveCourse(@RequestBody Course courses) {
+        courseService.saveCourse(courses);
     }
 
     @GetMapping("/get/{courseId}")
-    public Course getCourseByID(@PathVariable Integer courseId){
+    public Course getCourseByID(@PathVariable Integer courseId) {
         Course course = courseService.getCourseById(courseId);
-        if(course == null){
+        if (course == null) {
+
             throw new RuntimeException("Course id not found-" + courseId);
         }
         return course;
     }
 
     @PutMapping("/Update/{id}")
-    public Course updateCourse(@RequestBody Course course,@RequestParam Integer id){
+
+    public Course updateCourse(@RequestBody Course course, @RequestParam Integer id) {
         try {
-            return courseService.putCourse(course,id);
-        } catch (IllegalArgumentException ex)  {
+            return courseService.putCourse(course, id);
+        } catch (IllegalArgumentException ex) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
         }
 
-}
+    }
+
     @DeleteMapping("/delete/{employeeId}")
-    public String deleteCourseByiD(@PathVariable Integer courseId){
+    public String deleteCourseByiD(@PathVariable Integer courseId) {
         Course tempEmployee = courseService.getCourseById(courseId);
-        if(tempEmployee == null){
+        if (tempEmployee == null) {
+
             throw new RuntimeException("course id not found - " + courseId);
         }
         courseService.deleteCourseById(courseId);

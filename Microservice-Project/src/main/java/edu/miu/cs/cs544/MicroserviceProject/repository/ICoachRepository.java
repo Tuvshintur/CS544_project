@@ -10,4 +10,8 @@ import java.util.List;
 @Repository
 public interface ICoachRepository extends JpaRepository<Coach, Integer> {
     List<Coach> findAll();
+
+    Coach findById(int id);
+
+    void deleteCoachById(int id);
 }

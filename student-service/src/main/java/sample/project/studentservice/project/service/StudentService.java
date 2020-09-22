@@ -12,6 +12,7 @@ public interface StudentService {
     public List<Student> getAllStudents();
 
 
+
   public   void saveStudents(Student student);
 
     Student getStudentById(Integer studentId);
@@ -21,4 +22,5 @@ public interface StudentService {
     void deleteStudentById(Integer studentId);
 
     List<Course> getAllStudentCourses(int studentId);
+
 }
