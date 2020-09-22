@@ -31,9 +31,9 @@ public class StudentServiceImpl implements StudentService {
     public List<Course> getAllStudentCourses(int studentId) {
         Student student = studentRepository.findById(studentId);
 
-        if(student != null) {
+        if (student != null) {
             return student.getEnrollments().stream().map(Enrollment::getCourse).collect(Collectors.toList());
-        }else {
+        } else {
             return new ArrayList<>();
         }
 
@@ -59,7 +59,6 @@ public class StudentServiceImpl implements StudentService {
         student.setGraduationDate(theStudent.getGraduationDate());
         student.setName(theStudent.getName());
         student.setStudentId(theStudent.getStudentId());
-        student.setTA(theStudent.getTA());
 
         studentRepository.save(student);
         return new Student();
@@ -68,13 +67,12 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void deleteStudentById(int studentId) {
         studentRepository.deleteById(studentId);
-
     }
 
     @Override
     public Student assignCoach(int coachId, int studentId) {
         Student student = studentRepository.findById(studentId);
-        if(student != null) {
+        if (student != null) {
             student.setCoach_id(coachId);
             return studentRepository.save(student);
         }

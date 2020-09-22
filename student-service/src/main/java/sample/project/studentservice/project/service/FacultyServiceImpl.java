@@ -2,7 +2,6 @@ package sample.project.studentservice.project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sample.project.studentservice.project.domain.Course;
 import sample.project.studentservice.project.domain.Faculty;
 import sample.project.studentservice.project.exception.ResourceNotFoundException;
 import sample.project.studentservice.project.repository.FacultyRepository;
@@ -14,7 +13,7 @@ import java.util.Optional;
 public class FacultyServiceImpl implements FacultyService {
 
     @Autowired
-   public FacultyRepository facultyRepository;
+    public FacultyRepository facultyRepository;
 
     @Override
     public List<Faculty> getAllFaculty() {
@@ -56,7 +55,6 @@ public class FacultyServiceImpl implements FacultyService {
     @Override
     public void deleteFacultyById(Integer facultyId) {
         facultyRepository.deleteById(facultyId);
-
     }
 
 }

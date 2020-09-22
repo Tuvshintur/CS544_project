@@ -1,16 +1,13 @@
 package sample.project.studentservice.project.domain;
 
-
 import javax.persistence.*;
 
 @Entity
 @Table
-
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String street;
     private String city;
     private String state;
@@ -24,6 +21,14 @@ public class Address {
         this.city = city;
         this.state = state;
         this.zipcode = zipcode;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getStreet() {
@@ -57,6 +62,4 @@ public class Address {
     public void setZipcode(int zipcode) {
         this.zipcode = zipcode;
     }
-
-
 }

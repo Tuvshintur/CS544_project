@@ -1,26 +1,19 @@
 package sample.project.studentservice.project.domain;
 
 import javax.persistence.*;
-
-import java.lang.management.GarbageCollectorMXBean;
 import java.time.LocalDate;
-import java.util.ArrayList;
-
 import java.util.List;
 
 @Entity
 public class Faculty {
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
     private LocalDate hiringDate;
     private int room;
-
-
-    @ManyToMany(mappedBy = "faculties",cascade = CascadeType.ALL)
-    private List<Course> courses ;
-
+    @ManyToMany(mappedBy = "faculties", cascade = CascadeType.ALL)
+    private List<Course> courses;
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 

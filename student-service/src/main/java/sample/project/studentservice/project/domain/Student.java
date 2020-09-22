@@ -7,47 +7,35 @@ import java.util.List;
 @Entity
 public class Student {
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-   
     private Integer id;
-
-    private  String name;
+    private String name;
     private int studentId;
     private LocalDate enrollmentDate;
     private LocalDate graduationDate;
-
     private double GPA;
-
+    private int coach_id;
+    private Boolean isTa;
     @OneToOne
-
     private Address address;
-
-
     @ManyToMany
-    private List<Student> ta ;
-
+    private List<Student> ta;
     @OneToMany(mappedBy = "student")
     private List<Enrollment> enrollments;
-
     @OneToMany(mappedBy = "student")
     private List<CoursesRegistered> coursesRegisteredList;
 
     public Student() {
     }
 
-
-    public Student(String name, int studentId, LocalDate enrollmentDate, int coach_id, LocalDate graduationDate, Boolean isTA, Address address) {
+    public Student(String name, int studentId, LocalDate enrollmentDate, int coach_id, LocalDate graduationDate, Address address) {
         this.name = name;
         this.studentId = studentId;
         this.coach_id = coach_id;
         this.enrollmentDate = enrollmentDate;
         this.graduationDate = graduationDate;
-        this.isTA = isTA;
         this.address = address;
     }
-
 
     public Integer getId() {
         return id;
@@ -81,16 +69,6 @@ public class Student {
         this.enrollmentDate = enrollmentDate;
     }
 
-
-    public int getCoach_id() {
-        return coach_id;
-    }
-
-    public void setCoach_id(int coach_id) {
-        this.coach_id = coach_id;
-    }
-
-
     public LocalDate getGraduationDate() {
         return graduationDate;
     }
@@ -98,7 +76,6 @@ public class Student {
     public void setGraduationDate(LocalDate graduationDate) {
         this.graduationDate = graduationDate;
     }
-
 
     public double getGPA() {
         return GPA;
@@ -108,25 +85,21 @@ public class Student {
         this.GPA = GPA;
     }
 
-
-    public Address getAddress() {
-        return address;
+    public int getCoach_id() {
+        return coach_id;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setCoach_id(int coach_id) {
+        this.coach_id = coach_id;
     }
 
-
-
-    public List<Student> getTa() {
-        return ta;
+    public Boolean getTa() {
+        return isTa;
     }
 
     public void setTa(List<Student> ta) {
         this.ta = ta;
     }
-
 
     public List<Enrollment> getEnrollments() {
         return enrollments;
@@ -136,13 +109,23 @@ public class Student {
         this.enrollments = enrollments;
     }
 
-
     public List<CoursesRegistered> getCoursesRegisteredList() {
         return coursesRegisteredList;
     }
 
     public void setCoursesRegisteredList(List<CoursesRegistered> coursesRegisteredList) {
         this.coursesRegisteredList = coursesRegisteredList;
+    }
 
+    public void setTa(Boolean ta) {
+        isTa = ta;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

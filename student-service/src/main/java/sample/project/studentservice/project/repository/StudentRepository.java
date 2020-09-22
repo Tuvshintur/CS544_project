@@ -8,5 +8,4 @@ import sample.project.studentservice.project.domain.Student;
 public interface StudentRepository extends JpaRepository<Student, Integer> {
 
     Student findById(int studentId);
-
 }

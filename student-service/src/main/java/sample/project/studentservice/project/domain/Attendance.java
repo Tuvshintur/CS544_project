@@ -5,26 +5,19 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-
 public class Attendance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private boolean isPresent;
     private boolean isRemote;
     private LocalDate classDate;
-
     @ManyToOne
     @JoinColumn
     private Course course;
-
-
     @OneToMany(cascade = CascadeType.ALL)
     private List<Student> students;
-
     @OneToOne(cascade = CascadeType.ALL)
-
     private Faculty faculty;
 
     public Attendance() {

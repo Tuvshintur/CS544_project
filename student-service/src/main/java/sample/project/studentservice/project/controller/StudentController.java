@@ -24,8 +24,6 @@ public class StudentController {
     @Autowired
     CourseService courseService;
 
-    //@Autowired
-//CoursesRegisteredService coursesRegisteredService;
     @GetMapping("/All")
     public List<Student> getAllStudents() {
         return studentService.getAllStudents();
@@ -46,16 +44,8 @@ public class StudentController {
         return student;
     }
 
-    //    @PostMapping("/Add")
-//    public Student addStudent(@RequestBody Student theStudent){
-//        theSudent.setId(0);
-//        studentService.saveCourse(theStudent);
-//        return theStudent;
-//    }
     @PutMapping("/Update/{id}")
-
     public Student updateCourse(@RequestBody Student student, @PathVariable int id) {
-
         return studentService.putStudent(student, id);
     }
 
@@ -77,7 +67,7 @@ public class StudentController {
 
 
     @PostMapping("/student/assignCoach/{coachId}/{studentId}")
-    public Student assignCoach(@PathVariable("coachId") int coachId, @PathVariable("studentId") int studentId){
+    public Student assignCoach(@PathVariable("coachId") int coachId, @PathVariable("studentId") int studentId) {
         return studentService.assignCoach(coachId, studentId);
     }
 

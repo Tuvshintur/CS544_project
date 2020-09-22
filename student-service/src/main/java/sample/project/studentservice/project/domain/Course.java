@@ -8,26 +8,19 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String title;
     private String courseCode;
     private String building;
     private int roomNumber;
-
-
     @ManyToMany
     private List<Faculty> faculties;
-
     @OneToMany(mappedBy = "course")
     private List<Enrollment> enrollments;
-
     @OneToMany(mappedBy = "course")
     private List<CoursesRegistered> coursesRegistereds;
   
-
     public Course() {
     }
-
 
     public Course(String title, String courseCode, String building, int roomNumber) {
         this.title = title;
@@ -76,7 +69,6 @@ public class Course {
     public void setEnrollments(List<Enrollment> enrollments) {
         this.enrollments = enrollments;
     }
-
 
     public String getBuilding() {
         return building;
