@@ -1,10 +1,12 @@
 package edu.miu.cs.cs544.MicroserviceProject.domain;
 
+import edu.miu.cs.cs544.MicroserviceProject.DTO.IGeneralDTO;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "coach")
-public class Coach {
+public class Coach implements IGeneralDTO {
     @Id
     @GeneratedValue
     private int id;

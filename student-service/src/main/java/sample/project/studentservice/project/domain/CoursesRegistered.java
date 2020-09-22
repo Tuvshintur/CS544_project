@@ -1,3 +1,4 @@
+
 package sample.project.studentservice.project.domain;
 
 
@@ -68,3 +69,6 @@ public class CoursesRegistered {
         this.course = course;
     }
 }
+
+
+

@@ -13,6 +13,8 @@ public class CptReport {
     @GeneratedValue
     private int id;
     private Date date;
+
+
     private String report;
 
     @OneToOne(mappedBy = "cptReport")

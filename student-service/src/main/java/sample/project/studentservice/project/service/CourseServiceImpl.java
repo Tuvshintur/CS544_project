@@ -47,12 +47,14 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course putCourse(Course theCourse, Integer theId) {
+
         Course course = courseRepository.findById(theId).orElseThrow(() -> new ResourceNotFoundException(theId));
 
         course.setTitle(theCourse.getTitle());
         course.setRoomNumber(theCourse.getRoomNumber());
         course.setEnrollments(theCourse.getEnrollments());
         course.setCoursesRegistereds(theCourse.getCoursesRegistereds());
+
         course.setCourseCode(theCourse.getCourseCode());
         course.setBuilding(theCourse.getBuilding());
         course.setFaculties(theCourse.getFaculties());

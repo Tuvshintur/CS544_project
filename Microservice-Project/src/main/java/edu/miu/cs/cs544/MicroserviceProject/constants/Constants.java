@@ -10,4 +10,10 @@ public interface Constants {
 
     }
 
+    interface ErrorType {
+
+        String UNKNOWN = "unknown";
+
+    }
+
 }
