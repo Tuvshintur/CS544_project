@@ -1,10 +1,13 @@
-
 server:
-  port: 8085
+  port: 8001
 
 spring:
   application:
-    name: CoachService
+    name: coach-service
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
 
   datasource:
     url: jdbc:mysql://localhost/cs544?serverTimezone=GMT-6
@@ -12,12 +15,11 @@ spring:
     password: group2
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-  jpa:
-    show-sql: true
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
-    preferIpAddress: true
-
-
+      defaultZone: http://localhost:8000/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    hostname: localhost

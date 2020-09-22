@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import sample.project.studentservice.project.controller.CourseRegistered;
 import sample.project.studentservice.project.domain.*;
@@ -19,6 +20,8 @@ import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
+@EnableEurekaClient
+//public class StudentServiceApplication {
 @EnableDiscoveryClient
 
 public class StudentServiceApplication implements CommandLineRunner {

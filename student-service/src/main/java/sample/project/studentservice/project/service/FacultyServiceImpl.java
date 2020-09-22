@@ -34,7 +34,7 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
 
-    public List<Enrollment> getAllCourseByFaculty(Long facId,Long courseId) {
+    public List<Enrollment> getAllCourseByFaculty(Long facId,Integer courseId) {
         Optional<Course> courseOptional = getAllCourseByFaculty(facId).stream()
                 .filter(course -> course.getId()==courseId)
                 .findFirst();

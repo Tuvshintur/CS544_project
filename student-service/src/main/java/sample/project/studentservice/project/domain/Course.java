@@ -10,7 +10,7 @@ import java.util.List;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String title;
     private String courseCode;
@@ -45,7 +45,14 @@ public class Course {
         this.courseCode = courseCode;
         this.building = building;
         this.roomNumber = roomNumber;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -72,37 +79,13 @@ public class Course {
         this.faculties = faculties;
     }
 
-//    public List<Student> getStudents() {
-//        return students;
+//    public List<Enrollment> getEnrollments() {
+//        return enrollments;
 //    }
 //
-//    public void setStudents(List<Student> students) {
-//        this.students = students;
+//    public void setEnrollments(List<Enrollment> enrollments) {
+//        this.enrollments = enrollments;
 //    }
-
-//    public List<Attendance> getAttendances() {
-//        return attendances;
-//    }
-//
-//    public void setAttendances(List<Attendance> attendances) {
-//        this.attendances = attendances;
-//    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<Enrollment> getEnrollments() {
-        return enrollments;
-    }
-
-    public void setEnrollments(List<Enrollment> enrollments) {
-        this.enrollments = enrollments;
-    }
 
     public String getBuilding() {
         return building;
@@ -126,5 +109,13 @@ public class Course {
 
     public void setCoursesRegistereds(List<CoursesRegistered> coursesRegistereds) {
         this.coursesRegistereds = coursesRegistereds;
+    }
+
+    public List<Enrollment> getEnrollments() {
+        return enrollments;
+    }
+
+    public void setEnrollments(List<Enrollment> enrollments) {
+        this.enrollments = enrollments;
     }
 }
