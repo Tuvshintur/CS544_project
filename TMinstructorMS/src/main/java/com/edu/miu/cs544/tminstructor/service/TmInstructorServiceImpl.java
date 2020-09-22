@@ -46,6 +46,11 @@ public class TmInstructorServiceImpl implements TmInstructorService {
     }
 
     @Override
+    public TmInstructor getTmInstructorByIdReturnTmInstructor(int id) {
+        return tmInstructorRepository.findById(id);
+    }
+
+    @Override
     public ResponseDTO addTmInstructor(TmInstructor tmInstructor) {
         try {
             tmInstructorRepository.save(tmInstructor);
@@ -66,7 +71,6 @@ public class TmInstructorServiceImpl implements TmInstructorService {
             throw ex;
         }
     }
-
     @Override
     public ResponseDTO deleteTmInstructorById(int id) {
         try {

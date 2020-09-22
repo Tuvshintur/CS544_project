@@ -1,11 +1,13 @@
 package com.edu.miu.cs544.tminstructor.model;
 
+import com.edu.miu.cs544.tminstructor.dto.IGeneralDTO;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Student {
+public class Student implements IGeneralDTO {
     @Id
     @GeneratedValue
     private Integer id;
