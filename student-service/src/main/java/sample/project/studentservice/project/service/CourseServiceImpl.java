@@ -2,7 +2,6 @@ package sample.project.studentservice.project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.ResourceAccessException;
 import sample.project.studentservice.project.domain.Course;
 import sample.project.studentservice.project.exception.ResourceNotFoundException;
 import sample.project.studentservice.project.repository.CourseRepository;
@@ -23,13 +22,11 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void saveCourse(Course course) {
         courseRepository.save(course);
-
     }
 
     @Override
     public Course getCourseById(Integer courseId) {
         Optional<Course> result = courseRepository.findById(courseId);
-
         Course theCourse = null;
         if (result.isPresent()) {
             theCourse = result.get();
@@ -42,12 +39,10 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void deleteCourseById(Integer theId) {
         courseRepository.deleteById(theId);
-
     }
 
     @Override
     public Course putCourse(Course theCourse, Integer theId) {
-
         Course course = courseRepository.findById(theId).orElseThrow(() -> new ResourceNotFoundException(theId));
 
         course.setTitle(theCourse.getTitle());

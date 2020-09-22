@@ -1,7 +1,5 @@
 package sample.project.studentservice.project.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
@@ -10,23 +8,19 @@ public class Enrollment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private char grade;
-private Boolean hasStarted;
     @ManyToOne
     private Student student;
-
-    @JsonIgnore
     @ManyToOne
     @JoinColumn
     private Course course;
 
-    public Enrollment() {
+    public Enrollment(char a, Student st1, Course BDT) {
     }
 
-    public Enrollment(char grade, Student student, Course course) {
+    public Enrollment(char grade) {
         this.grade = grade;
-        this.student = student;
-        this.course = course;
     }
+
 
     public char getGrade() {
         return grade;
@@ -51,4 +45,13 @@ private Boolean hasStarted;
     public void setCourse(Course course) {
         this.course = course;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }

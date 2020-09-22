@@ -9,17 +9,19 @@ import java.util.List;
 @Service
 public interface StudentService {
 
-    public List<Student> getAllStudents();
+    List<Student> getAllStudents();
 
-    public void saveStudents(Student student);
+    void saveStudents(Student student);
 
-    Student getStudentById(Integer studentId);
+    Student getStudentById(int studentId);
 
-    Student putStudent(Student student, Integer id);
+    Student putStudent(Student student, int id);
 
-    void deleteStudentById(Integer studentId);
+    void deleteStudentById(int studentId);
 
     List<Course> getAllStudentCourses(int studentId);
 
-    Student assignCoach(int coachId, int studentId);
+
+    Student assignCoach(int coach_id, int student_id);
+
 }

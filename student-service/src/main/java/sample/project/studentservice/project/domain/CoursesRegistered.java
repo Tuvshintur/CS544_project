@@ -1,7 +1,6 @@
+
 package sample.project.studentservice.project.domain;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,7 +15,6 @@ public class CoursesRegistered {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    @JsonIgnore
     @ManyToOne
     private Student student;
 

@@ -1,7 +1,5 @@
 package sample.project.studentservice.project.domain;
 
-
-
 import javax.persistence.*;
 
 @Entity
@@ -25,6 +23,14 @@ public class Address {
         this.city = city;
         this.state = state;
         this.zipcode = zipcode;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getStreet() {
@@ -59,11 +65,5 @@ public class Address {
         this.zipcode = zipcode;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 }
