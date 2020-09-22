@@ -3,7 +3,6 @@ package com.edu.miu.cs544.tminstructor.controller;
 import com.edu.miu.cs544.tminstructor.constants.Constants;
 import com.edu.miu.cs544.tminstructor.dto.ErrorDTO;
 import com.edu.miu.cs544.tminstructor.dto.ResponseDTO;
-import com.edu.miu.cs544.tminstructor.model.Student;
 import com.edu.miu.cs544.tminstructor.model.TmInstructor;
 import com.edu.miu.cs544.tminstructor.model.TmRecord;
 import com.edu.miu.cs544.tminstructor.service.TmInstructorService;
@@ -12,12 +11,10 @@ import com.edu.miu.cs544.tminstructor.service.utility.ResponseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import javax.transaction.Transactional;
-import java.util.Collections;
 import java.util.Date;
 
 @RestController
@@ -77,16 +74,15 @@ public class TmRecordController {
     @RequestMapping(value = "/tmappointment/{tmInstructorId}/{studentId}/{checkDate}", method = RequestMethod.POST)
     public ResponseDTO enterAttendance(@PathVariable("tmInstructorId") int tmInstructorId, @PathVariable("studentId") int studentId,
                                      @PathVariable Date checkDate) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        HttpEntity<String> entity = new HttpEntity<>(headers);
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+//        HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        Student student = restTemplate.exchange("http://student-service/students/student/" + studentId, HttpMethod.GET, null, Student.class).getBody();
+//        Student student = restTemplate.exchange("http://student-service/students/student/" + studentId, HttpMethod.GET, null, Student.class).getBody();
         TmInstructor tmInstructor = tmInstructorService.getTmInstructorByIdReturnTmInstructor(tmInstructorId);
-        TmRecord currentTmRecord = new TmRecord(student,tmInstructor,checkDate);
+        TmRecord currentTmRecord = new TmRecord(studentId,tmInstructor,checkDate);
 
-        ResponseDTO responseDTO = tmRecordService.updateTmRecord(currentTmRecord);
-        return new ResponseService(HttpStatus.OK.value(), null, currentTmRecord).getResponse();
+        return tmRecordService.updateTmRecord(currentTmRecord);
     }
 
 //    @RequestMapping(value = "/{tmInstructorId}", method = RequestMethod.PUT)

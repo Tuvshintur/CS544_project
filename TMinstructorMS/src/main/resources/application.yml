@@ -3,11 +3,11 @@ server:
 
 spring:
   application:
-    name: tminstructor-service
+    name: tm-service
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     #      ddl-auto: create-drop
 
   datasource:

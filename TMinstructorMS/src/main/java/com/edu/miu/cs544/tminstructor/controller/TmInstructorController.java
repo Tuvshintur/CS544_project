@@ -5,16 +5,15 @@ import com.edu.miu.cs544.tminstructor.model.Student;
 import com.edu.miu.cs544.tminstructor.model.TmInstructor;
 import com.edu.miu.cs544.tminstructor.service.TmInstructorService;
 import com.edu.miu.cs544.tminstructor.service.utility.ResponseService;
-import org.springframework.http.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
 import java.util.Collections;
-import java.util.List;
 
 @RestController
 @RequestMapping("/tm-instructor")
@@ -29,9 +28,9 @@ public class TmInstructorController {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("/students")
-    public String getAllTmInstructors(){
+    public String getAllTmInstructors() {
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON) );
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         return restTemplate.exchange("http://student-service/students/All", HttpMethod.GET, entity, String.class).getBody();
@@ -86,11 +85,9 @@ public class TmInstructorController {
         TmInstructor currentTmInstructor = tmInstructorService.getTmInstructorByIdReturnTmInstructor(tmInstructorId);
 
         Student student = restTemplate.exchange("http://student-service/students/student/" + studentId, HttpMethod.GET, null, Student.class).getBody();
-        currentTmInstructor.addStudent(student);
+//        currentTmInstructor.addStudent(student);
 
-        ResponseDTO responseDTO = tmInstructorService.updateTmInstrcutor(currentTmInstructor);
-
-        return new ResponseService(HttpStatus.OK.value(), null, student).getResponse();
+        return tmInstructorService.updateTmInstrcutor(currentTmInstructor);
     }
 
     @RequestMapping(value = "/{tmInstructorId}", method = RequestMethod.PUT)
@@ -112,7 +109,7 @@ public class TmInstructorController {
         }
     }
 
-//    @Override
+    //    @Override
     @Transactional
     public ResponseDTO deleteTmInstructorById(int id) {
         System.out.println(this.getClass().getName() + "[srvc][coach.delete][ini]");

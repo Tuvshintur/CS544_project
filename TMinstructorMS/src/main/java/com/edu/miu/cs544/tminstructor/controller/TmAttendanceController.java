@@ -71,20 +71,29 @@ public class TmAttendanceController {
         }
     }
 
-//    @RequestMapping(value = "/tmattendance/{courseId}/{studentId}/{checkDate}/{isAttended}", method = RequestMethod.POST)
-//    public ResponseDTO enterAttendance(@PathVariable("courseId") int courseId, @PathVariable("studentId") int studentId,
-//                                       @PathVariable("checkDate") Date checkDate,@PathVariable("isAttended") boolean isAttended ) {
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-//        HttpEntity<String> entity = new HttpEntity<>(headers);
-//
-//        Student student = restTemplate.exchange("http://student-service/students/student/" + studentId, HttpMethod.GET, null, Student.class).getBody();
-//        TmInstructor tmInstructor = tmInstructorService.getTmInstructorByIdReturnTmInstructor(tmInstructorId);
-//        TmRecord currentTmRecord = new TmRecord(student,tmInstructor,checkDate);
-//
-//        ResponseDTO responseDTO = tmRecordService.updateTmRecord(currentTmRecord);
-//        return new ResponseService(HttpStatus.OK.value(), null, currentTmRecord).getResponse();
-//    }
+    @RequestMapping(value = "/tmattendance/", method = RequestMethod.POST)
+    public ResponseDTO enterAttendance(@RequestBody TmAttendance tmAttendance) {
+        /*
+        *  TmAttendance entity json body-g request-r irne
+        *
+        *     private Integer id;
+
+            private Integer student_id;
+
+            private Integer course_id;
+
+            private Date date;
+
+            private boolean isAttended;
+        *
+        *
+        * */
+        TmInstructor tmInstructor = tmInstructorService.getTmInstructorByIdReturnTmInstructor(tmInstructorId);
+        TmRecord currentTmRecord = new TmRecord(student,tmInstructor,checkDate);
+
+        ResponseDTO responseDTO = tmRecordService.updateTmRecord(currentTmRecord);
+        return new ResponseService(HttpStatus.OK.value(), null, currentTmRecord).getResponse();
+    }
 
     //    @RequestMapping(value = "/{tmInstructorId}", method = RequestMethod.PUT)
 //    public ResponseDTO updateCoach(@PathVariable("tmInstructorId") int tmInstructorId, @RequestBody TmInstructor tmInstructor) {

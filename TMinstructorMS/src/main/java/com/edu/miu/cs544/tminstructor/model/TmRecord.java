@@ -11,9 +11,7 @@ public class TmRecord implements IGeneralDTO {
     @GeneratedValue
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_id")
-    private Student student;
+    private Integer student_id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_id")
@@ -25,8 +23,8 @@ public class TmRecord implements IGeneralDTO {
     public TmRecord() {
     }
 
-    public TmRecord(Student student, TmInstructor tmInstructor, Date dateOfTmChecking) {
-        this.student = student;
+    public TmRecord(Integer student, TmInstructor tmInstructor, Date dateOfTmChecking) {
+        this.student_id = student_id;
         this.instructor = tmInstructor;
         this.dateOfTmChecking = dateOfTmChecking;
     }
@@ -39,12 +37,20 @@ public class TmRecord implements IGeneralDTO {
         this.id = id;
     }
 
-    public Student getStudent() {
-        return student;
+    public Integer getStudent_id() {
+        return student_id;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudent_id(Integer student_id) {
+        this.student_id = student_id;
+    }
+
+    public TmInstructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(TmInstructor instructor) {
+        this.instructor = instructor;
     }
 
     public TmInstructor getTmInstructor() {

@@ -4,7 +4,6 @@ import com.edu.miu.cs544.tminstructor.dto.IGeneralDTO;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 public class TmAttendance implements IGeneralDTO {
@@ -12,23 +11,20 @@ public class TmAttendance implements IGeneralDTO {
     @GeneratedValue
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+    private Integer student_id;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
+    private Integer course_id;
 
     private Date date;
+
     private boolean isAttended;
 
     public TmAttendance() {
     }
 
-    public TmAttendance(Student student, Course course, Date date, boolean isAttended) {
-        this.student = student;
-        this.course = course;
+    public TmAttendance(Integer student_id, Integer course_id, Date date, boolean isAttended) {
+        this.student_id = student_id;
+        this.course_id = course_id;
         this.date = date;
         this.isAttended = isAttended;
     }
@@ -41,20 +37,20 @@ public class TmAttendance implements IGeneralDTO {
         this.id = id;
     }
 
-    public Student getStudent() {
-        return student;
+    public Integer getStudent_id() {
+        return student_id;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudent_id(Integer student_id) {
+        this.student_id = student_id;
     }
 
-    public Course getCourse() {
-        return course;
+    public Integer getCourse_id() {
+        return course_id;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourse_id(Integer course_id) {
+        this.course_id = course_id;
     }
 
     public Date getDate() {

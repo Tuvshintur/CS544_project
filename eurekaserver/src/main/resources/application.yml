@@ -23,3 +23,6 @@ zuul:
     student-service:
       path: /student-service/**
       url: http://localhost:8002/
+    tm-service:
+      path: /tm-service/**
+      url: http://localhost:8003/
