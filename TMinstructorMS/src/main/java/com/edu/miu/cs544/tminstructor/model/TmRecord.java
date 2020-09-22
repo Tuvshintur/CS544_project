@@ -1,10 +1,12 @@
 package com.edu.miu.cs544.tminstructor.model;
 
+import com.edu.miu.cs544.tminstructor.dto.IGeneralDTO;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class TmRecord {
+public class TmRecord implements IGeneralDTO {
     @Id
     @GeneratedValue
     private Integer id;
