@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+//import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import sample.project.studentservice.project.domain.*;
 import sample.project.studentservice.project.repository.*;
 

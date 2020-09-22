@@ -21,4 +21,5 @@ public interface StudentService {
 
     List<Course> getAllStudentCourses(int studentId);
 
+    Student assignCoach(int coachId, int studentId);
 }

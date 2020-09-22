@@ -32,8 +32,8 @@ public class Course {
 //    @OneToMany(mappedBy = "course")
 //    private List<Enrollment> enrollments;
 
-//    @OneToMany(mappedBy = "course")
-//    private List<CoursesRegistered> coursesRegistereds;
+   @OneToMany(mappedBy = "course")
+   private List<CoursesRegistered> coursesRegistereds;
 
     public Course() {
     }
@@ -101,4 +101,21 @@ public class Course {
 //    public void setCoursesRegistereds(List<CoursesRegistered> coursesRegistereds) {
 //        this.coursesRegistereds = coursesRegistereds;
 //    }
+
+
+    public List<Enrollment> getEnrollments() {
+        return enrollments;
+    }
+
+    public void setEnrollments(List<Enrollment> enrollments) {
+        this.enrollments = enrollments;
+    }
+
+    public List<CoursesRegistered> getCoursesRegistereds() {
+        return coursesRegistereds;
+    }
+
+    public void setCoursesRegistereds(List<CoursesRegistered> coursesRegistereds) {
+        this.coursesRegistereds = coursesRegistereds;
+    }
 }

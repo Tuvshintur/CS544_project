@@ -6,7 +6,6 @@ import sample.project.studentservice.project.domain.Course;
 
 import sample.project.studentservice.project.domain.Enrollment;
 import sample.project.studentservice.project.domain.Student;
-import sample.project.studentservice.project.exception.ResourceNotFoundException;
 import sample.project.studentservice.project.repository.StudentRepository;
 
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getAllStudents() {
-
         return studentRepository.findAll();
     }
 
@@ -47,31 +45,21 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student getStudentById(int studentId) {
-        return studentRepository.findById(studentId);
+    public Student getStudentById(Integer studentId) {
+        return null;
     }
 
     @Override
-    public Student putStudent(Student theStudent, int id) {
-        Student student = studentRepository.findById(id);
-        student.setAddress(theStudent.getAddress());
-        student.setEnrollmentDate(theStudent.getEnrollmentDate());
-        student.setEnrollments(theStudent.getEnrollments());
-        //student.setGPA(theStudent.getGPA());
-        student.setGraduationDate(theStudent.getGraduationDate());
-        student.setName(theStudent.getName());
-        student.setStudentId(theStudent.getStudentId());
-     //   student.setTA(theStudent.getTA());
-
-        studentRepository.save(student);
-        return new Student();
+    public Student putStudent(Student student, Integer id) {
+        return null;
     }
 
     @Override
-    public void deleteStudentById(int studentId) {
-        studentRepository.deleteById(studentId);
+    public void deleteStudentById(Integer studentId) {
 
     }
+
+
 
     @Override
     public Student assignCoach(int coachId, int studentId) {

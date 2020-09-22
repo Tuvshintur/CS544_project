@@ -12,7 +12,8 @@ public class Student {
 
    
     private Integer id;
-
+    private Boolean isTA;
+    private int coach_id;
     private  String name;
     private int studentId;
     private LocalDate enrollmentDate;
@@ -48,6 +49,22 @@ public class Student {
         this.address = address;
     }
 
+    public Student(String name, int studentId, LocalDate enrollmentDate, LocalDate graduationDate, double GPA, Address address) {
+        this.name = name;
+        this.studentId = studentId;
+        this.enrollmentDate = enrollmentDate;
+        this.graduationDate = graduationDate;
+        this.GPA = GPA;
+        this.address = address;
+    }
+
+    public Boolean getTA() {
+        return isTA;
+    }
+
+    public void setTA(Boolean TA) {
+        isTA = TA;
+    }
 
     public Integer getId() {
         return id;

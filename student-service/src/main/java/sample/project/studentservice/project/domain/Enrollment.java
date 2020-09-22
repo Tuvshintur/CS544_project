@@ -10,7 +10,7 @@ public class Enrollment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private char grade;
-
+private Boolean hasStarted;
     @ManyToOne
     private Student student;
 
