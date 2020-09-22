@@ -5,6 +5,7 @@ import edu.miu.cs.cs544.MicroserviceProject.DTO.ResponseDTO;
 import edu.miu.cs.cs544.MicroserviceProject.constants.Constants;
 import edu.miu.cs.cs544.MicroserviceProject.domain.Coach;
 import edu.miu.cs.cs544.MicroserviceProject.domain.Job;
+import edu.miu.cs.cs544.MicroserviceProject.domain.JobResearchReport;
 import edu.miu.cs.cs544.MicroserviceProject.service.IJobService;
 import edu.miu.cs.cs544.MicroserviceProject.service.utilities.ResponseService;
 import io.swagger.annotations.Api;
@@ -27,7 +28,7 @@ public class JobController {
         this.service = service;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/alljobs", method = RequestMethod.GET)
     public ResponseDTO getJobs() {
         try {
             LOGGER.info("[ctrl][job][getJobs][ini]");
@@ -55,7 +56,7 @@ public class JobController {
         }
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/addjobs", method = RequestMethod.POST)
     public ResponseDTO addJob(@RequestBody Job job) {
         try {
             LOGGER.info(this.getClass().getName() + "[ctrl][job][addJob][ini]");
@@ -104,6 +105,42 @@ public class JobController {
             return new ResponseService(HttpStatus.INTERNAL_SERVER_ERROR.value(), null, new ErrorDTO(null, ex.getMessage(), Constants.ErrorType.UNKNOWN)).getError();
         }
     }
-}
+
+    ////////// view all students ////////
+
+//    @RequestMapping(value = "/viewallstudents", method = RequestMethod.GET)
+//    public ResponseDTO viewAllStudents() {
+//        try {
+//            LOGGER.info("[ctrl][job][getJobs][ini]");
+//            ResponseDTO responseDTO = service.getAllJobs();
+//            LOGGER.info("[ctrl][job][getJobs][end]");
+//
+//            return responseDTO;
+//        } catch (Exception ex) {
+//            LOGGER.error("[ctrl][job][getJobs][unknown][ " + ex.getMessage() + "]");
+//            throw ex;
+//        }
+//    }
+//
+//    //////// assign students to himself /////////////
+//    @RequestMapping(value = "/alljobs", method = RequestMethod.GET)
+//    public ResponseDTO addStudents() {
+//        try {
+//            LOGGER.info("[ctrl][job][getJobs][ini]");
+//            ResponseDTO responseDTO = service.getAllJobs();
+//            LOGGER.info("[ctrl][job][getJobs][end]");
+//
+//            return responseDTO;
+//        } catch (Exception ex) {
+//            LOGGER.error("[ctrl][job][getJobs][unknown][ " + ex.getMessage() + "]");
+//            throw ex;
+//        }
+//    }
+
+    ///////////////
+
+
+    }
+
 
 

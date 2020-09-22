@@ -102,6 +102,9 @@ public class CoachController {
             LOGGER.error("[ctrl][project][deleteProject][unknown][ " + ex.getMessage() + "]");
             return new ResponseService(HttpStatus.INTERNAL_SERVER_ERROR.value(), null, new ErrorDTO(null, ex.getMessage(), Constants.ErrorType.UNKNOWN)).getError();
         }
+
     }
+
+
 
 }

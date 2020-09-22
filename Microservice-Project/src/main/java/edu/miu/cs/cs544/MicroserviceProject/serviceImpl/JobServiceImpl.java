@@ -3,6 +3,7 @@ package edu.miu.cs.cs544.MicroserviceProject.serviceImpl;
 import edu.miu.cs.cs544.MicroserviceProject.DTO.ListDTO;
 import edu.miu.cs.cs544.MicroserviceProject.DTO.ResponseDTO;
 import edu.miu.cs.cs544.MicroserviceProject.domain.Job;
+import edu.miu.cs.cs544.MicroserviceProject.domain.JobResearchReport;
 import edu.miu.cs.cs544.MicroserviceProject.repository.IJobRepository;
 import edu.miu.cs.cs544.MicroserviceProject.service.IJobService;
 import edu.miu.cs.cs544.MicroserviceProject.service.utilities.ResponseService;
@@ -94,5 +95,18 @@ public class JobServiceImpl implements IJobService {
             throw ex;
         }
     }
+
+//    @Override
+//    public ResponseDTO createJRR(JobResearchReport jobResearchReport) {
+//        System.out.println(this.getClass().getName() + "[srvc][job.save.addJob][ini]");
+//        try {
+//            jobRepository.save(jobResearchReport);
+//            System.out.println(this.getClass().getName() + "[srvc][job.save.addJob][end]");
+//            return new ResponseService(HttpStatus.OK.value(), null, job).getResponse();
+//        } catch (Exception ex) {
+//            System.out.println(this.getClass().getName() + "[srvc][job.save.addJob][unknown][ " + ex.getMessage() + "]");
+//            throw ex;
+//        }
+//    }
 
 }

@@ -9,7 +9,7 @@ public class Address {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @JoinColumn
     private Employee employee;
 
     public Address() {
