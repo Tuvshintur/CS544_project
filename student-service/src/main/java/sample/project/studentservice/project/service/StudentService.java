@@ -1,6 +1,7 @@
 package sample.project.studentservice.project.service;
 
 import org.springframework.stereotype.Service;
+import sample.project.studentservice.project.domain.Course;
 import sample.project.studentservice.project.domain.Student;
 
 import java.util.List;
@@ -19,4 +20,5 @@ public interface StudentService {
 
     void deleteStudentById(Integer studentId);
 
+    List<Course> getAllStudentCourses(int studentId);
 }

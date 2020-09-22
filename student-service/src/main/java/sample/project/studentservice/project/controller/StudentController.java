@@ -22,8 +22,7 @@ public class StudentController {
     private StudentService studentService;
 @Autowired
     CourseService courseService;
-@Autowired
-CoursesRegisteredService coursesRegisteredService;
+
     @GetMapping("/All")
     public List<Student> getAllStudents(){
     return  studentService.getAllStudents();
@@ -63,16 +62,8 @@ CoursesRegisteredService coursesRegisteredService;
         return "Delete student id - " + studentId;
     }
 
-    @PostMapping("/selectCourse/{studentId}/{courseId}")
-    public Course regesterCourse(@RequestParam Integer studentId,@RequestParam Integer courseId){
-        List<Course>courses=courseService.getAllCourse();
-        for(Course course:courses){
-       if( course.getId()==courseId){
-           coursesRegisteredService.save(studentId,courseId,new LocalDate().getDayOfYear(),new Date()));
-           )
-       }
-        }
-
-        return null;
+    @GetMapping("/student/{studentId}")
+    public List<Course> getRegisteredCourse(@PathVariable int studentId) {
+        return studentService.getAllStudentCourses(studentId);
     }
 }
