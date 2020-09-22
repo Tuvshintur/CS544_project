@@ -29,6 +29,20 @@ public class Attendance {
     public Attendance() {
     }
 
+    public Attendance(boolean isPresent, boolean isRemote, LocalDate classDate) {
+        this.isPresent = isPresent;
+        this.isRemote = isRemote;
+        this.classDate = classDate;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public boolean isPresent() {
         return isPresent;
     }

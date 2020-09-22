@@ -1,5 +1,7 @@
 package sample.project.studentservice.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -10,7 +12,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private  String name;
+    private String name;
     private int studentId;
     private LocalDate enrollmentDate;
     private LocalDate graduationDate;
@@ -19,22 +21,26 @@ public class Student {
     @OneToOne
     private Address address;
 
-//    @OneToMany
-//    private List<Course> courses ;
-
-
-    //private List<Faculty> faculties = new ArrayList<>();
-
     @ManyToMany
-    private List<Student> ta ;
+    private List<Student> ta;
 
     @OneToMany(mappedBy = "student")
+    @JsonIgnore
     private List<Enrollment> enrollments;
 
     @OneToMany(mappedBy = "student")
     private List<CoursesRegistered> coursesRegisteredList;
 
     public Student() {
+    }
+
+    public Student(String name, int studentId, LocalDate enrollmentDate, LocalDate graduationDate, double GPA, Address address) {
+        this.name = name;
+        this.studentId = studentId;
+        this.enrollmentDate = enrollmentDate;
+        this.graduationDate = graduationDate;
+        this.GPA = GPA;
+        this.address = address;
     }
 
     public Integer getId() {
@@ -92,14 +98,6 @@ public class Student {
     public void setAddress(Address address) {
         this.address = address;
     }
-
-//    public List<Course> getCourses() {
-//        return courses;
-//    }
-//
-//    public void setCourses(List<Course> courses) {
-//        this.courses = courses;
-//    }
 
     public List<Student> getTa() {
         return ta;

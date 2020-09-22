@@ -8,7 +8,8 @@ import java.util.List;
 
 @Entity
 public class Faculty {
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
@@ -16,7 +17,7 @@ public class Faculty {
     private int room;
 
     @ManyToMany(mappedBy = "faculties")
-    private List<Course> courses ;
+    private List<Course> courses;
 
     @OneToOne
     private Address address;
@@ -24,6 +25,13 @@ public class Faculty {
     //private List<Student> students;
 
     public Faculty() {
+    }
+
+    public Faculty(String name, LocalDate hiringDate, int room, Address address) {
+        this.name = name;
+        this.hiringDate = hiringDate;
+        this.room = room;
+        this.address = address;
     }
 
     public Integer getId() {

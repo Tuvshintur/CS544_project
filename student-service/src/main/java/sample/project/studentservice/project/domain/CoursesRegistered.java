@@ -3,9 +3,9 @@ package sample.project.studentservice.project.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
-@Table(name="registercourse")
 public class CoursesRegistered {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,23 +13,28 @@ public class CoursesRegistered {
 
     private LocalDate startDate;
     private LocalDate endDate;
-
     @ManyToOne
     private Student student;
-
     @ManyToOne
     private Course course;
 
     public CoursesRegistered() {
     }
-//
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
+
+    public CoursesRegistered(LocalDate startDate, LocalDate endDate, Student student, Course course) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.student = student;
+        this.course = course;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public LocalDate getStartDate() {
         return startDate;

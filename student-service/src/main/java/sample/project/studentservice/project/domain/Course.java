@@ -1,5 +1,7 @@
 package sample.project.studentservice.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,12 +20,20 @@ public class Course {
     private List<Faculty> faculties;
 
     @OneToMany(mappedBy = "course")
+    @JsonIgnore
     private List<Enrollment> enrollments;
 
     @OneToMany(mappedBy = "course")
     private List<CoursesRegistered> coursesRegistereds;
 
     public Course() {
+    }
+
+    public Course(String title, String courseCode, String building, int roomNumber) {
+        this.title = title;
+        this.courseCode = courseCode;
+        this.building = building;
+        this.roomNumber = roomNumber;
     }
 
     public void setId(Integer id) {

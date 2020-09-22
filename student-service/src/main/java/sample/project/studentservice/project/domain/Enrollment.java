@@ -1,22 +1,41 @@
 package sample.project.studentservice.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
+
 public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private char grade;
 
     @ManyToOne
+//    @JsonIgnore
     private Student student;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     @ManyToOne
     @JoinColumn
+//    @JsonIgnore
     private Course course;
 
     public Enrollment() {
+    }
+
+    public Enrollment(char grade, Student student, Course course) {
+        this.grade = grade;
+        this.student = student;
+        this.course = course;
     }
 
     public char getGrade() {

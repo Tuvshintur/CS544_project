@@ -14,7 +14,7 @@ import java.util.Optional;
 public class FacultyServiceImpl implements FacultyService {
 
     @Autowired
-   public FacultyRepository facultyRepository;
+    public FacultyRepository facultyRepository;
 
     @Override
     public List<Faculty> getAllFaculty() {
@@ -31,10 +31,9 @@ public class FacultyServiceImpl implements FacultyService {
         Optional<Faculty> result = facultyRepository.findById(facultyId);
 
         Faculty theFaculty = null;
-        if(result.isPresent()){
+        if (result.isPresent()) {
             theFaculty = result.get();
-        }
-        else{
+        } else {
             throw new RuntimeException("did not find faculty id - " + facultyId);
         }
         return theFaculty;
@@ -42,7 +41,7 @@ public class FacultyServiceImpl implements FacultyService {
 
     @Override
     public Faculty putFaculty(Faculty faculty, Integer id) {
-        Faculty theFaculty = facultyRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(id));
+        Faculty theFaculty = facultyRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         theFaculty.setAddress(faculty.getAddress());
         theFaculty.setCourses(faculty.getCourses());
         theFaculty.setHiringDate(faculty.getHiringDate());
@@ -50,13 +49,11 @@ public class FacultyServiceImpl implements FacultyService {
         theFaculty.setRoom(faculty.getRoom());
 
         facultyRepository.save(faculty);
-        return theFaculty ;
+        return theFaculty;
     }
 
     @Override
     public void deleteFacultyById(Integer facultyId) {
         facultyRepository.deleteById(facultyId);
-
     }
-
 }
