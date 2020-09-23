@@ -80,4 +80,10 @@ public class StudentServiceImpl implements StudentService {
         return null;
     }
 
+    @Override
+    public List<Student> availableForJob() {
+        List<Student> students = studentRepository.findAll();
+        return students.stream().filter(student -> student.getCoursesRegisteredList().size()>=5).collect(Collectors.toList());
+    }
+
 }
