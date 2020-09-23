@@ -76,4 +76,9 @@ public class StudentController {
         return studentService.assignCoach(coachId, studentId);
     }
 
+    @PostMapping("/student/availableForJob")
+    public List<Student> availableForJob() {
+        return studentService.availableForJob();
+    }
+
 }
