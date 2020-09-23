@@ -61,10 +61,15 @@ public class StudentController {
     }
 
     @GetMapping("/student/{studentId}")
-    public List<Course> getRegisteredCourse(@PathVariable int studentId) {
-        return studentService.getAllStudentCourses(studentId);
-    }
+    public List<Course> getTakenCourseById(@PathVariable int studentId) {
 
+        return studentService.getAllCourseByStudentId(studentId);
+    }
+    @GetMapping("/courseRegistered/{studentId}")
+    public List<Course> getRegisteredCourseByStudentId(@PathVariable int studentId) {
+
+        return studentService.getRegisteredByStudentId(studentId);
+    }
 
     @PostMapping("/student/assignCoach/{coachId}/{studentId}")
     public Student assignCoach(@PathVariable("coachId") int coachId, @PathVariable("studentId") int studentId) {

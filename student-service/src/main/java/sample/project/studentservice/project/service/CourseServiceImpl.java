@@ -57,5 +57,4 @@ public class CourseServiceImpl implements CourseService {
         courseRepository.save(course);
         return new Course();
     }
-
 }

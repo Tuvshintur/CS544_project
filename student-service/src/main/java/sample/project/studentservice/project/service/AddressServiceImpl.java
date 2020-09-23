@@ -30,8 +30,6 @@ public class AddressServiceImpl implements AddressService{
         addressRepository.deleteById(id);
     }
 
-
-
     @Override
     public Address updateAddressById(@PathVariable Long id, Address address){
         Optional<Address> oldAddress = addressRepository.findById(id);
@@ -43,16 +41,7 @@ public class AddressServiceImpl implements AddressService{
         } else {
             //	Insert for new recored
             return addressRepository.save(address);
-
-
         }
     }
-
-//    address1.setCity(address.getCity());
-//   address1.setStreet(address.getStreet());
-//   address1.setState(address.getState());
-//   address1.setZipcode(address.getZipcode());
-//   addressRepository.save(address1);
-//    }
 
 }

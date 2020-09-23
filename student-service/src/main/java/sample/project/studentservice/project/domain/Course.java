@@ -16,7 +16,7 @@ public class Course {
     private String building;
     private int roomNumber;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private List<Faculty> faculties;
 
     @OneToMany(mappedBy = "course")
@@ -24,7 +24,6 @@ public class Course {
 
     @OneToMany(mappedBy = "course")
     private List<CoursesRegistered> coursesRegistereds;
-  
 
     public Course() {
     }
@@ -101,5 +100,4 @@ public class Course {
     public void setCoursesRegistereds(List<CoursesRegistered> coursesRegistereds) {
         this.coursesRegistereds = coursesRegistereds;
     }
-
 }

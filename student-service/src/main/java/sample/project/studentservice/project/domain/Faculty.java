@@ -17,7 +17,7 @@ public class Faculty {
     @ManyToMany(mappedBy = "faculties", fetch = FetchType.EAGER)
     private List<Course> courses ;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Address address;
 
     public Faculty() {

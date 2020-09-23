@@ -42,8 +42,6 @@ public class FacultyController {
         facultyService.updateById(facId, faculty);
     }
 
-
-    //uses cases
     @GetMapping("/all/{id}")
     public List<Course> getAllCourseByFaculty(@PathVariable("id") Long facId) {
         return facultyService.getAllCourseByFaculty(facId);
@@ -64,17 +62,8 @@ public class FacultyController {
         facultyService.assignTaForCourses(stId);
     }
 
-//    @PostMapping("/post/{facId}")
-//    public void createGrade(@PathVariable Long facId, @RequestBody Character grade){
-//        facultyService.createGrade(facId,grade);
-//
-//    }
-
     @PostMapping("/postgrade")
     public void createEnrollmentAndPostGrade(@RequestBody Enrollment enrollment){
         enrollmentService.createEnrollment(enrollment);
-
     }
-
-
 }

@@ -15,7 +15,6 @@ public class EnrollmentServiceImpl implements  EnrollmentService{
     @Autowired
     private EnrollmentRepository enrollmentRepository;
 
-
     @Override
     public List<Enrollment> getAllEnrollments() {
         return enrollmentRepository.findAll();
@@ -33,11 +32,5 @@ public class EnrollmentServiceImpl implements  EnrollmentService{
 
     @Override
     public void updateById(Long id, Enrollment enrollment) {
-
     }
-
-//    @Override
-//    public List<Course> getAllCoursesByStudentId(Long id) {
-//        return null;
-//    }
 }

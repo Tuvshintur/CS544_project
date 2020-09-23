@@ -17,29 +17,22 @@ public class EnrollmentController {
     private EnrollmentService enrollmentService;
 
     @GetMapping("/All")
-    public List<Enrollment> getAllEnrolment(){
+    public List<Enrollment> getAllEnrolment() {
         return enrollmentService.getAllEnrollments();
     }
 
-@PostMapping("/create")
-    public void createEnrollment(Enrollment enrollment){
+    @PostMapping("/create")
+    public void createEnrollment(Enrollment enrollment) {
         enrollmentService.createEnrollment(enrollment);
-
     }
 
     @DeleteMapping("/delete/{enId}")
-    public void deleteEnrollment(@PathVariable  Long enId){
+    public void deleteEnrollment(@PathVariable Long enId) {
         enrollmentService.deleteEnrollment(enId);
-
     }
 
     @PutMapping("/update/{enId}")
-    public void updateById(@PathVariable Long enId, Enrollment enrollment){
-        enrollmentService.updateById(enId,enrollment);
+    public void updateById(@PathVariable Long enId, Enrollment enrollment) {
+        enrollmentService.updateById(enId, enrollment);
     }
-
-//    //View All courses for studentd
-//    public List<Course>getAllCoursesByStudentId(Long id){
-//
-//    }
 }
