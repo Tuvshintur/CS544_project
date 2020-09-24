@@ -14,7 +14,7 @@ public interface StudentService {
     Student putStudent(Student student, int id);
     void deleteStudentById(int studentId);
     List<Course> getAllStudentCourses(int studentId);
-
+    Student assignInstructor(int instructor_id, int student_id);
     Student assignCoach(int coach_id, int student_id);
     List<Course> getAllCourseByStudentId(int studentId);
     List<Course> getRegisteredByStudentId(int studentId);

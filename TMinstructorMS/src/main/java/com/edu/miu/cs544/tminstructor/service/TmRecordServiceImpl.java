@@ -32,6 +32,11 @@ public class TmRecordServiceImpl implements TmRecordService {
         }
     }
 
+    public int getTmRecordSize() {
+            List<TmRecord> tmRecords =  tmRecordRepository.findAll();
+            return tmRecords.size();
+    }
+
     @Override
     public ResponseDTO getTmRecordById(int id) {
         try {

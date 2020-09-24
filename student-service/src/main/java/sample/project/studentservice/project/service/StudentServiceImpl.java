@@ -81,6 +81,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Student assignInstructor(int instructor_id, int student_id) {
+        Student student = studentRepository.findById(student_id);
+        if (student != null) {
+            student.setInstructor_id(instructor_id);
+            return studentRepository.save(student);
+        }
+        return null;
+    }
 
     public List<Course> getAllCourseByStudentId(int studentId) {
         return enrollmentRepository.getAllCourseByStudentId(studentId);
@@ -90,12 +98,15 @@ public class StudentServiceImpl implements StudentService {
     public List<Course> getRegisteredByStudentId(int studentId) {
         return courseRegisteredRepository.getRegisteredByStudentId(studentId);
     }
-
-
+=======
     public List<Student> availableForJob() {
-        List<Student> students = studentRepository.findAll();
-        return students.stream().filter(student -> student.getCoursesRegisteredList().size()>=5).collect(Collectors.toList());
-    }
 
 }
+
+//    public List<Student> availableForJob() {
+//        List<Student> students = studentRepository.findAll();
+//        return students.stream().filter(student -> student.getCoursesRegisteredList().size()>=5).collect(Collectors.toList());
+//    }
+//
+//}
 

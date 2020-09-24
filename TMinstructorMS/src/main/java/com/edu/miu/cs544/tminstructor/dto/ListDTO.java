@@ -2,9 +2,6 @@ package com.edu.miu.cs544.tminstructor.dto;
 
 import java.util.List;
 
-/**
- * Body DTO @author Turuu
- */
 
 public class ListDTO<E> implements IGeneralDTO {
 

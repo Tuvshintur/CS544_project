@@ -6,8 +6,8 @@ import sample.project.studentservice.project.domain.Attendance;
 import java.util.List;
 
 public interface AttendanceService {
-    public List<Attendance> getAllAttendance();
-    public void createAttendance(Attendance attendance);
-    public void deleteAddress(Long id);
-    public Attendance updateAttendanceById(@PathVariable Long id, Attendance attendance);
+    List<Attendance> getAllAttendance();
+    void createAttendance(Attendance attendance);
+    void deleteAddress(Long id);
+    Attendance updateAttendanceById(@PathVariable Long id, Attendance attendance);
 }
