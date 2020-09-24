@@ -57,8 +57,8 @@ public class CptReportController {
     }
 
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseDTO addCoach(@RequestBody CptReport cptReport) {
+    @RequestMapping(value = "/addcptreport", method = RequestMethod.POST)
+    public ResponseDTO addCptReport(@RequestBody CptReport cptReport) {
         try {
             LOGGER.info("[ctrl][coach][addCoach][ini]");
             ResponseDTO responseDTO = iCptReportService.addCptReport(cptReport);
