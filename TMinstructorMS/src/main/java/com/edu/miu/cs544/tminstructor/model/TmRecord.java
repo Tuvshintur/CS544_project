@@ -23,6 +23,7 @@ public class TmRecord implements IGeneralDTO {
     public TmRecord() {
     }
 
+
     public TmRecord(Integer student, TmInstructor tmInstructor, Date dateOfTmChecking) {
         this.student_id = student_id;
         this.instructor = tmInstructor;

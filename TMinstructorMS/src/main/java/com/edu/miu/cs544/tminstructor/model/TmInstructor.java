@@ -15,6 +15,7 @@ public class TmInstructor extends Employee implements IGeneralDTO {
     public TmInstructor() {
     }
 
+
     public List<TmRecord> getTmRecords() {
         return tmRecords;
     }

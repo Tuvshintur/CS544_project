@@ -29,6 +29,7 @@ public class TmAttendance implements IGeneralDTO {
         this.isAttended = isAttended;
     }
 
+
     public Integer getId() {
         return id;
     }

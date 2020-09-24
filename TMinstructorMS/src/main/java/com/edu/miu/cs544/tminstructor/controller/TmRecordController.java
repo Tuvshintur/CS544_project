@@ -71,6 +71,7 @@ public class TmRecordController {
         }
     }
 
+
     @RequestMapping(value = "/tmappointment/{tmInstructorId}/{studentId}/{checkDate}", method = RequestMethod.POST)
     public ResponseDTO enterAttendance(@PathVariable("tmInstructorId") int tmInstructorId, @PathVariable("studentId") int studentId,
                                      @PathVariable Date checkDate) {

@@ -1,0 +1,61 @@
+package edu.miu.cs.cs544.studentservice.service;
+
+import edu.miu.cs.cs544.studentservice.domain.Course;
+import edu.miu.cs.cs544.studentservice.exception.ResourceNotFoundException;
+import edu.miu.cs.cs544.studentservice.repository.CourseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class CourseServiceImpl implements CourseService {
+
+    @Autowired
+    public CourseRepository courseRepository;
+
+    @Override
+    public List<Course> getAllCourse() {
+        return courseRepository.findAll();
+    }
+
+    @Override
+    public void saveCourse(Course course) {
+        courseRepository.save(course);
+    }
+
+    @Override
+    public Course getCourseById(Integer courseId) {
+        Optional<Course> result = courseRepository.findById(courseId);
+        Course theCourse = null;
+        if (result.isPresent()) {
+            theCourse = result.get();
+        } else {
+            throw new RuntimeException("did not find course id - " + courseId);
+        }
+        return theCourse;
+    }
+
+    @Override
+    public void deleteCourseById(Integer theId) {
+        courseRepository.deleteById(theId);
+    }
+
+    @Override
+    public Course putCourse(Course theCourse, Integer theId) {
+        Course course = courseRepository.findById(theId).orElseThrow(() -> new ResourceNotFoundException(theId));
+
+        course.setTitle(theCourse.getTitle());
+        course.setRoomNumber(theCourse.getRoomNumber());
+        course.setEnrollments(theCourse.getEnrollments());
+        course.setCoursesRegistereds(theCourse.getCoursesRegistereds());
+
+        course.setCourseCode(theCourse.getCourseCode());
+        course.setBuilding(theCourse.getBuilding());
+        course.setFaculties(theCourse.getFaculties());
+
+        courseRepository.save(course);
+        return new Course();
+    }
+}

@@ -6,6 +6,8 @@ import miu.edu.cs.cs544.coachMS.DTO.ListDTO;
 import miu.edu.cs.cs544.coachMS.DTO.ResponseDTO;
 import miu.edu.cs.cs544.coachMS.constants.Constants;
 import miu.edu.cs.cs544.coachMS.domain.Coach;
+import miu.edu.cs.cs544.coachMS.domain.CptReport;
+import miu.edu.cs.cs544.coachMS.domain.Job;
 import miu.edu.cs.cs544.coachMS.domain.Student;
 import miu.edu.cs.cs544.coachMS.service.ICoachService;
 import miu.edu.cs.cs544.coachMS.service.utilities.ResponseService;
@@ -16,6 +18,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collections;
 import java.util.List;
@@ -128,6 +131,32 @@ public class CoachController {
             LOGGER.error("[ctrl][coach][deleteCoach][unknown][ " + ex.getMessage() + "]", ex);
             return new ResponseService(HttpStatus.INTERNAL_SERVER_ERROR.value(), null, new ErrorDTO(null, ex.getMessage(), Constants.ErrorType.UNKNOWN)).getError();
         }
+    }
+////////////////// add jobs ///////////
+//    @RequestMapping(value = "/addjobs", method = RequestMethod.POST)
+//    public ResponseDTO addJob(@RequestBody Job job) {
+//        try {
+//            LOGGER.info("[ctrl][coach][addCoach][ini]");
+//            ResponseDTO responseDTO = service.addJob(job);
+//            LOGGER.info("[ctrl][coach][addCoach][end]");
+//
+//            return responseDTO;
+//        } catch (Exception ex) {
+//            LOGGER.error("[ctrl][coach][addCoach][unknown][ " + ex.getMessage() + "]", ex);
+//            throw ex;
+//        }
+//    }
+
+    @RequestMapping(value = "/students/allstudents", method = RequestMethod.GET)
+    public ModelAndView getStudentsUI() {
+
+        List<Student> students = restTemplate.exchange("http://student-service/students/All", HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {}).getBody();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("students", students);
+
+        modelAndView.setViewName("secured/list");
+
+        return modelAndView;
     }
 
 }
