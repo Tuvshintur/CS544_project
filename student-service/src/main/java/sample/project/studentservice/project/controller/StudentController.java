@@ -76,6 +76,11 @@ public class StudentController {
         return studentService.assignCoach(coachId, studentId);
     }
 
+    @PostMapping("/student/assignInstructor/{instructorId}/{studentId}")
+    public Student assignInstructor(@PathVariable("coachId") int instructorId, @PathVariable("studentId") int studentId) {
+        return studentService.assignCoach(instructorId, studentId);
+    }
+
     @PostMapping("/student/availableForJob")
     public List<Student> availableForJob() {
         return studentService.availableForJob();
