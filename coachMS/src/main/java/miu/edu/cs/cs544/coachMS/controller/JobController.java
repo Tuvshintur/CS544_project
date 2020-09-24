@@ -27,7 +27,7 @@ public class JobController {
         this.service = service;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/alljobs", method = RequestMethod.GET)
     public ResponseDTO getJobs() {
         try {
             LOGGER.info("[ctrl][job][getJobs][ini]");

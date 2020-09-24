@@ -6,6 +6,8 @@ public class Student implements IGeneralDTO {
     private int id;
     private String name;
 
+    private int student_id;
+
     public Student() {
     }
 

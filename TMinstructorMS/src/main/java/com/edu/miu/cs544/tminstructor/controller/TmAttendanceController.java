@@ -9,6 +9,7 @@ import com.edu.miu.cs544.tminstructor.model.TmAttendance;
 import com.edu.miu.cs544.tminstructor.model.TmInstructor;
 import com.edu.miu.cs544.tminstructor.model.TmRecord;
 import com.edu.miu.cs544.tminstructor.service.TmAttendanceService;
+import com.edu.miu.cs544.tminstructor.service.TmInstructorService;
 import com.edu.miu.cs544.tminstructor.service.TmRecordService;
 import com.edu.miu.cs544.tminstructor.service.utility.ResponseService;
 import org.slf4j.Logger;
@@ -28,7 +29,10 @@ import java.util.List;
 public class TmAttendanceController {
     @Autowired
     private TmAttendanceService tmAttendanceService;
-
+    @Autowired
+    private TmInstructorService tmInstructorService;
+    
+    private TmRecordService tmRecordService;
     @Autowired
     private RestTemplate restTemplate;
 

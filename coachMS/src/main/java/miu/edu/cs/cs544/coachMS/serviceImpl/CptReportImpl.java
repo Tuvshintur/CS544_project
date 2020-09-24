@@ -42,13 +42,13 @@ public class CptReportImpl implements ICptReportService {
 
     @Override
     public ResponseDTO getCptById(int id) {
-//        System.out.println(this.getClass().getName() + "[srvc][coach.get.CoachById][ini]");
+//        System.out.println(this.getClass().getName() + "[srvc][cpt.get.CptById][ini]");
 //        try {
-//            Optional<CptReport> cptReport = iCptReportRepository.findById(id);
-//            System.out.println(this.getClass().getName() + "[srvc][coach.get.CoachById][end]");
+//            CptReport cptReport = iCptReportRepository.findById(id);
+//            System.out.println(this.getClass().getName() + "[srvc][cpt.get.CptById][end]");
 //            return new ResponseService(HttpStatus.OK.value(), null, cptReport).getResponse();
 //        } catch (Exception ex) {
-//            System.out.println(this.getClass().getName() + "[srvc][coach.get.CoachById][unknown][ " + ex.getMessage() + "]");
+//            System.out.println(this.getClass().getName() + "[srvc][cpt.get.CptById][unknown][ " + ex.getMessage() + "]");
 //            throw ex;
 //        }
         return null;
@@ -56,13 +56,13 @@ public class CptReportImpl implements ICptReportService {
 
     @Override
     public ResponseDTO addCptReport(CptReport cptReport) {
-        System.out.println(this.getClass().getName() + "[srvc][coach.save.addCoach][ini]");
+        System.out.println(this.getClass().getName() + "[srvc][cpt.save.addCpt][ini]");
         try {
             iCptReportRepository.save(cptReport);
-            System.out.println(this.getClass().getName() + "[srvc][coach.save.addCoach][end]");
+            System.out.println(this.getClass().getName() + "[srvc][cpt.save.addCpt][end]");
             return new ResponseService(HttpStatus.OK.value(), null, cptReport).getResponse();
         } catch (Exception ex) {
-            System.out.println(this.getClass().getName() + "[srvc][coach.save.addCoach][unknown][ " + ex.getMessage() + "]");
+            System.out.println(this.getClass().getName() + "[srvc][cpt.save.addCpt][unknown][ " + ex.getMessage() + "]");
             throw ex;
         }
     }
@@ -80,10 +80,10 @@ public class CptReportImpl implements ICptReportService {
         }
     }
 
-    @Override
-    public Optional<CptReport> getCptByIdReturnCoach(int id) {
-        return iCptReportRepository.findById(id);
-    }
+//    @Override
+//    public Optional<CptReport> getCptByIdReturnCoach(int id) {
+//        return iCptReportRepository.findById(id);
+//    }
 
     @Override
     @Transactional

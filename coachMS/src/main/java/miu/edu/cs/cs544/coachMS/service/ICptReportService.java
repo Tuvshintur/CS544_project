@@ -14,5 +14,5 @@ public interface ICptReportService {
      ResponseDTO deleteCptReportById(int id);
      ResponseDTO updateCptReport(CptReport cptReport);
      ResponseDTO addCptReport(CptReport cptReport);
-     Optional<CptReport> getCptByIdReturnCoach(int id);
+//     Optional<CptReport> getCptByIdReturnCoach(int id);
 }
