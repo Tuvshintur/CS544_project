@@ -17,13 +17,11 @@ public class Enrollment {
     public Enrollment() {
     }
 
-    public Enrollment(char a, Student st1, Course BDT) {
-    }
-
-    public Enrollment(char grade) {
+    public Enrollment(char grade, Student student, Course course) {
         this.grade = grade;
+        this.student = student;
+        this.course = course;
     }
-
 
     public char getGrade() {
         return grade;

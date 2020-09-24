@@ -13,16 +13,12 @@ import sample.project.studentservice.project.repository.*;
 
 
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
-//@EnableEurekaClient
-//public class StudentServiceApplication {
+@EnableEurekaClient
 @EnableDiscoveryClient
 
 public class StudentServiceApplication implements CommandLineRunner {
@@ -68,10 +64,10 @@ public class StudentServiceApplication implements CommandLineRunner {
 
         //3. create Student
        Student st1= new  Student("Yohannes", 110871, LocalDate.of(2020, 2, 1),
-               LocalDate.of(2021, 6,15), 3.6, add1);
+               LocalDate.of(2021, 6,15), 3.6);
 
         Student st2= new  Student("Damitie", 550871, LocalDate.of(2019, 8, 14),
-                LocalDate.of(2020, 8,30), 3.8, add2);
+                LocalDate.of(2020, 8,30), 3.8);
              studentRepository.saveAll(Arrays.asList(st1, st2));
 
         //4.CourseRegistration

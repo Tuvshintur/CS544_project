@@ -1,5 +1,7 @@
 package sample.project.studentservice.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -17,22 +19,25 @@ public class Student {
     private int coach_id;
     private Boolean isTa;
     @OneToOne
+    @JsonIgnore
     private Address address;
     @OneToMany(mappedBy = "student")
+    @JsonIgnore
     private List<Enrollment> enrollments;
     @OneToMany(mappedBy = "student")
+    @JsonIgnore
     private List<CoursesRegistered> coursesRegisteredList;
 
     public Student() {
     }
 
-    public Student(String name, int studentId, LocalDate enrollmentDate, LocalDate graduationDate, double GPA, Address address) {
+    public Student(String name, int studentId, LocalDate enrollmentDate, LocalDate graduationDate, double GPA) {
         this.name = name;
         this.studentId = studentId;
         this.enrollmentDate = enrollmentDate;
         this.graduationDate = graduationDate;
         this.GPA = GPA;
-        this.address = address;
+//        this.address = address;
     }
 
     public Student(String name, int studentId, LocalDate enrollmentDate, int coach_id, LocalDate graduationDate, Address address) {

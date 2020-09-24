@@ -16,6 +16,7 @@ public class Attendance {
     @JoinColumn
     private Course course;
     @OneToMany
+    @JoinColumn
     private List<Student> students;
     @OneToOne
     private Faculty faculty;

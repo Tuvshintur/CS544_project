@@ -17,12 +17,15 @@ public class Course {
     private int roomNumber;
 
     @ManyToMany
+    @JsonIgnore
     private List<Faculty> faculties;
 
     @OneToMany(mappedBy = "course")
+    @JsonIgnore
     private List<Enrollment> enrollments;
 
     @OneToMany(mappedBy = "course")
+    @JsonIgnore
     private List<CoursesRegistered> coursesRegistereds;
 
     public Course() {
