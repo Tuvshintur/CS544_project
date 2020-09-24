@@ -69,7 +69,7 @@ public class StudentServiceImpl implements StudentService {
     public Student assignCoach(int coachId, int studentId) {
         Student student = studentRepository.findById(studentId);
         if (student != null) {
-            student.setCoach_id(coachId);
+            student.setCoachId(coachId);
             return studentRepository.save(student);
         }
         return null;
@@ -88,6 +88,11 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> availableForJob() {
         List<Student> students = studentRepository.findAll();
         return students.stream().filter(student -> student.getCoursesRegisteredList().size() >= 5).collect(Collectors.toList());
+    }
+
+    @Override
+    public Student getStudentByJobId(int id) {
+        return studentRepository.findByJobId(id);
     }
 
 }

@@ -5,6 +5,7 @@ import edu.miu.cs.cs544.coachservice.DTO.IGeneralDTO;
 public class Student implements IGeneralDTO {
     private int id;
     private String name;
+    private int job_id;
 
     public Student() {
     }
@@ -28,5 +29,13 @@ public class Student implements IGeneralDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getJob_id() {
+        return job_id;
+    }
+
+    public void setJob_id(int job_id) {
+        this.job_id = job_id;
     }
 }

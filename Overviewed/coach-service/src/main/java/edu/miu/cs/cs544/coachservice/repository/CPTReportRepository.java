@@ -12,4 +12,5 @@ public interface CPTReportRepository extends JpaRepository<CPTReport, Integer> {
     CPTReport findById(int id);
 
     void deleteCPTReportById(int id);
+
 }

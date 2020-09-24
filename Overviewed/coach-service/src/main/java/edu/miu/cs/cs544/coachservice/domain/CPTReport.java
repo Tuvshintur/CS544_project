@@ -12,6 +12,7 @@ public class CPTReport implements IGeneralDTO {
     @GeneratedValue
     private int id;
     private Date date;
+    @Column(length=1000)
     private String report;
 
     @OneToOne(mappedBy = "cptReport")

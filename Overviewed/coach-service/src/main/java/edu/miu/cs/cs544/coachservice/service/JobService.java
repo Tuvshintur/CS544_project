@@ -3,6 +3,8 @@ package edu.miu.cs.cs544.coachservice.service;
 import edu.miu.cs.cs544.coachservice.DTO.ResponseDTO;
 import edu.miu.cs.cs544.coachservice.domain.Job;
 
+import java.util.List;
+
 public interface JobService {
 
     ResponseDTO getAllJobs();
@@ -16,5 +18,7 @@ public interface JobService {
     ResponseDTO updateJob(Job job);
 
     ResponseDTO deleteJobById(int id);
+
+    List<Job> getAllJobsEntity();
 
 }
