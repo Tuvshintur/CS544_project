@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 //import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import sample.project.studentservice.project.domain.*;
 import sample.project.studentservice.project.repository.*;
 
@@ -21,7 +23,7 @@ import java.util.List;
 @SpringBootApplication
 //@EnableEurekaClient
 //public class StudentServiceApplication {
-//@EnableDiscoveryClient
+@EnableDiscoveryClient
 
 public class StudentServiceApplication implements CommandLineRunner {
 

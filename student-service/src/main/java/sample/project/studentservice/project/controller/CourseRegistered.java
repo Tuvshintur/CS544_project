@@ -13,8 +13,6 @@ public class CourseRegistered {
     @Autowired
     CourseRegisteredService courseRegisteredService;
 
-//    public void registerForCourse(Re Lond courseid, Long studentId)
-
     @GetMapping("/all")
     public List<CoursesRegistered> getAllCourseRegistered(){
       return courseRegisteredService.getAllCourseRegistered();

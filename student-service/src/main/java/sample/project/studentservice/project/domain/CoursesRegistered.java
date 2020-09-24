@@ -6,18 +6,14 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-//@Table(name="registercourse")
 public class CoursesRegistered {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private LocalDate startDate;
     private LocalDate endDate;
-
     @ManyToOne
     private Student student;
-
     @ManyToOne
     private Course course;
 

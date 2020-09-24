@@ -14,6 +14,9 @@ public class Enrollment {
     @JoinColumn
     private Course course;
 
+    public Enrollment() {
+    }
+
     public Enrollment(char a, Student st1, Course BDT) {
     }
 

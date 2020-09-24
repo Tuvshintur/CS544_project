@@ -16,7 +16,6 @@ public class CourseRegisteredServiceImple implements CourseRegisteredService {
     @Autowired
     CourseRegisteredRepository courseRegisteredRepository;
 
-
     @Override
     public List<CoursesRegistered> getAllCourseRegistered() {
         return courseRegisteredRepository.findAll();
@@ -30,32 +29,16 @@ public class CourseRegisteredServiceImple implements CourseRegisteredService {
     @Override
     public void deleteCoursesRegistered(Long id) {
         courseRegisteredRepository.deleteById(id);
-
     }
 
     @Override
     public CoursesRegistered updateById(Long id, CoursesRegistered editedcoursesRegistered) {
-
-
         Optional<CoursesRegistered> attendanceOld = courseRegisteredRepository.findById(id);
-        if (attendanceOld.isPresent()) {
-            // Update all properties except id
+        if(attendanceOld.isPresent()) {
             editedcoursesRegistered.setId(attendanceOld.get().getId());
             return courseRegisteredRepository.save(editedcoursesRegistered);
         } else {
-            //	Insert for new recored
             return courseRegisteredRepository.save(editedcoursesRegistered);
-
-
         }
     }
-
-//        CoursesRegistered coursesRegistered1 = courseRegisteredRepository.findById(id).orElse(coursesRegistered);
-//        coursesRegistered1.setStudent(coursesRegistered.getStudent());
-//        coursesRegistered1.setCourse(coursesRegistered.getCourse());
-//        coursesRegistered1.setStartDate(coursesRegistered.getStartDate());
-//        coursesRegistered1.setEndDate(coursesRegistered.getEndDate());
-//        courseRegisteredRepository.save(coursesRegistered1);
-//
-//    }
 }

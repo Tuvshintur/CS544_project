@@ -14,19 +14,12 @@ import java.util.List;
 
 @Service
 public interface FacultyService {
-
     public List<Faculty> getAllFaculty();
-
     public void registerFacultyInDepartment(Faculty faculty);
     public void deleteDelete(Long id);
     public Faculty updateById(@PathVariable Long id, Faculty faculty);
-
-       //Faculty can
     public List<Course> getAllCourseByFaculty(Long id);
     public List<Course> getAllCoursePast(Long facId);
     public List<Course> getAllCourseFuture(Long facId);
     public void assignTaForCourses(Integer stId);
-   // public void createEnrollmentAndPostGrade(Enrolment enrollment);
-
-
 }

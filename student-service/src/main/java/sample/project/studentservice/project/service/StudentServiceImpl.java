@@ -6,6 +6,8 @@ import sample.project.studentservice.project.domain.Course;
 
 import sample.project.studentservice.project.domain.Enrollment;
 import sample.project.studentservice.project.domain.Student;
+import sample.project.studentservice.project.repository.CourseRegisteredRepository;
+import sample.project.studentservice.project.repository.EnrollmentRepository;
 import sample.project.studentservice.project.repository.StudentRepository;
 
 import java.util.ArrayList;
@@ -16,10 +18,14 @@ import java.util.stream.Collectors;
 public class StudentServiceImpl implements StudentService {
 
     StudentRepository studentRepository;
+    EnrollmentRepository enrollmentRepository;
+    CourseRegisteredRepository courseRegisteredRepository;
 
     @Autowired
-    StudentServiceImpl(StudentRepository studentRepository) {
+    StudentServiceImpl(StudentRepository studentRepository, EnrollmentRepository enrollmentRepository, CourseRegisteredRepository courseRegisteredRepository) {
         this.studentRepository = studentRepository;
+        this.enrollmentRepository = enrollmentRepository;
+        this.courseRegisteredRepository = courseRegisteredRepository;
     }
 
     @Override
@@ -30,13 +36,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Course> getAllStudentCourses(int studentId) {
         Student student = studentRepository.findById(studentId);
-
         if (student != null) {
             return student.getEnrollments().stream().map(Enrollment::getCourse).collect(Collectors.toList());
         } else {
             return new ArrayList<>();
         }
-
     }
 
     @Override
@@ -55,13 +59,10 @@ public class StudentServiceImpl implements StudentService {
         student.setAddress(theStudent.getAddress());
         student.setEnrollmentDate(theStudent.getEnrollmentDate());
         student.setEnrollments(theStudent.getEnrollments());
-        //student.setGPA(theStudent.getGPA());
         student.setGraduationDate(theStudent.getGraduationDate());
         student.setName(theStudent.getName());
         student.setStudentId(theStudent.getStudentId());
-
-      return  studentRepository.save(student);
-       // return new Student();
+        return studentRepository.save(student);
     }
 
     @Override
@@ -76,14 +77,25 @@ public class StudentServiceImpl implements StudentService {
             student.setCoach_id(coachId);
             return studentRepository.save(student);
         }
-
         return null;
     }
 
     @Override
+<<<<<<< HEAD
+    public List<Course> getAllCourseByStudentId(int studentId) {
+        return enrollmentRepository.getAllCourseByStudentId(studentId);
+    }
+
+    @Override
+    public List<Course> getRegisteredByStudentId(int studentId) {
+        return courseRegisteredRepository.getRegisteredByStudentId(studentId);
+    }
+}
+=======
     public List<Student> availableForJob() {
         List<Student> students = studentRepository.findAll();
         return students.stream().filter(student -> student.getCoursesRegisteredList().size()>=5).collect(Collectors.toList());
     }
 
 }
+>>>>>>> 3b63575fc5790a79bbff87cb3bf69ef777f69f1f

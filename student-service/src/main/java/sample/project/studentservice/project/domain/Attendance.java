@@ -15,9 +15,9 @@ public class Attendance {
     @ManyToOne
     @JoinColumn
     private Course course;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     private List<Student> students;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Faculty faculty;
 
     public Attendance() {
@@ -28,7 +28,6 @@ public class Attendance {
         this.isRemote = isRemote;
         this.classDate = classDate;
     }
-
 
     public boolean isPresent() {
         return isPresent;
@@ -77,7 +76,6 @@ public class Attendance {
     public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
     }
-
 
     public Long getId() {
         return id;
