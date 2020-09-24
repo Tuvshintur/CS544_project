@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/jobresearchreport")
 @Api(tags="JRR")
-public class JobResearchReportController implements IGeneralDTO {
+public class JobSearchReportController implements IGeneralDTO {
 
 
     IJobResearchReportService service;
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    public JobResearchReportController(IJobResearchReportService service) {
+    public JobSearchReportController(IJobResearchReportService service) {
         this.service = service;
     }
 
