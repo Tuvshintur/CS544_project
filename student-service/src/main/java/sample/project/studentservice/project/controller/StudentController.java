@@ -78,7 +78,7 @@ public class StudentController {
 
     @PostMapping("/student/assignInstructor/{instructorId}/{studentId}")
     public Student assignInstructor(@PathVariable("instructorId") int instructorId, @PathVariable("studentId") int studentId) {
-        return studentService.assignCoach(instructorId, studentId);
+        return studentService.assignInstructor(instructorId, studentId);
     }
 
     @PostMapping("/student/availableForJob")

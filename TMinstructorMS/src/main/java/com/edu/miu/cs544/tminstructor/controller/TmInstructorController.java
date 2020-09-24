@@ -17,7 +17,6 @@ import java.util.Collections;
 
 @RestController
 @RequestMapping("/tm-instructor")
-
 public class TmInstructorController {
     @Autowired
     private TmInstructorService tmInstructorService;
@@ -83,12 +82,8 @@ public class TmInstructorController {
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        TmInstructor currentTmInstructor = tmInstructorService.getTmInstructorByIdReturnTmInstructor(tmInstructorId);
-
-        Student student = restTemplate.exchange("http://student-service/students/student/" + studentId, HttpMethod.GET, null, Student.class).getBody();
-//        currentTmInstructor.addStudent(student);
-
-        return tmInstructorService.updateTmInstrcutor(currentTmInstructor);
+        Student student = restTemplate.exchange("http://student-service/students/student/assignTmInstructor/"+ tmInstructorId+ "/" + studentId, HttpMethod.POST, null, Student.class).getBody();
+        return new ResponseService(HttpStatus.OK.value(), null, student).getResponse();
     }
 
     @RequestMapping(value = "/{tmInstructorId}", method = RequestMethod.PUT)

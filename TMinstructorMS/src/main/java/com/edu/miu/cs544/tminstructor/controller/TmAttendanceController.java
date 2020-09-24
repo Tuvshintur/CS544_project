@@ -69,12 +69,6 @@ public class TmAttendanceController {
     @RequestMapping(value = "/enter/{studentId}/{courseId}", method = RequestMethod.POST)
     public ResponseDTO enterAttendance(@PathVariable("studentId") int studentId, @PathVariable("courseId") int courseId) {
 
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-//        HttpEntity<String> entity = new HttpEntity<>(headers);
-
-//        Student student = restTemplate.exchange("http://student-service/students/student/" + studentId, HttpMethod.GET, null, Student.class).getBody();
-//        ResponseDTO tmp = new ResponseService(HttpStatus.OK.value(), null,student).getResponse();
         TmAttendance tmAttendance = new TmAttendance();
         tmAttendance.setStudent_id(studentId);
         tmAttendance.setCourse_id(courseId);

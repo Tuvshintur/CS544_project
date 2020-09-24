@@ -2,9 +2,6 @@ package com.edu.miu.cs544.tminstructor.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 
-/**
- * Response DTO @author Turuu
- */
 
 public class ResponseDTO implements IGeneralDTO {
 

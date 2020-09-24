@@ -3,9 +3,7 @@ package com.edu.miu.cs544.tminstructor.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 
-/**
- * Error DTO @author Turuu
- */
+
 
 public class ErrorDTO implements IGeneralDTO {
 
