@@ -3,8 +3,11 @@ package miu.edu.cs.cs544.coachMS.serviceImpl;
 import miu.edu.cs.cs544.coachMS.DTO.ListDTO;
 import miu.edu.cs.cs544.coachMS.DTO.ResponseDTO;
 import miu.edu.cs.cs544.coachMS.domain.Coach;
+import miu.edu.cs.cs544.coachMS.domain.CptReport;
+import miu.edu.cs.cs544.coachMS.domain.Job;
 import miu.edu.cs.cs544.coachMS.domain.Student;
 import miu.edu.cs.cs544.coachMS.repository.ICoachRepository;
+import miu.edu.cs.cs544.coachMS.repository.IJobRepository;
 import miu.edu.cs.cs544.coachMS.service.ICoachService;
 import miu.edu.cs.cs544.coachMS.service.utilities.ResponseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,8 @@ import java.util.List;
 public class CoachServiceImpl implements ICoachService {
 
     ICoachRepository coachRepository;
+
+    IJobRepository iJobRepository;
 
     @Autowired
     public CoachServiceImpl(ICoachRepository coachRepository) {
@@ -95,5 +100,18 @@ public class CoachServiceImpl implements ICoachService {
             throw ex;
         }
     }
+
+//    @Override
+//    public ResponseDTO addJob(Job job) {
+//        System.out.println(this.getClass().getName() + "[srvc][job.save.addJob][ini]");
+//        try {
+//            iJobRepository.save(job);
+//            System.out.println(this.getClass().getName() + "[srvc][job.save.addJob][end]");
+//            return new ResponseService(HttpStatus.OK.value(), null, job).getResponse();
+//        } catch (Exception ex) {
+//            System.out.println(this.getClass().getName() + "[srvc][job.save.addJob][unknown][ " + ex.getMessage() + "]");
+//            throw ex;
+//        }
+//    }
 
 }

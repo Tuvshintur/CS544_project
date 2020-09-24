@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/masterlayout}">
+<head>
+<meta charset="ISO-8859-1">
+
+<title>List of Students</title>
+</head>
+<body>
+	<div class="container" layout:fragment="content">
+		<div>
+			<span style="font-size: 1.8em">List of Students</span> <span
+				class="nav-link"> <a class="btn btn-outline-primary btn-lg"
+				href="#" style="float: right" type="submit">Add New Students</a>
+			</span>
+
+		</div>
+
+		<div>
+			<table class="table table-striped ">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Student ID</th>
+						<th scope="col">Student Name</th>
+						<th scope="col">GPA</th>
+						<th scope="col">Date Of Birth</th>
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="student, std : ${students}">
+						<th scope="row" th:text="${std.count}"></th>
+						<td th:text="${student.getName()}"></td>
+						<td th:text="${student.getGPA()}"></td>
+						<td th:text="${student.getEnrollmentDate()}"></td>
+						<td th:text="${student.getGraduationDate()}"></td>
+<!--						<td><a th:href="@{'/editcustomer/' + ${student.studentId}}">Edit</a></td>-->
+<!--						<td><a-->
+<!--							th:href="@{'/deletecustomer/' + ${students.studentId}}"-->
+<!--							onclick="if(!(confirm('Are you sure you want to delete ')))return false">Delete</a></td>-->
+<!--					</tr>-->
+<!--					<tr th:if="${customersCount < 1}">-->
+<!--						<td colspan="10" style="text-align: center">Currently No-->
+<!--							Customer is Available</td>-->
+<!--					</tr>-->
+
+				</tbody>
+
+			</table>
+			<hr />
+		</div>
+	</div>
+</body>
+</html>
