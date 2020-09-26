@@ -5,19 +5,25 @@ import com.edu.miu.cs544.tminstructor.dto.ErrorDTO;
 import com.edu.miu.cs544.tminstructor.dto.ResponseDTO;
 import com.edu.miu.cs544.tminstructor.model.TmInstructor;
 import com.edu.miu.cs544.tminstructor.model.TmRecord;
+import com.edu.miu.cs544.tminstructor.model.Student;
+import com.edu.miu.cs544.tminstructor.repository.TmRecordRepository;
 import com.edu.miu.cs544.tminstructor.service.TmInstructorService;
 import com.edu.miu.cs544.tminstructor.service.TmRecordService;
 import com.edu.miu.cs544.tminstructor.service.utility.ResponseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/tm-record")
 public class TmRecordController {
     @Autowired
@@ -28,6 +34,9 @@ public class TmRecordController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private TmRecordRepository tmRecordRepository;
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
@@ -42,6 +51,13 @@ public class TmRecordController {
             LOGGER.error("[ctrl][coach][getCoaches][unknown][ " + ex.getMessage() + "]", ex);
             throw ex;
         }
+    }
+
+    @GetMapping("ui")
+    public String main(Model model) {
+        List<TmRecord> tmRecords = tmRecordRepository.findAll();
+        model.addAttribute("tmrecords", tmRecords);
+        return "list";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -71,40 +87,12 @@ public class TmRecordController {
         }
     }
 
-
-    @RequestMapping(value = "/tmappointment/{tmInstructorId}/{studentId}/{checkDate}", method = RequestMethod.POST)
-    public ResponseDTO enterAttendance(@PathVariable("tmInstructorId") int tmInstructorId, @PathVariable("studentId") int studentId,
-                                     @PathVariable Date checkDate) {
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-//        HttpEntity<String> entity = new HttpEntity<>(headers);
-
-//        Student student = restTemplate.exchange("http://student-service/students/student/" + studentId, HttpMethod.GET, null, Student.class).getBody();
-        TmInstructor tmInstructor = tmInstructorService.getTmInstructorByIdReturnTmInstructor(tmInstructorId);
-        TmRecord currentTmRecord = new TmRecord(studentId,tmInstructor,checkDate);
-
+    @RequestMapping(value = "/appointment/{tmInstructorId}/{studentId}", method = RequestMethod.POST)
+    public ResponseDTO enterAttendance(@PathVariable("tmInstructorId") int tmInstructorId, @PathVariable("studentId") int studentId) {
+        TmRecord currentTmRecord = new TmRecord(studentId,tmInstructorId);
+        currentTmRecord.setDateOfTmChecking(new Date());
         return tmRecordService.updateTmRecord(currentTmRecord);
     }
-
-//    @RequestMapping(value = "/{tmInstructorId}", method = RequestMethod.PUT)
-//    public ResponseDTO updateCoach(@PathVariable("tmInstructorId") int tmInstructorId, @RequestBody TmInstructor tmInstructor) {
-//        try {
-//            LOGGER.info("[ctrl][coach][updateCoach][ini]");
-//
-//            TmInstructor currentTmInstructor = tmInstructorService.getTmInstructorByIdReturnTmInstructor(tmInstructorId);
-//
-//            tmInstructor.setId(currentTmInstructor.getId());
-//            ResponseDTO responseDTO = tmInstructorService.updateTmInstrcutor(currentTmInstructor);
-//
-//            LOGGER.info("[ctrl][coach][updateCoach][end]");
-//
-//            return responseDTO;
-//        } catch (Exception ex) {
-//            LOGGER.error("[ctrl][coach][updateCoach][unknown][ " + ex.getMessage() + "]", ex);
-//            throw ex;
-//        }
-//    }
-
     @RequestMapping(value = "/{tmRecordId}", method = RequestMethod.DELETE)
     public ResponseDTO deleteCoach(@PathVariable("tmRecordId") int tmRecordId) {
         try {

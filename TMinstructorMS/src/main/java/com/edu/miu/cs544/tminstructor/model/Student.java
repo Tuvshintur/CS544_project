@@ -2,6 +2,7 @@ package com.edu.miu.cs544.tminstructor.model;
 
 import com.edu.miu.cs544.tminstructor.dto.IGeneralDTO;
 
+import javax.persistence.OneToMany;
 import java.util.List;
 
 public class Student implements IGeneralDTO {
@@ -12,6 +13,7 @@ public class Student implements IGeneralDTO {
 
     private List<TmAttendance> attendances;
 
+  //  @OneToMany(mappedBy = "student")
     private List<TmRecord> tmRecords;
 
     private TmInstructor instructor;

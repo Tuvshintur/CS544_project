@@ -6,9 +6,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
 
-/**
- * HeaderDTO @author Turuu
- */
 
 public class HeaderDTO implements IGeneralDTO {
     @ApiModelProperty()

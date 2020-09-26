@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.StringUtils;
 
-/**
- * SearcherDTO @author Turuu
- */
+
 
 public class SearcherDTO implements IGeneralDTO {
 

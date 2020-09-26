@@ -28,4 +28,6 @@ public interface StudentService {
 
     List<Student> availableForJob();
 
+    Student getStudentByJobId(int id);
+
 }

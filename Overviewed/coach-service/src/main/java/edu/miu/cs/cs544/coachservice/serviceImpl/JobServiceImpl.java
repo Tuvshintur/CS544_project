@@ -36,6 +36,11 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
+    public List<Job> getAllJobsEntity() {
+        return jobRepository.findAll();
+    }
+
+    @Override
     public ResponseDTO getJobById(int id) {
         LOGGER.info("[srvc][job][getJobById][ini]");
         try {
@@ -93,4 +98,5 @@ public class JobServiceImpl implements JobService {
             throw ex;
         }
     }
+
 }

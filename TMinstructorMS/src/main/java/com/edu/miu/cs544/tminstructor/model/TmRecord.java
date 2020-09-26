@@ -11,11 +11,9 @@ public class TmRecord implements IGeneralDTO {
     @GeneratedValue
     private Integer id;
 
-    private Integer student_id;
+    private Integer student;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "instructor_id")
-    private TmInstructor instructor;
+    private Integer instructor;
 
     @Temporal(TemporalType.DATE)
     private Date dateOfTmChecking;
@@ -23,11 +21,25 @@ public class TmRecord implements IGeneralDTO {
     public TmRecord() {
     }
 
+    public TmRecord(Integer student, Integer instructor) {
+        this.student = student;
+        this.instructor = instructor;
+    }
 
-    public TmRecord(Integer student, TmInstructor tmInstructor, Date dateOfTmChecking) {
-        this.student_id = student_id;
-        this.instructor = tmInstructor;
-        this.dateOfTmChecking = dateOfTmChecking;
+    public Integer getStudent() {
+        return student;
+    }
+
+    public void setStudent(Integer student) {
+        this.student = student;
+    }
+
+    public Integer getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Integer instructor) {
+        this.instructor = instructor;
     }
 
     public Integer getId() {
@@ -36,30 +48,6 @@ public class TmRecord implements IGeneralDTO {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getStudent_id() {
-        return student_id;
-    }
-
-    public void setStudent_id(Integer student_id) {
-        this.student_id = student_id;
-    }
-
-    public TmInstructor getInstructor() {
-        return instructor;
-    }
-
-    public void setInstructor(TmInstructor instructor) {
-        this.instructor = instructor;
-    }
-
-    public TmInstructor getTmInstructor() {
-        return instructor;
-    }
-
-    public void setTmInstructor(TmInstructor tmInstructor) {
-        this.instructor = tmInstructor;
     }
 
     public Date getDateOfTmChecking() {

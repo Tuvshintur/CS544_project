@@ -15,8 +15,9 @@ public class Student {
     private LocalDate enrollmentDate;
     private LocalDate graduationDate;
     private double GPA;
-    private int coach_id;
+    private int coachId;
     private Boolean isTa;
+    private int jobId;
     @OneToOne
     private Address address;
     @OneToMany(mappedBy = "student")
@@ -36,13 +37,22 @@ public class Student {
         this.address = address;
     }
 
-    public Student(String name, int studentId, LocalDate enrollmentDate, int coach_id, LocalDate graduationDate, Address address) {
+    public Student(String name, int studentId, LocalDate enrollmentDate, int coachId, LocalDate graduationDate, Address address) {
         this.name = name;
         this.studentId = studentId;
-        this.coach_id = coach_id;
+        this.coachId = coachId;
         this.enrollmentDate = enrollmentDate;
         this.graduationDate = graduationDate;
         this.address = address;
+    }
+
+    public Student(double GPA, int coachId, Boolean isTa, int jobId, List<Enrollment> enrollments, List<CoursesRegistered> coursesRegisteredList) {
+        this.GPA = GPA;
+        this.coachId = coachId;
+        this.isTa = isTa;
+        this.jobId = jobId;
+        this.enrollments = enrollments;
+        this.coursesRegisteredList = coursesRegisteredList;
     }
 
     public Integer getId() {
@@ -93,12 +103,12 @@ public class Student {
         this.GPA = GPA;
     }
 
-    public int getCoach_id() {
-        return coach_id;
+    public int getCoachId() {
+        return coachId;
     }
 
-    public void setCoach_id(int coach_id) {
-        this.coach_id = coach_id;
+    public void setCoachId(int coachId) {
+        this.coachId = coachId;
     }
 
     public Boolean getTa() {
@@ -131,5 +141,13 @@ public class Student {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public int getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(int jobId) {
+        this.jobId = jobId;
     }
 }

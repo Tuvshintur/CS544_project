@@ -3,6 +3,8 @@ package edu.miu.cs.cs544.coachservice.service;
 import edu.miu.cs.cs544.coachservice.DTO.ResponseDTO;
 import edu.miu.cs.cs544.coachservice.domain.JobSearchReport;
 
+import java.util.List;
+
 public interface JobSearchReportService {
 
     ResponseDTO getAllJobSearchReports();
@@ -16,4 +18,6 @@ public interface JobSearchReportService {
     ResponseDTO addJobSearchReport(JobSearchReport jobSearchReport);
 
     ResponseDTO deleteJobSearchReportById(int id);
+
+    List<JobSearchReport> getAllJobSearchReportEntity();
 }

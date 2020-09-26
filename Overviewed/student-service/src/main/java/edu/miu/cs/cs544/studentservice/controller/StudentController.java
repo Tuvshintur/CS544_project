@@ -77,4 +77,21 @@ public class StudentController {
         return studentService.availableForJob();
     }
 
+    @GetMapping("/jobId/{jobId}")
+    public Student getStudentsWithJob(@PathVariable("jobId") int jobId) {
+        return studentService.getStudentByJobId(jobId);
+    }
+
+    @GetMapping("/notice/{studentId}")
+    public String noticeCPT(@PathVariable("studentId") int studentId) {
+        System.out.println("please enter CPT report"+ studentId);
+        return "notified";
+    }
+
+    @GetMapping("/noticeJob/{studentId}")
+    public String noticeJobSearch(@PathVariable("studentId") int studentId) {
+        System.out.println("please enter Job search report"+ studentId);
+        return "notified";
+    }
+
 }

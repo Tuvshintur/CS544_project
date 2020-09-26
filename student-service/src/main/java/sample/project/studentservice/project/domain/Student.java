@@ -18,6 +18,7 @@ public class Student {
     private double GPA;
     private int coach_id;
     private Boolean isTa;
+    private int instructor_id;
     @OneToOne
     @JsonIgnore
     private Address address;
@@ -103,6 +104,10 @@ public class Student {
 
     public void setCoach_id(int coach_id) {
         this.coach_id = coach_id;
+    }
+
+    public void setInstructor_id(int instructor_id){
+        this.instructor_id=instructor_id;
     }
 
     public Boolean getTa() {

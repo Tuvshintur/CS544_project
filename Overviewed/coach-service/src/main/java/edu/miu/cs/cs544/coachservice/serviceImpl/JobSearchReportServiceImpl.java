@@ -93,4 +93,8 @@ public class JobSearchReportServiceImpl implements JobSearchReportService {
             throw ex;
         }
     }
+
+    public List<JobSearchReport> getAllJobSearchReportEntity() {
+        return jobSearchReportRepository.findAll();
+    }
 }
