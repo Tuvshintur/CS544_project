@@ -13,7 +13,6 @@ public interface StudentService {
     Student getStudentById(int studentId);
     Student putStudent(Student student, int id);
     void deleteStudentById(int studentId);
-    List<Course> getAllStudentCourses(int studentId);
 
     Student assignCoach(int coach_id, int student_id);
     List<Course> getAllCourseByStudentId(int studentId);

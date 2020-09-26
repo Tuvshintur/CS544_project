@@ -22,6 +22,10 @@ public class EnrollmentController {
     }
 
     @PostMapping("/create")
+    private void createEnrollment(@RequestBody Enrollment enrollment) {
+        enrollmentService.createEnrollment(enrollment);
+    }
+
     public void createEnrollment(Enrollment enrollment) {
         enrollmentService.createEnrollment(enrollment);
     }

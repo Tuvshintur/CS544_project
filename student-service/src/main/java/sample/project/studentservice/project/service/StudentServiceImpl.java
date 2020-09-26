@@ -36,18 +36,20 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> getAllStudents() {
-        return studentRepository.findAll();
+    public List<Course> getAllCoursebyStdentId(int id) {
+        return enrollmentRepository.getAllCourseByStudentId(id);
     }
 
     @Override
-    public List<Course> getAllStudentCourses(int studentId) {
-        Student student = studentRepository.findById(studentId);
-        if (student != null) {
-            return student.getEnrollments().stream().map(Enrollment::getCourse).collect(Collectors.toList());
-        } else {
-            return new ArrayList<>();
-        }
+    public List<Course> getRegisteredByStudentId(int id) {
+        return courseRegisteredRepository.getRegisteredByStudentId(id);
+        this.enrollmentRepository = enrollmentRepository;
+        this.courseRegisteredRepository = courseRegisteredRepository;
+    }
+
+    @Override
+    public List<Student> getAllStudents() {
+        return studentRepository.findAll();
     }
 
     @Override
@@ -59,8 +61,6 @@ public class StudentServiceImpl implements StudentService {
     public Student getStudentById(int studentId) {
         return studentRepository.findById(studentId);
     }
-
-
 
     @Override
     public Student putStudent(Student theStudent, int id) {
