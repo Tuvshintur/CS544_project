@@ -13,18 +13,13 @@ import sample.project.studentservice.project.repository.*;
 
 
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
-//@EnableEurekaClient
-//public class StudentServiceApplication {
+@EnableEurekaClient
 @EnableDiscoveryClient
-
 public class StudentServiceApplication implements CommandLineRunner {
 
     @Autowired
@@ -53,7 +48,7 @@ public class StudentServiceApplication implements CommandLineRunner {
 
         //1.Addresses
        Address add1 = new Address("15117 Georgia ave", "Washington", "DC", 20011);
-       Address add2 = new Address("46 Main ave", "Dullas", "TX", 57720);
+       Address add2 = new Address("46 Main ave", "Dallas", "TX", 57720);
         addressRepository.saveAll(Arrays.asList(add1, add2));
 
    //2.Created Courses
