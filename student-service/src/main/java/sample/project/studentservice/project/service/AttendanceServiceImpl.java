@@ -37,7 +37,17 @@ public class AttendanceServiceImpl implements  AttendanceService{
          editedattendance.setId(attendanceOld.get().getId());
             return attendanceRepository.save(editedattendance);
         } else {
+            //	Insert for new recored
             return attendanceRepository.save(editedattendance);
+
+
         }
     }
+
+    @Override
+    public Optional<Attendance> getAttendanceBayId(Long id) {
+        return attendanceRepository.findById(id);
+    }
+
+
 }

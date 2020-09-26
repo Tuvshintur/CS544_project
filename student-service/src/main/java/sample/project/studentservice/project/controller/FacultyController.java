@@ -10,6 +10,7 @@ import sample.project.studentservice.project.service.EnrollmentService;
 import sample.project.studentservice.project.service.FacultyService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/faculty")
@@ -27,6 +28,13 @@ public class FacultyController {
         return facultyService.getAllFaculty();
     }
 
+    @GetMapping("/get/{id}")
+    public Optional<Faculty> getFacultyById(@PathVariable Long id){
+        return facultyService.getFacultyById(id);
+
+
+    }
+
     @PostMapping("/create")
     public void registerFacultyInDepartment(@RequestBody Faculty faculty) {
         facultyService.registerFacultyInDepartment(faculty);
@@ -42,6 +50,8 @@ public class FacultyController {
         facultyService.updateById(facId, faculty);
     }
 
+
+    //uses cases
     @GetMapping("/all/{id}")
     public List<Course> getAllCourseByFaculty(@PathVariable("id") Long facId) {
         return facultyService.getAllCourseByFaculty(facId);
@@ -62,8 +72,12 @@ public class FacultyController {
         facultyService.assignTaForCourses(stId);
     }
 
+
     @PostMapping("/postgrade")
     public void createEnrollmentAndPostGrade(@RequestBody Enrollment enrollment){
         enrollmentService.createEnrollment(enrollment);
+
     }
+
+
 }

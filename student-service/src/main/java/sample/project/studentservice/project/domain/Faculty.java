@@ -2,12 +2,12 @@ package sample.project.studentservice.project.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
+;
 import java.util.List;
 
 @Entity
 public class Faculty {
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
@@ -17,7 +17,7 @@ public class Faculty {
     @ManyToMany(mappedBy = "faculties", fetch = FetchType.EAGER)
     private List<Course> courses ;
 
-    @OneToOne
+    @OneToOne //(cascade = CascadeType.ALL)
     private Address address;
 
     public Faculty() {

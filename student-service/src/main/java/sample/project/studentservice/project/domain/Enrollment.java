@@ -10,14 +10,18 @@ public class Enrollment {
     private char grade;
     @ManyToOne
     private Student student;
+
     @ManyToOne
-    @JoinColumn
+   @JoinColumn
     private Course course;
 
     public Enrollment() {
     }
 
-    public Enrollment(char a, Student st1, Course BDT) {
+    public Enrollment(char grade, Student student, Course course) {
+        this.grade = grade;
+        this.student = student;
+        this.course = course;
     }
 
     public Enrollment(char grade) {

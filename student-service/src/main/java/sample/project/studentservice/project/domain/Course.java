@@ -16,14 +16,16 @@ public class Course {
     private String building;
     private int roomNumber;
 
-    @ManyToMany
+    @ManyToMany//(cascade = CascadeType.ALL)
     private List<Faculty> faculties;
 
     @OneToMany(mappedBy = "course")
     private List<Enrollment> enrollments;
 
     @OneToMany(mappedBy = "course")
-    private List<CoursesRegistered> coursesRegistereds;
+    //@JoinColumn
+    private List<CoursesRegistered> coursesRegistered;
+  
 
     public Course() {
     }
@@ -93,11 +95,14 @@ public class Course {
         this.roomNumber = roomNumber;
     }
 
-    public List<CoursesRegistered> getCoursesRegistereds() {
-        return coursesRegistereds;
+    public List<CoursesRegistered> getCoursesRegistered() {
+        return coursesRegistered;
     }
 
-    public void setCoursesRegistereds(List<CoursesRegistered> coursesRegistereds) {
-        this.coursesRegistereds = coursesRegistereds;
+    public void setCoursesRegistered(List<CoursesRegistered> coursesRegistered) {
+        this.coursesRegistered = coursesRegistered;
     }
+
+
+
 }

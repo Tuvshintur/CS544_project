@@ -7,6 +7,7 @@ import sample.project.studentservice.project.domain.Attendance;
 import sample.project.studentservice.project.service.AttendanceService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/attendances")
@@ -17,6 +18,11 @@ public class AttendanceController {
     @GetMapping("/all")
     public List<Attendance> getAllAttendance() {
         return attendanceService.getAllAttendance();
+    }
+
+    @GetMapping("/get/{id}")
+    public Optional<Attendance> getAttendanceById(Long id) {
+        return attendanceService.getAttendanceBayId(id);
     }
 
     @PostMapping("/create")

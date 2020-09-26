@@ -98,15 +98,14 @@ public class StudentServiceImpl implements StudentService {
     public List<Course> getRegisteredByStudentId(int studentId) {
         return courseRegisteredRepository.getRegisteredByStudentId(studentId);
     }
-=======
-    public List<Student> availableForJob() {
-
-}
 
 //    public List<Student> availableForJob() {
-//        List<Student> students = studentRepository.findAll();
-//        return students.stream().filter(student -> student.getCoursesRegisteredList().size()>=5).collect(Collectors.toList());
-//    }
 //
+//    }
 //}
+   public List<Student> availableForJob() {
+       List<Student> students = studentRepository.findAll();
+       return students;
+   }
+}
 

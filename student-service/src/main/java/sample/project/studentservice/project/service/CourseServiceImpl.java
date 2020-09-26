@@ -48,7 +48,7 @@ public class CourseServiceImpl implements CourseService {
         course.setTitle(theCourse.getTitle());
         course.setRoomNumber(theCourse.getRoomNumber());
         course.setEnrollments(theCourse.getEnrollments());
-        course.setCoursesRegistereds(theCourse.getCoursesRegistereds());
+        course.setCoursesRegistered(theCourse.getCoursesRegistered());
 
         course.setCourseCode(theCourse.getCourseCode());
         course.setBuilding(theCourse.getBuilding());
