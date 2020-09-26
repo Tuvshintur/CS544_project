@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import sample.project.studentservice.project.domain.Address;
+import sample.project.studentservice.project.domain.Faculty;
 import sample.project.studentservice.project.repository.AddressRepository;
 
 import java.util.List;
@@ -18,6 +19,11 @@ public class AddressServiceImpl implements AddressService{
     @Override
     public List<Address> getAllAddress() {
         return addressRepository.findAll();
+    }
+
+
+    public Optional<Address> getAddressyById(Long id) {
+        return addressRepository.findById(id);
     }
 
     @Override
@@ -35,13 +41,14 @@ public class AddressServiceImpl implements AddressService{
         Optional<Address> oldAddress = addressRepository.findById(id);
 
         if (oldAddress.isPresent()) {
-            // Update all properties except id
+
             address.setId(oldAddress.get().getId());
             return addressRepository.save(address);
         } else {
-            //	Insert for new recored
+
             return addressRepository.save(address);
         }
     }
+
 
 }

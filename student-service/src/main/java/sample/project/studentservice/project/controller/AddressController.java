@@ -6,6 +6,7 @@ import sample.project.studentservice.project.domain.Address;
 import sample.project.studentservice.project.service.AddressService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/addresses")
@@ -17,6 +18,11 @@ public class AddressController {
     @GetMapping("/all")
     public List<Address> getAllAddress(){
         return addressService.getAllAddress();
+    }
+
+    @GetMapping("/get/{id}")
+    public Optional<Address> getAddressyById(@PathVariable Long id) {
+        return  addressService.getAddressyById(id);
     }
 
     @PostMapping("/create")

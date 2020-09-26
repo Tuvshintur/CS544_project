@@ -35,6 +35,12 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
+    public Optional<Faculty>getFacultyById(Long id) {
+        return facultyRepository.findById(id);
+
+    }
+
+    @Override
     public void deleteDelete(Long id) {
         facultyRepository.deleteById(id);
     }
@@ -46,6 +52,7 @@ public class FacultyServiceImpl implements FacultyService {
             return faculty.get().getCourses();
         return new ArrayList<>();
     }
+
 
     public List<Enrollment> getAllCourseByFaculty(Long facId,Integer courseId) {
         Optional<Course> courseOptional = getAllCourseByFaculty(facId).stream()
@@ -59,7 +66,7 @@ public class FacultyServiceImpl implements FacultyService {
         List<Course> courses = getAllCourseByFaculty(facId);
         List<Course> coursesPast = new ArrayList<>();
         for (Course course : courses) {
-            for (CoursesRegistered registered : course.getCoursesRegistereds()) {
+            for (CoursesRegistered registered : course.getCoursesRegistered()) {
                 if (registered.getStartDate().isBefore(LocalDate.now())) {
                     coursesPast.add(course);
                 }
@@ -73,7 +80,7 @@ public class FacultyServiceImpl implements FacultyService {
         List<Course> courses = getAllCourseByFaculty(facId);
         List<Course> coursesFuture = new ArrayList<>();
         for (Course course : courses) {
-            for (CoursesRegistered registered : course.getCoursesRegistereds()) {
+            for (CoursesRegistered registered : course.getCoursesRegistered()) {
                 if (registered.getStartDate().isAfter(LocalDate.now())) {
                     coursesFuture.add(course);
                 }
@@ -87,14 +94,20 @@ public class FacultyServiceImpl implements FacultyService {
         facultyRepository.save(faculty);
     }
 
+
+
     @Override
     public Faculty updateById(Long id, Faculty newFaculty) {
         Optional<Faculty> oldFacutlty = facultyRepository.findById(id);
-        if(oldFacutlty.isPresent()) {
+
+        if (oldFacutlty.isPresent()) {
+            // Update all properties except id
             newFaculty.setId(oldFacutlty.get().getId());
             return facultyRepository.save(newFaculty);
         } else {
+            //	Insert for new recored
             return facultyRepository.save(newFaculty);
+
         }
     }
     @Override
@@ -107,6 +120,11 @@ public class FacultyServiceImpl implements FacultyService {
         if(LocalDate.now().isAfter(cr.getStartDate()) && LocalDate.now().isBefore(cr.getEndDate()));
         ta.add(st);
     }
+
    studentRepository.saveAll(ta);
     }
- }
+
+
+
+
+}

@@ -11,10 +11,13 @@ import sample.project.studentservice.project.domain.Student;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface FacultyService {
     public List<Faculty> getAllFaculty();
+    public Optional<Faculty> getFacultyById(Long id);
+
     public void registerFacultyInDepartment(Faculty faculty);
     public void deleteDelete(Long id);
     public Faculty updateById(@PathVariable Long id, Faculty faculty);
