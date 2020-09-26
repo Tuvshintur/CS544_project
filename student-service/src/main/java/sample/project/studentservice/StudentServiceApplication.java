@@ -61,12 +61,21 @@ public class StudentServiceApplication implements CommandLineRunner {
         course500.add(EA);
 
         //3. create Student
+<<<<<<< HEAD
         Student st1= new  Student("Yohannes", 110871, LocalDate.of(2020, 2, 1),
                 LocalDate.of(2021, 6,15), 3.6, add1);
 
         Student st2= new  Student("Damitie", 550871, LocalDate.of(2019, 8, 14),
                 LocalDate.of(2020, 8,30), 3.8, add2);
         studentRepository.saveAll(Arrays.asList(st1, st2));
+=======
+       Student st1= new  Student("Yohannes", 110871, LocalDate.of(2020, 2, 1),
+               LocalDate.of(2021, 6,15), 3.6);
+
+        Student st2= new  Student("Damitie", 550871, LocalDate.of(2019, 8, 14),
+                LocalDate.of(2020, 8,30), 3.8);
+             studentRepository.saveAll(Arrays.asList(st1, st2));
+>>>>>>> 8cbd8788eea2f9ffb206b0002d317e107f553503
 
         //4.CourseRegistration
         CoursesRegistered cr1 =  new CoursesRegistered(LocalDate.of(2020,10,24),LocalDate.of(2020,11,24), st1, EA);

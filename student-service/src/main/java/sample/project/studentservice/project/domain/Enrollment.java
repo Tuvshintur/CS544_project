@@ -7,7 +7,10 @@ public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private char grade;
+
+
     @ManyToOne
     private Student student;
 
@@ -19,15 +22,19 @@ public class Enrollment {
     }
 
     public Enrollment(char grade, Student student, Course course) {
+<<<<<<< HEAD
         this.grade = grade;
         this.student = student;
         this.course = course;
     }
 
     public Enrollment(char grade) {
+=======
+>>>>>>> 8cbd8788eea2f9ffb206b0002d317e107f553503
         this.grade = grade;
+        this.student = student;
+        this.course = course;
     }
-
 
     public char getGrade() {
         return grade;

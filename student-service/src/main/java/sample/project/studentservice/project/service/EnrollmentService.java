@@ -11,5 +11,7 @@ public interface EnrollmentService {
     public List<Enrollment> getAllEnrollments();
     public void createEnrollment(Enrollment enrollment);
     public void deleteEnrollment(Long id);
-    public void updateById(@PathVariable Long id, Enrollment enrollment);
-}
+    public void updateById(Long id, Enrollment enrollment);
+    public List<Course> getAllCoursesByStudentId(Long id);
+
+
