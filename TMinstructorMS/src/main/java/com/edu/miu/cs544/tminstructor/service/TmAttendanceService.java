@@ -5,9 +5,9 @@ import com.edu.miu.cs544.tminstructor.model.TmAttendance;
 import com.edu.miu.cs544.tminstructor.model.TmInstructor;
 
 public interface TmAttendanceService {
-    public ResponseDTO getAllTmAttendces();
-    public ResponseDTO getTmAttendanceById(int id);
-    public ResponseDTO addTmAttendance(TmAttendance tmAttendance);
-    public ResponseDTO updateTmAttendance(TmAttendance tmAttendance);
-    public ResponseDTO deleteTmAttendanceById(int id);
+    ResponseDTO getAllTmAttendces();
+    ResponseDTO getTmAttendanceById(int id);
+    ResponseDTO addTmAttendance(TmAttendance tmAttendance);
+    ResponseDTO updateTmAttendance(TmAttendance tmAttendance);
+    ResponseDTO deleteTmAttendanceById(int id);
 }

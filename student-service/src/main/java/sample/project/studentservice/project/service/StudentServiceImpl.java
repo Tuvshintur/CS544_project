@@ -2,7 +2,6 @@ package sample.project.studentservice.project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import sample.project.studentservice.project.domain.Course;
 
 import sample.project.studentservice.project.domain.Enrollment;
@@ -11,22 +10,16 @@ import sample.project.studentservice.project.repository.CourseRegisteredReposito
 import sample.project.studentservice.project.repository.EnrollmentRepository;
 import sample.project.studentservice.project.repository.StudentRepository;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public class StudentServiceImpl implements StudentService {
 
     StudentRepository studentRepository;
     EnrollmentRepository enrollmentRepository;
     CourseRegisteredRepository courseRegisteredRepository;
-
-
-    public StudentServiceImpl() {
-    }
 
     @Autowired
     StudentServiceImpl(StudentRepository studentRepository, EnrollmentRepository enrollmentRepository, CourseRegisteredRepository courseRegisteredRepository) {
@@ -36,20 +29,18 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Course> getAllCoursebyStdentId(int id) {
-        return enrollmentRepository.getAllCourseByStudentId(id);
-    }
-
-    @Override
-    public List<Course> getRegisteredByStudentId(int id) {
-        return courseRegisteredRepository.getRegisteredByStudentId(id);
-        this.enrollmentRepository = enrollmentRepository;
-        this.courseRegisteredRepository = courseRegisteredRepository;
-    }
-
-    @Override
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
+    }
+
+    @Override
+    public List<Course> getAllStudentCourses(int studentId) {
+        Student student = studentRepository.findById(studentId);
+        if (student != null) {
+            return student.getEnrollments().stream().map(Enrollment::getCourse).collect(Collectors.toList());
+        } else {
+            return new ArrayList<>();
+        }
     }
 
     @Override
@@ -90,14 +81,6 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student assignInstructor(int instructor_id, int student_id) {
-        Student student = studentRepository.findById(student_id);
-        if (student != null) {
-            student.setInstructor_id(instructor_id);
-            return studentRepository.save(student);
-        }
-        return null;
-    }
 
     public List<Course> getAllCourseByStudentId(int studentId) {
         return enrollmentRepository.getAllCourseByStudentId(studentId);
@@ -107,23 +90,12 @@ public class StudentServiceImpl implements StudentService {
     public List<Course> getRegisteredByStudentId(int studentId) {
         return courseRegisteredRepository.getRegisteredByStudentId(studentId);
     }
-<<<<<<< HEAD
-=======
-=======
+
+
     public List<Student> availableForJob() {
+        List<Student> students = studentRepository.findAll();
+        return students.stream().filter(student -> student.getCoursesRegisteredList().size()>=5).collect(Collectors.toList());
+    }
 
-
-
-}
->>>>>>> 8cbd8788eea2f9ffb206b0002d317e107f553503
-
-//    public List<Student> availableForJob() {
-//
-//    }
-//}
-   public List<Student> availableForJob() {
-       List<Student> students = studentRepository.findAll();
-       return students;
-   }
 }
 

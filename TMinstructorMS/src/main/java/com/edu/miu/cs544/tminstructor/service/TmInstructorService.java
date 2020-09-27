@@ -5,11 +5,11 @@ import com.edu.miu.cs544.tminstructor.model.TmInstructor;
 
 public interface TmInstructorService {
 
-    public ResponseDTO getAllTmInstructors();
-    public ResponseDTO getTmInstructorById(int id);
+    ResponseDTO getAllTmInstructors();
+    ResponseDTO getTmInstructorById(int id);
     TmInstructor getTmInstructorByIdReturnTmInstructor(int id);
-    public ResponseDTO addTmInstructor(TmInstructor tmInstructor);
-    public ResponseDTO updateTmInstrcutor(TmInstructor tmInstructor);
-    public ResponseDTO deleteTmInstructorById(int id);
+    ResponseDTO addTmInstructor(TmInstructor tmInstructor);
+    ResponseDTO updateTmInstrcutor(TmInstructor tmInstructor);
+    ResponseDTO deleteTmInstructorById(int id);
 
 }

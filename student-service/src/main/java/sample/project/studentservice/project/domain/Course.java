@@ -1,5 +1,8 @@
 package sample.project.studentservice.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,32 +16,19 @@ public class Course {
     private String building;
     private int roomNumber;
 
-<<<<<<< HEAD
     @ManyToMany//(cascade = CascadeType.ALL)
-=======
-
-    @ManyToMany
-    @JsonIgnore
->>>>>>> 8cbd8788eea2f9ffb206b0002d317e107f553503
     private List<Faculty> faculties;
 
     @OneToMany(mappedBy = "course")
-    @JsonIgnore
     private List<Enrollment> enrollments;
 
     @OneToMany(mappedBy = "course")
-<<<<<<< HEAD
     //@JoinColumn
     private List<CoursesRegistered> coursesRegistered;
-=======
-    @JsonIgnore
-    private List<CoursesRegistered> coursesRegistereds;
->>>>>>> 8cbd8788eea2f9ffb206b0002d317e107f553503
   
 
     public Course() {
     }
-
 
     public Course(String title, String courseCode, String building, int roomNumber) {
         this.title = title;
@@ -79,6 +69,7 @@ public class Course {
         this.faculties = faculties;
     }
 
+
     public List<Enrollment> getEnrollments() {
         return enrollments;
     }
@@ -86,6 +77,7 @@ public class Course {
     public void setEnrollments(List<Enrollment> enrollments) {
         this.enrollments = enrollments;
     }
+
 
     public String getBuilding() {
         return building;
@@ -111,9 +103,6 @@ public class Course {
         this.coursesRegistered = coursesRegistered;
     }
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 8cbd8788eea2f9ffb206b0002d317e107f553503
 }

@@ -17,6 +17,7 @@ public class CourseController {
 
     @GetMapping("/All")
     public List<Course> getAllCourse() {
+
         return courseService.getAllCourse();
     }
 

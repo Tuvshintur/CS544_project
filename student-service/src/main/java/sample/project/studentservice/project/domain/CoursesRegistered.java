@@ -4,7 +4,6 @@ package sample.project.studentservice.project.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class CoursesRegistered {
@@ -20,8 +19,6 @@ public class CoursesRegistered {
 
     public CoursesRegistered() {
 
-    public Long getId() {
-        return id;
     }
 
     public CoursesRegistered(LocalDate startDate, LocalDate endDate, Student student, Course course) {

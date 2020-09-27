@@ -1,7 +1,5 @@
 package sample.project.studentservice.project.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 ;
@@ -11,19 +9,15 @@ import java.util.List;
 public class Faculty {
     @Id@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
     private LocalDate hiringDate;
     private int room;
+
     @ManyToMany(mappedBy = "faculties", fetch = FetchType.EAGER)
-    @JsonIgnore
     private List<Course> courses ;
-<<<<<<< HEAD
 
     @OneToOne //(cascade = CascadeType.ALL)
-=======
-    @OneToOne
-    @JsonIgnore
->>>>>>> 8cbd8788eea2f9ffb206b0002d317e107f553503
     private Address address;
 
     public Faculty() {

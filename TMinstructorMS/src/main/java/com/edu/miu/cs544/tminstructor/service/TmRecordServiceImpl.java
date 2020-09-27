@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class TmRecordServiceImpl implements TmRecordService {
-    private TmRecordRepository tmRecordRepository;
+    private final TmRecordRepository tmRecordRepository;
 
     @Autowired
     public TmRecordServiceImpl(TmRecordRepository tmRecordRepository) {

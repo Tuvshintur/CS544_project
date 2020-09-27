@@ -5,19 +5,26 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
+//import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import sample.project.studentservice.project.domain.*;
 import sample.project.studentservice.project.repository.*;
+
+
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
 @EnableEurekaClient
+
 @EnableDiscoveryClient
+
 public class StudentServiceApplication implements CommandLineRunner {
 
     @Autowired
@@ -45,18 +52,13 @@ public class StudentServiceApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         //1.Addresses
-<<<<<<< HEAD
        Address add1 = new Address("15117 Georgia ave", "Washington", "DC", 20011);
-       Address add2 = new Address("46 Main ave", "Dallas", "TX", 57720);
-=======
-        Address add1 = new Address("15117 Georgia ave", "Washington", "DC", 20011);
-        Address add2 = new Address("46 Main ave", "Dullas", "TX", 57720);
->>>>>>> cf9cf4b09fc85834fc66404f22010d8682dbb991
+       Address add2 = new Address("46 Main ave", "Dullas", "TX", 57720);
         addressRepository.saveAll(Arrays.asList(add1, add2));
 
-        //2.Created Courses
+   //2.Created Courses
 
-        Course EA =  new Course("EA", "cs544", "Drier", 12);
+       Course EA =  new Course("EA", "cs544", "Drier", 12);
         Course BDT =  new Course("BDT", "cs523", "Maclafen", 15);
         Course MPP =  new Course("MPP", "cs401", "VerillHall", 39);
         courseRepository.saveAll(Arrays.asList(EA, BDT, MPP));
@@ -65,33 +67,24 @@ public class StudentServiceApplication implements CommandLineRunner {
         course500.add(EA);
 
         //3. create Student
-<<<<<<< HEAD
-        Student st1= new  Student("Yohannes", 110871, LocalDate.of(2020, 2, 1),
-                LocalDate.of(2021, 6,15), 3.6, add1);
+       Student st1= new  Student("Yohannes", 110871, LocalDate.of(2020, 2, 1),
+               LocalDate.of(2021, 6,15), 3.6, add1);
 
         Student st2= new  Student("Damitie", 550871, LocalDate.of(2019, 8, 14),
                 LocalDate.of(2020, 8,30), 3.8, add2);
-        studentRepository.saveAll(Arrays.asList(st1, st2));
-=======
-       Student st1= new  Student("Yohannes", 110871, LocalDate.of(2020, 2, 1),
-               LocalDate.of(2021, 6,15), 3.6);
-
-        Student st2= new  Student("Damitie", 550871, LocalDate.of(2019, 8, 14),
-                LocalDate.of(2020, 8,30), 3.8);
              studentRepository.saveAll(Arrays.asList(st1, st2));
->>>>>>> 8cbd8788eea2f9ffb206b0002d317e107f553503
 
         //4.CourseRegistration
         CoursesRegistered cr1 =  new CoursesRegistered(LocalDate.of(2020,10,24),LocalDate.of(2020,11,24), st1, EA);
         CoursesRegistered cr2 =  new CoursesRegistered(LocalDate.of(2020,8,24),LocalDate.of(2020,9,30), st2, MPP);
         CoursesRegistered cr3 =  new CoursesRegistered(LocalDate.of(2020,9,28),LocalDate.of(2020,10,20), st1, BDT);
 
-        courseRegisteredRepository.saveAll(Arrays.asList(cr1, cr2, cr2));
+       courseRegisteredRepository.saveAll(Arrays.asList(cr1, cr2, cr2));
 
-        //5. Create Enrollment
+       //5. Create Enrollment
         Enrollment enrollment = new  Enrollment('A', st1, BDT);
         Enrollment enrollment2 = new  Enrollment('B', st2, MPP);
-        Enrollment enrollment3 = new  Enrollment('B', st2, EA);
+      Enrollment enrollment3 = new  Enrollment('B', st2, EA);
         enrollmentRepository.saveAll(Arrays.asList(enrollment, enrollment2,enrollment3));
 
         //6. Create Faculty

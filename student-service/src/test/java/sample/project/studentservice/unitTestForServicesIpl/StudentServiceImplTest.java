@@ -1,7 +1,5 @@
 package sample.project.studentservice.unitTestForServicesIpl;
 
-
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,6 +31,5 @@ public class StudentServiceImplTest extends AbstractFacultyServiceTest {
         logger.info("List data: " + student);
     }
 }
-
 
 

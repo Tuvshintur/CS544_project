@@ -32,16 +32,5 @@ public class EnrollmentServiceImpl implements  EnrollmentService{
 
     @Override
     public void updateById(Long id, Enrollment enrollment) {
-
-    }
-
-    @Override
-    public List<Course> getAllCoursesByStudentId(Long id) {
-        return null;
-    }
-
-    @Override
-    public void createEnrollment(Enrollment enrollment) {
-        enrollmentRepository.save(enrollment);
     }
 }

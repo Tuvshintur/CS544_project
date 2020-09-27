@@ -15,7 +15,7 @@ public class ResponseService implements Constants {
      * DTO
      **/
 
-    private IGeneralDTO dto;
+    private final IGeneralDTO dto;
 
     private List<IGeneralDTO> dtos;
 
